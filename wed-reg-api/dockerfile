@@ -1,2 +1,9 @@
+# Specify a base image
 FROM node:latest
 
+WORKDIR /usr/app/src
+COPY ./ ./
+RUN npm install
+
+# Set up a default command
+CMD [ "npm","start" ]
