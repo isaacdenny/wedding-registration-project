@@ -1,0 +1,15 @@
+version: 1.0.0
+
+services:
+  wed-reg-api:
+    build: ./wed-reg-api
+    ports:
+      - 8080:8080
+  wed-reg-db:
+    image: "mysql"
+    env_file:
+      - ./wed-reg-db/database.env
+    volumes:
+      - /wed-reg-db/mysql-data:/var/lib/mysql/data/
+    ports:
+      - "6543:5432"
