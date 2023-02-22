@@ -1,12 +1,11 @@
-CREATE DATABASE wedding;
-use wedding;
+CREATE DATABASE if not exists wedding;
+USE wedding;
 
-CREATE TABLE attendees (
-  invitationID int not null AUTO_INCREMENT,
-  FirstName varchar(255) NOT NULL,
-  LastName varchar(255) NOT NULL,
-  PRIMARY KEY (invitationID)
+CREATE TABLE if not exists attendees (
+  InvitationID int NOT NULL AUTO_INCREMENT,
+  FirstName VARCHAR(100) NOT NULL,
+  LastName VARCHAR(100) NOT NULL,
+  PRIMARY KEY (InvitationID)
 );
 
-INSERT INTO attendees (FirstName, LastName) 
-VALUES ("John, Smith"), ("Jane, Smith");
+INSERT INTO attendees (FirstName, LastName) VALUES ("John", "Smith"), ("Jane", "Smith");

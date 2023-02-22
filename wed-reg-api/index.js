@@ -22,6 +22,13 @@ db.connect((err) => {
   else console.log("Database connected")
 })
 
+/* TEST DB CONNECTION */
+let sql = "SELECT * FROM attendees"
+let query = db.query(sql, (err, result) => { 
+  if (err) console.log(err)
+  else console.log(result)
+})
+
 /* CONFIGURATIONS */
 const app = express()
 app.use(express.json())
