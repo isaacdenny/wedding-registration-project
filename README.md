@@ -7,7 +7,7 @@ This project is built to be a tool for registering your party members, letting
 us know who is coming to the wedding! It allows invitees to go online via a QR code,
 enter their party name and invitation ID to then select who in their party is coming.
 
-We did not want to pay a bunch of money for a simple registration app, so I build one!
+We did not want to pay a bunch of money for a simple registration app, so I built one!
 
 ## Technologies
 
