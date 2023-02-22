@@ -29,7 +29,7 @@ We did not want to pay a bunch of money for a simple registration app, so I buil
 See section "Contributing To The Project" for local development instructions.
 1. Clone this repo with `git clone <repo-url-here>` and `cd` into the repo directory.
 2. Make sure you have [Docker](https://www.docker.com/) AND [Docker-Compose](https://docs.docker.com/compose/) installed
-5. Navigate to the main project directory andrun the command `docker-compose up`
+5. Navigate to the main project directory and run the command `docker-compose up`
 6. Invite People To Your Event!
 
 ## Contributing To The Project

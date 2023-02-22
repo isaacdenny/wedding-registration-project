@@ -12,7 +12,6 @@ dotenv.config()
 export const db = mysql.createConnection({
   host: "wed-reg-db",
   user: "root",
-  port: "3306",
   password: "root",
   database: "wedding"
 })
