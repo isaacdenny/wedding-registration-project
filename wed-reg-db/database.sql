@@ -8,5 +8,5 @@ CREATE TABLE attendees (
   PRIMARY KEY (invitationID)
 );
 
-INSERT INTO attendees (invitationID, FirstName, LastName) 
+INSERT INTO attendees (FirstName, LastName) 
 VALUES ("John, Smith"), ("Jane, Smith");

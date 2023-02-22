@@ -8,22 +8,19 @@ import helmet from "helmet"
 /* LOAD ENV */
 dotenv.config()
 
-// /* CREATE DATABASE CONNECTION */
-// const MYSQL_USER = process.env.MYSQL_USER
-// const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD
-// const MYSQL_DB_NAME = process.env.MYSQL_DB_NAME
-// export const db = mysql.createConnection({
-//   host: "wed-reg-db",
-//   user: "root",
-//   port: "3307",
-//   password: "root",
-//   database: "wedding"
-// })
+/* CREATE DATABASE CONNECTION */
+export const db = mysql.createConnection({
+  host: "wed-reg-db",
+  user: "root",
+  port: "3306",
+  password: "root",
+  database: "wedding"
+})
 
-// db.connect((err) => { 
-//   if (err) console.log(err)
-//   else console.log("Database connected")
-// })
+db.connect((err) => { 
+  if (err) console.log(err)
+  else console.log("Database connected")
+})
 
 /* CONFIGURATIONS */
 const app = express()
