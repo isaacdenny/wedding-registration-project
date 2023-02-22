@@ -42,7 +42,7 @@ export const addAttendee = async (req, res) => {
   }
 };
 
-export const removeAttendee = async (req, res) => {
+export const deleteAttendee = async (req, res) => {
   try {
     const { FirstName, LastName } = await req.body;
     let sql = `DELETE FROM attendees WHERE (FirstName='${FirstName}' AND LastName='${LastName}')`;
@@ -55,14 +55,15 @@ export const removeAttendee = async (req, res) => {
   }
 };
 
-// export const updateAttendee = async (req, res) => { 
-//   try {
-//     const { FirstName, LastName, PartyID } = await req.body;
-//     let sql = `UPDATE attendees SET FirstName = '${FirstName}', LastName = '${LastName}', Party`
-//   } catch (error) {
-//     res.status(500).json({ error: error });
-//   }
-// }
+export const updateAttendee = async (req, res) => { 
+  try {
+    const { FirstName, LastName, PartyID } = await req.body;
+    let sql = `UPDATE attendees SET FirstName = '${FirstName}', LastName = '${LastName}', Party`
+    console.log("NOT IMPLEMENTED")
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+}
 
 export const getParty = async (req, res) => { 
   try {
@@ -77,7 +78,7 @@ export const getParty = async (req, res) => {
   }
 }
 
-export const removeParty = async (req, res) => {
+export const deleteParty = async (req, res) => {
   try {
     const { PartyID } = await req.body;
     let sql = `DELETE FROM attendies WHERE PartyID = '${PartyID}'`;
