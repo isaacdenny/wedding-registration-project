@@ -1,8 +1,13 @@
 import "./App.css";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [message, setMessage] = useState("");
+  const host = "localhost";
+  const port = 8080;
+  useEffect(() => { getHomepageText() }, []);
   const getHomepageText = async () => {
-    fetch(`http://localhost:8080`, {
+    fetch(`http://${host}:${port}`, {
       method: "GET",
       mode: "cors",
       headers: {
@@ -11,13 +16,14 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        const { message } = data;
+        console.log(message);
+        setMessage(message);
       });
   };
-  getHomepageText();
   return (
     <>
-      <div className="App">Hello World!</div>
+      <div className="App">{message}</div>
     </>
   );
 }

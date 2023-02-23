@@ -17,10 +17,10 @@ export const db = mysql.createConnection({
   database: "wedding",
 });
 
-db.connect((err) => {
-  if (err) console.log(err);
-  else console.log("Database connected");
-});
+// db.connect((err) => {
+//   if (err) console.log(err);
+//   else console.log("Database connected");
+// });
 
 /* CONFIGURATIONS */
 const app = express();
