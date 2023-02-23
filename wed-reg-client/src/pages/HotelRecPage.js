@@ -1,13 +1,15 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 
-const RegisterPage = () => {
+const HotelRecPage = () => {
   return (
     <>
       <Navbar />
-      <div>register</div>
+      <div>
+        Hotel Recommendation
+      </div>
     </>
-  );
+  )
 }
 
-export default RegisterPage
+export default HotelRecPage

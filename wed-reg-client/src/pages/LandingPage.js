@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from "react";
+import Navbar from '../components/Navbar'
 
 function LandingPage() {
     const [message, setMessage] = useState("");
@@ -25,6 +26,7 @@ function LandingPage() {
     };
   return (
     <>
+      <Navbar />
       <div className="App">
         <div className="App-header">{message}</div>
         <a href="/register">
