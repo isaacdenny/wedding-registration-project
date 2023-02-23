@@ -1,30 +1,26 @@
-import React from 'react'
+import React from "react";
+import { BsFillBookmarkHeartFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="Navbar">
-      <div className="Navbar-logo">
-        <img src="logo.png" alt="logo" />
-      </div>
-      <ul className="Navbar-links">
+    <nav className="nav">
+      <Link to="/">
+        <BsFillBookmarkHeartFill size={"30px"} />
+      </Link>
+      <ul className="nav-links">
         <li>
-          <a href="/" className="Navbar-link">
-            Home
-          </a>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="/about-bridal" className="Navbar-link">
-            About Bridal
-          </a>
+          <Link to="/about-bridal">About Bridal</Link>
         </li>
         <li>
-          <a href="/hotel-rec" className="Navbar-link">
-            Hotel Recomendations
-          </a>
+          <Link to="/hotel-rec">Hotel Recomendations</Link>
         </li>
       </ul>
-    </div>
+    </nav>
   );
-}
+};
 
-export default Navbar
+export default Navbar;
