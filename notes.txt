@@ -1,0 +1,6 @@
+Notes for React Pages
+
+1. Home page (about Isaac and Allie)
+2. Meet the Bridal party
+3. Hotel recomendations
+4. Let us know you're coming! (API functionality)
