@@ -1,29 +1,25 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import LandingPage from "./pages/LandingPage.js";
+import LoginPage from "./pages/LoginPage.js";
+import RegisterPage from "./pages/RegisterPage.js";
+import { BrowserRouter, Routes, Navigate, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [message, setMessage] = useState("");
-  const host = "localhost";
-  const port = 8080;
-  useEffect(() => { getHomepageText() }, []);
-  const getHomepageText = async () => {
-    fetch(`http://${host}:${port}`, {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        const { message } = data;
-        console.log(message);
-        setMessage(message);
-      });
-  };
+  const isAuth = Boolean(useSelector((state) => state.token));
   return (
     <>
-      <div className="App">{message}</div>
+      <BrowserRouter>
+        <Routes>
+          <Route path={"/"} element={<LandingPage />} />
+          <Route path={"/login"} element={<LoginPage />} />
+          <Route path={"/register"} element={<RegisterPage />} />
+          <Route
+            path={"/admin"}
+            element={isAuth ? <LandingPage /> : <Navigate to="/login" />}
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
