@@ -5,18 +5,31 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="nav">
+      <ul className="nav-links">
+        <li>
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link className="nav-link" to="/about-bridal">
+            About Bridal
+          </Link>
+        </li>
+      </ul>
       <Link to="/">
-        <BsFillBookmarkHeartFill size={"30px"} />
+        <BsFillBookmarkHeartFill className="nav-logo" />
       </Link>
       <ul className="nav-links">
         <li>
-          <Link to="/">Home</Link>
+          <Link className="nav-link" to="/hotel-rec">
+            Hotel Rec
+          </Link>
         </li>
         <li>
-          <Link to="/about-bridal">About Bridal</Link>
-        </li>
-        <li>
-          <Link to="/hotel-rec">Hotel Recomendations</Link>
+          <Link className="nav-link" to="/event-details">
+            Event Details
+          </Link>
         </li>
       </ul>
     </nav>

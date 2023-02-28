@@ -1,13 +1,13 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 
-const AboutBridalPage = () => {
+const EventDetailsPage = () => {
   return (
     <>
       <Navbar />
-      <div className="container">About Bridal</div>
+      <div className="container">Event Details</div>
     </>
   );
 };
 
-export default AboutBridalPage;
+export default EventDetailsPage;
