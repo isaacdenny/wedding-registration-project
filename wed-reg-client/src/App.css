@@ -7,6 +7,16 @@
   align-items: center;
 }
 
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  background-image: url("images/hero.jpg");
+  background-size: cover;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav {
   display: flex;
   position: absolute;
@@ -16,6 +26,7 @@
   align-items: center;
   min-height: 60px;
   width: 100vw;
+  z-index: 100;
 }
 
 .nav-logo {
@@ -23,16 +34,23 @@
   min-width: 30px;
   min-height: 30px;
   color: white;
+  font-size: xx-large;
+  text-decoration: none;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
+  font-size: large;
 }
 
 .nav-link {
   text-decoration: none;
   margin: 2rem;
+  color: white;
+}
+
+.hero-text {
   color: white;
 }
 

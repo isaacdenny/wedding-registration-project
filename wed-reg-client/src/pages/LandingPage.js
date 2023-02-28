@@ -28,10 +28,8 @@ function LandingPage() {
   return (
     <div>
       <Navbar />
-      <div className="container">
-        <h1 color={"white"} margin="2rem">
-          {message}
-        </h1>
+      <div className="hero-container">
+        <h1 className="hero-text">{message}</h1>
         <Link to="/register">
           <button>Let Us Know You're Coming!</button>
         </Link>

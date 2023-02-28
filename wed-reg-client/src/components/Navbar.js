@@ -1,5 +1,5 @@
 import React from "react";
-import { BsFillBookmarkHeartFill } from "react-icons/bs";
+import { HiHeart } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -17,8 +17,10 @@ const Navbar = () => {
           </Link>
         </li>
       </ul>
-      <Link to="/">
-        <BsFillBookmarkHeartFill className="nav-logo" />
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <h1 className="nav-logo">
+          Allie <HiHeart /> Isaac
+        </h1>
       </Link>
       <ul className="nav-links">
         <li>
