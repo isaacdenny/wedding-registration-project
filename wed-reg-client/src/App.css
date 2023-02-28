@@ -66,13 +66,13 @@
   padding-right: 30px;
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: #F4F1EC;
+  background-color: #C9B6A4;
   border-width: 0px;
   border-radius: 2px;
   font-family: 'Glook';
   font-weight: 600;
   font-size: large;
-  color: #C9B6A4;
+  color: white;
 }
 
 .info-container {
@@ -107,3 +107,21 @@
   height: 100%;
 }
 
+.footer-links {
+  list-style: none;
+  display: flex;
+  font-size: large;
+}
+
+.footer {
+  display: flex;
+  position: absolute;
+  background-color: #C9B6A4;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 60px;
+  width: 100vw;
+  z-index: 100;
+  border-bottom: white solid;
+}
