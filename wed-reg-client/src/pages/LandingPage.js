@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import InfoSection from "../components/InfoSection";
+import FormSection from "../components/FormSection";
 
 function LandingPage() {
   return (
@@ -15,6 +16,7 @@ function LandingPage() {
         </Link>
       </div>
       <InfoSection />
+      <FormSection />
       <Footer />
     </div>
   );
