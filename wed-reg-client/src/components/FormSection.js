@@ -5,20 +5,7 @@ import { useState } from "react";
 const FormSection = () => {
   const [lastName, setLastName] = useState("");
   const [invitationID, setInvitationID] = useState("");
-  const [attendants, setAttendants] = useState([
-    {
-      firstName: "John",
-      lastName: "Smith",
-      invitationID: "0001",
-      isAttending: "false",
-    },
-    {
-      firstName: "Jane",
-      lastName: "Smith",
-      invitationID: "0001",
-      isAttending: "false",
-    },
-  ]);
+  const [attendants, setAttendants] = useState([]);
   const [isRegistered, setIsRegistered] = useState(false);
   const [isAttending, setIsAttending] = useState(false);
   const isAttendingArray = [];
@@ -51,13 +38,12 @@ const FormSection = () => {
   const handleRegister = (event) => {
     event.preventDefault();
     attendants.map((attendant, i) => {
-      attendantsArray[i] =
-        {
-          firstName: attendant.firstName,
-          lastName: attendant.lastName,
-          invitationID: attendant.invitationID,
-          isAttending: isAttending[i],
-        };
+      attendantsArray[i] = {
+        firstName: attendant.firstName,
+        lastName: attendant.lastName,
+        isAttending: isAttending[i],
+        invitationID: attendant.invitationID,
+      };
     });
     fetch(`http://${host}:${port}/attendant/register`, {
       method: "POST",
@@ -67,13 +53,13 @@ const FormSection = () => {
       },
       body: JSON.stringify(attendantsArray),
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .then(() => {
-      setIsRegistered(!isRegistered);
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .then(() => {
+        setIsRegistered(!isRegistered);
+      });
   };
 
   useEffect(
@@ -85,7 +71,7 @@ const FormSection = () => {
     console.log(attendants);
   });
 
-  return isRegistered ? (
+  return !isRegistered ? (
     <div className="form-section-container">
       <div className="form-image-container">
         <img
@@ -132,7 +118,7 @@ const FormSection = () => {
         Please select who in your party will be attending!
         <form onSubmit={handleRegister}>
           {attendants.map((attendant, i) => {
-            isAttendingArray[i] = isAttending[i];
+            isAttendingArray[i] = isAttending[i] || false;
             return (
               <div key={i} className="form-container-checkbox">
                 <label className="form-label">
