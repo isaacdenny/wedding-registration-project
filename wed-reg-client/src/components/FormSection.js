@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import heroImage from "../images/formsection.jpg";
 import { useState } from "react";
 
@@ -6,10 +6,23 @@ const FormSection = () => {
   const [lastName, setLastName] = useState("");
   const [invitationID, setInvitationID] = useState("");
   const [attendants, setAttendants] = useState([
-    { firstName: "John", lastName: "Smith", isAttending: false },
-    { firstName: "Jane", lastName: "Smith", isAttending: false },
+    {
+      firstName: "John",
+      lastName: "Smith",
+      invitationID: "0001",
+      isAttending: "false",
+    },
+    {
+      firstName: "Jane",
+      lastName: "Smith",
+      invitationID: "0001",
+      isAttending: "false",
+    },
   ]);
   const [isRegistered, setIsRegistered] = useState(false);
+  const [isAttending, setIsAttending] = useState(false);
+  const isAttendingArray = [];
+  const attendantsArray = [];
 
   const host = "localhost";
   const port = 8080;
@@ -37,10 +50,40 @@ const FormSection = () => {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    setAttendants([event.target.attendant]).then(() => {
-      console.log(attendants);
+    attendants.map((attendant, i) => {
+      attendantsArray[i] =
+        {
+          firstName: attendant.firstName,
+          lastName: attendant.lastName,
+          invitationID: attendant.invitationID,
+          isAttending: isAttending[i],
+        };
+    });
+    fetch(`http://${host}:${port}/attendant/register`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(attendantsArray),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .then(() => {
+      setIsRegistered(!isRegistered);
     });
   };
+
+  useEffect(
+    () => console.log(isAttendingArray + " is " + isAttending),
+    [isAttending]
+  );
+
+  useEffect(() => {
+    console.log(attendants);
+  });
 
   return isRegistered ? (
     <div className="form-section-container">
@@ -89,6 +132,7 @@ const FormSection = () => {
         Please select who in your party will be attending!
         <form onSubmit={handleRegister}>
           {attendants.map((attendant, i) => {
+            isAttendingArray[i] = isAttending[i];
             return (
               <div key={i} className="form-container-checkbox">
                 <label className="form-label">
@@ -97,8 +141,11 @@ const FormSection = () => {
                 <input
                   type="checkbox"
                   name={attendant.firstName}
-                  checked={false}
-                  onChange={(e) => (attendants.isAttending = e.target.value)}
+                  checked={isAttending[i] || false}
+                  onChange={(e) => {
+                    isAttendingArray[i] = e.target.checked;
+                    setIsAttending(isAttendingArray);
+                  }}
                 />
               </div>
             );
