@@ -22,7 +22,7 @@
 .nav {
   display: flex;
   position: absolute;
-  background-color: transparent;
+  background-color: #c9b6a471;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -186,14 +186,18 @@
   border-width: 0px;
   border-radius: 10px;
   background-color: #C9B6A4;
+  color: #F4F1EC;
   padding: 20px;
   font-size: medium;
+  font-family: 'Glook';
   text-align: center;
   text-justify: center;
+  transition: 0.3s ease-in-out;
 }
 
 .form-container button:hover {
   background-color: #F4F1EC;
+  color: #C9B6A4;
   transition: 0.3s ease-in-out;
 }
 
