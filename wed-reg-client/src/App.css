@@ -181,6 +181,26 @@
   font-size: medium;
 }
 
+.form-container input[type="checkbox"]{
+  margin: 0;
+}
+
+.form-container label { 
+  margin-right: 1rem;
+  font-size: large;
+}
+
+.form-container-checkbox { 
+  padding: 20px;
+  display: flex;
+  max-width: 300px;
+  justify-content: center;
+  align-items: center;
+  background-color: #F4F1EC;
+  margin-bottom: 1.2rem;
+  border-radius: 10px;
+}
+
 .form-container button {
   max-width: 200px;
   border-width: 0px;

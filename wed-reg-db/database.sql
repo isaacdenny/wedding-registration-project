@@ -2,11 +2,11 @@ CREATE DATABASE if not exists wedding;
 USE wedding;
 
 CREATE TABLE if not exists attendees (
-  InvitationID int NOT NULL AUTO_INCREMENT,
-  FirstName VARCHAR(100) NOT NULL,
-  LastName VARCHAR(100) NOT NULL,
-  PartyID int NOT NULL,
-  PRIMARY KEY (InvitationID)
+  id int NOT NULL AUTO_INCREMENT,
+  firstName VARCHAR(100) NOT NULL,
+  lastName VARCHAR(100) NOT NULL,
+  invitationID int NOT NULL,
+  PRIMARY KEY (id)
 );
 
-INSERT INTO attendees (FirstName, LastName, PartyID) VALUES ("John", "Smith", "0001"), ("Jane", "Smith", "0001");
+INSERT INTO attendees (firstName, lastName, invitationID) VALUES ("John", "Smith", "0001"), ("Jane", "Smith", "0001");

@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import mysql from "mysql";
 import helmet from "helmet";
 import adminRoutes from "./routes/admin.js";
-import attendeeRoutes from "./routes/attendant.js";
+import attendantRoutes from "./routes/attendant.js";
 /* LOAD ENV */
 dotenv.config();
 
@@ -17,10 +17,10 @@ export const db = mysql.createConnection({
   database: "wedding",
 });
 
-// db.connect((err) => {
-//   if (err) console.log(err);
-//   else console.log("Database connected");
-// });
+db.connect((err) => {
+  if (err) console.log(err);
+  else console.log("Database connected");
+});
 
 /* CONFIGURATIONS */
 const app = express();
@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-app.use("/attendee", attendeeRoutes);
+app.use("/attendant", attendantRoutes);
 app.use("/admin", adminRoutes);
 
 const PORT = process.env.PORT || 8080;

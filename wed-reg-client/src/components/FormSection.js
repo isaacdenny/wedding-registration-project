@@ -1,40 +1,60 @@
 import React from "react";
 import heroImage from "../images/formsection.jpg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const FormSection = () => {
-  const [message, setMessage] = useState("");
   const [lastName, setLastName] = useState("");
   const [invitationID, setInvitationID] = useState("");
+  const [attendants, setAttendants] = useState([
+    { firstName: "John", lastName: "Smith", isAttending: false },
+    { firstName: "Jane", lastName: "Smith", isAttending: false },
+  ]);
+  const [isRegistered, setIsRegistered] = useState(false);
+
   const host = "localhost";
   const port = 8080;
-  useEffect(() => {
-    getHomepageText();
-  }, []);
-  const getHomepageText = async () => {
-    fetch(`http://${host}:${port}`, {
-      method: "GET",
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(lastName, invitationID);
+    fetch(`http://${host}:${port}/attendant/getAttendants`, {
+      method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ lastName: lastName, invitationID: invitationID }),
     })
       .then((res) => res.json())
       .then((data) => {
-        const { message } = data;
-        console.log(message);
-        setMessage(message);
+        console.log(data);
+        setAttendants(data);
+      })
+      .then(() => {
+        setIsRegistered(!isRegistered);
       });
   };
-  return (
+
+  const handleRegister = (event) => {
+    event.preventDefault();
+    setAttendants([event.target.attendant]).then(() => {
+      console.log(attendants);
+    });
+  };
+
+  return isRegistered ? (
     <div className="form-section-container">
       <div className="form-image-container">
-        <img src={heroImage} className="form-image" />
+        <img
+          src={heroImage}
+          alt="Allie and Isaac's Wedding"
+          className="form-image"
+        />
       </div>
       <div className="form-container">
         <h1 className="form-title">Let Us Know You're Coming</h1>
         Register below with your last name and invitation ID!
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="lastName"
@@ -51,6 +71,40 @@ const FormSection = () => {
           />
           <button type="submit" className="form-button">
             Register
+          </button>
+        </form>
+      </div>
+    </div>
+  ) : (
+    <div className="form-section-container">
+      <div className="form-image-container">
+        <img
+          src={heroImage}
+          alt="Allie and Isaac's Wedding"
+          className="form-image"
+        />
+      </div>
+      <div className="form-container">
+        <h1 className="form-title">RSVP Now!</h1>
+        Please select who in your party will be attending!
+        <form onSubmit={handleRegister}>
+          {attendants.map((attendant, i) => {
+            return (
+              <div key={i} className="form-container-checkbox">
+                <label className="form-label">
+                  {attendant.firstName} {attendant.lastName}
+                </label>
+                <input
+                  type="checkbox"
+                  name={attendant.firstName}
+                  checked={false}
+                  onChange={(e) => (attendants.isAttending = e.target.value)}
+                />
+              </div>
+            );
+          })}
+          <button type="submit" className="form-button">
+            RSVP
           </button>
         </form>
       </div>
