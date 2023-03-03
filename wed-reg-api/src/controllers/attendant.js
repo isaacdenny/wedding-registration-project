@@ -5,7 +5,7 @@ export const getAttendantsInParty = async (req, res) => {
     const { lastName, invitationID } = req.body;
     let sql = `SELECT * FROM attendees WHERE invitationID = '${invitationID}' AND lastName = '${lastName}'`;
     let query = db.query(sql, (err, result) => {
-      if (err) res.status(500).json({ error: err });
+      if (err) res.status(400).json({ error: err });
       else res.status(200).json(result);
     });
   } catch (error) {
@@ -15,8 +15,21 @@ export const getAttendantsInParty = async (req, res) => {
 
 export const register = async (req, res) => {
   try {
-    console.log(req.body);
-    res.status(200).json(req.body);
+    const attendants = [];
+    req.body.map((row) => {
+      attendants.push(row);
+    });
+    attendants.map((row, i) => {
+      let sql = `UPDATE attendees SET isAttending = ${row.isAttending} WHERE firstName = '${row.firstName}' AND invitationID = '${row.invitationID}'`;
+      let query = db.query(sql, (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(result);
+        }
+      });
+    });
+    return res.status(200).json({ message: "Successfully updated attendants" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error });

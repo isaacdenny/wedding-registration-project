@@ -14,8 +14,12 @@ const FormSection = () => {
   const host = "localhost";
   const port = 8080;
 
-  const handleSubmit = (event) => {
+  const handleRegister = (event) => {
     event.preventDefault();
+    if (!lastName || !invitationID) {
+      alert("Please fill out all fields");
+      return;
+    }
     console.log(lastName, invitationID);
     fetch(`http://${host}:${port}/attendant/getAttendants`, {
       method: "POST",
@@ -28,14 +32,16 @@ const FormSection = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.length <= 0) {
+          alert("Last name or invitation ID not found");
+          return;
+        }
         setAttendants(data);
-      })
-      .then(() => {
         setIsRegistered(!isRegistered);
       });
   };
 
-  const handleRegister = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     attendants.map((attendant, i) => {
       attendantsArray[i] = {
@@ -67,10 +73,6 @@ const FormSection = () => {
     [isAttending]
   );
 
-  useEffect(() => {
-    console.log(attendants);
-  });
-
   return !isRegistered ? (
     <div className="form-section-container">
       <div className="form-image-container">
@@ -83,7 +85,7 @@ const FormSection = () => {
       <div className="form-container">
         <h1 className="form-title">Let Us Know You're Coming</h1>
         Register below with your last name and invitation ID!
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleRegister}>
           <input
             type="text"
             name="lastName"
@@ -116,7 +118,7 @@ const FormSection = () => {
       <div className="form-container">
         <h1 className="form-title">RSVP Now!</h1>
         Please select who in your party will be attending!
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleSubmit}>
           {attendants.map((attendant, i) => {
             isAttendingArray[i] = isAttending[i] || false;
             return (
