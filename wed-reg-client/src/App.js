@@ -6,10 +6,11 @@ import { useSelector } from "react-redux";
 import HotelRecPage from "./pages/HotelRecPage";
 import AboutBridalPage from "./pages/AboutBridalPage";
 import EventDetailsPage from "./pages/EventDetailsPage.js";
+import AdminPage from "./pages/AdminPage.js";
 import "./App.css";
 
 function App() {
-  const isAuth = Boolean(useSelector((state) => state.token));
+  const isAuth = useSelector((state) => state.token != null);
   return (
     <BrowserRouter>
       <Routes>
