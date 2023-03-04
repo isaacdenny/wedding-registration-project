@@ -14,6 +14,7 @@ export const getAttendants = async (req, res) => {
 
 export const getAttendant = async (req, res) => {
   try {
+    const { FirstName, LastName } = req.body;
     let sql = `SELECT * FROM students WHERE (FirstName LIKE '%${FirstName}%' OR LastName LIKE '%${LastName}%')`;
     let query = db.query(sql, (err, result) => {
       if (err) res.status(500).json({ error: err });

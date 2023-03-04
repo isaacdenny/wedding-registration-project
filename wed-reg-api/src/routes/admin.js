@@ -4,19 +4,19 @@ import {
   deleteAttendant,
   deleteParty,
   getAttendants,
-  getAttendants,
+  getAttendant,
   getParty,
   updateAttendant,
 } from "../controllers/admin.js";
 
 const router = express.Router();
 
-router.get("/getAttendees", getAttendants);
-router.get("/getAttendee", getAttendants);
+router.get("/getAttendants", getAttendants);
+router.get("/getAttendant", getAttendant);
 router.get("/getParty", getParty);
-router.post("/addAttendee", addAttendant);
-router.patch("/updateAttendee", updateAttendant);
-router.delete("/deleteAttendee", deleteAttendant);
+router.post("/addAttendant", addAttendant);
+router.patch("/updateAttendant", updateAttendant);
+router.delete("/deleteAttendant", deleteAttendant);
 router.delete("/deleteParty", deleteParty);
 
 export default router;

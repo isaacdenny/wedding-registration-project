@@ -9,12 +9,17 @@ import attendantRoutes from "./routes/attendant.js";
 /* LOAD ENV */
 dotenv.config();
 
+const MYSQL_HOST = process.env.MYSQL_HOST;
+const MYSQL_DATABASE = process.env.MYSQL_DATABASE;
+const MYSQL_USER = process.env.MYSQL_USER;
+const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
+//const MYSQL_PORT = process.env.MYSQL_PORT;
 /* CREATE DATABASE CONNECTION */
 export const db = mysql.createConnection({
-  host: "wed-reg-db",
-  user: "root",
-  password: "root",
-  database: "wedding",
+  host: MYSQL_HOST,
+  user: MYSQL_USER,
+  password: MYSQL_PASSWORD,
+  database: MYSQL_DATABASE,
 });
 
 db.connect((err) => {

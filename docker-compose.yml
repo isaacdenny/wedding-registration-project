@@ -12,14 +12,15 @@ services:
     command: sh -c "sleep 7s ; npm start"
     depends_on:
       - wed-reg-db
+    env_file:
+      - ./wed-reg-api/.env
     ports:
       - 8080:8080
 
   wed-reg-db:
     build: ./wed-reg-db
     command: mysqld --authentication_policy=mysql_native_password
-    environment:
-      MYSQL_DATABASE: "wedding"
-      MYSQL_ROOT_PASSWORD: 'root'
+    env_file:
+      - ./wed-reg-db/.env
     ports:
       - "3307:3306"
