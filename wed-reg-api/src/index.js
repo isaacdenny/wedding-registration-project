@@ -6,6 +6,8 @@ import mysql from "mysql";
 import helmet from "helmet";
 import adminRoutes from "./routes/admin.js";
 import attendantRoutes from "./routes/attendant.js";
+
+
 /* LOAD ENV */
 dotenv.config();
 
@@ -50,6 +52,7 @@ app.use("/attendant", attendantRoutes);
 app.use("/admin", adminRoutes);
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+
+app.listen(PORT, () => { 
+  console.log(`Listening at http://localhost:${PORT}`);
+})
