@@ -11,8 +11,8 @@ const FormSection = () => {
   const isAttendingArray = [];
   const attendantsArray = [];
 
-  const host = "localhost";
-  const port = 8080;
+  const host = process.env.API_HOST;
+  const port = process.env.API_PORT;
 
   const handleRegister = (event) => {
     event.preventDefault();
