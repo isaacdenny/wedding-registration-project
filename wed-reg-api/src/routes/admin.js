@@ -1,22 +1,22 @@
 import express from "express";
 import {
-  addAttendee,
-  deleteAttendee,
+  addAttendant,
+  deleteAttendant,
   deleteParty,
-  getAttendee,
-  getAttendees,
+  getAttendants,
+  getAttendants,
   getParty,
-  updateAttendee,
+  updateAttendant,
 } from "../controllers/admin.js";
 
 const router = express.Router();
 
-router.get("/getAttendees", getAttendees);
-router.get("/getAttendee", getAttendee);
+router.get("/getAttendees", getAttendants);
+router.get("/getAttendee", getAttendants);
 router.get("/getParty", getParty);
-router.post("/addAttendee", addAttendee);
-router.patch("/updateAttendee", updateAttendee);
-router.delete("/deleteAttendee", deleteAttendee);
+router.post("/addAttendee", addAttendant);
+router.patch("/updateAttendee", updateAttendant);
+router.delete("/deleteAttendee", deleteAttendant);
 router.delete("/deleteParty", deleteParty);
 
 export default router;

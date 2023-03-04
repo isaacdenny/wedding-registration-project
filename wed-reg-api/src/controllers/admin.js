@@ -1,6 +1,6 @@
 import { db } from "../index.js";
 
-export const getAttendees = async (req, res) => {
+export const getAttendants = async (req, res) => {
   try {
     let sql = "SELECT * FROM attendees";
     let query = db.query(sql, (err, result) => {
@@ -12,19 +12,19 @@ export const getAttendees = async (req, res) => {
   }
 };
 
-export const getAttendee = async (req, res) => { 
+export const getAttendant = async (req, res) => {
   try {
     let sql = `SELECT * FROM students WHERE (FirstName LIKE '%${FirstName}%' OR LastName LIKE '%${LastName}%')`;
-    let query = db.query(sql, (err, result) => { 
+    let query = db.query(sql, (err, result) => {
       if (err) res.status(500).json({ error: err });
       else res.status(200).json(result);
-    })
+    });
   } catch (error) {
     res.status(500).json({ error: error });
   }
-}
+};
 
-export const addAttendee = async (req, res) => {
+export const addAttendant = async (req, res) => {
   try {
     const { FirstName, LastName, PartyID } = await req.body;
     let newAttendee = {
@@ -42,7 +42,7 @@ export const addAttendee = async (req, res) => {
   }
 };
 
-export const deleteAttendee = async (req, res) => {
+export const deleteAttendant = async (req, res) => {
   try {
     const { FirstName, LastName } = await req.body;
     let sql = `DELETE FROM attendees WHERE (FirstName='${FirstName}' AND LastName='${LastName}')`;
@@ -55,28 +55,28 @@ export const deleteAttendee = async (req, res) => {
   }
 };
 
-export const updateAttendee = async (req, res) => { 
+export const updateAttendant = async (req, res) => {
   try {
     const { FirstName, LastName, PartyID } = await req.body;
-    let sql = `UPDATE attendees SET FirstName = '${FirstName}', LastName = '${LastName}', Party`
-    console.log("NOT IMPLEMENTED")
+    let sql = `UPDATE attendees SET FirstName = '${FirstName}', LastName = '${LastName}', Party`;
+    console.log("NOT IMPLEMENTED");
   } catch (error) {
     res.status(500).json({ error: error });
   }
-}
+};
 
-export const getParty = async (req, res) => { 
+export const getParty = async (req, res) => {
   try {
-    const { PartyID } = await req.body
+    const { PartyID } = await req.body;
     let sql = `SELECT * FROM attendies WHERE PartyID = '${PartyID}'`;
     let query = db.query(sql, (err, result) => {
-      if (err) res.status(500).json({ error: err })
-      else res.status(200).json(result)
+      if (err) res.status(500).json({ error: err });
+      else res.status(200).json(result);
     });
   } catch (error) {
     res.status(500).json({ error: error });
   }
-}
+};
 
 export const deleteParty = async (req, res) => {
   try {

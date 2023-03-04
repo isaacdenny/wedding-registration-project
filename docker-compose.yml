@@ -1,4 +1,12 @@
 services:
+  wed-reg-admin:
+    build: ./wed-reg-admin
+    command: sh -c 'sleep 10s ; npm start'
+    depends_on:
+      - wed-reg-api
+    ports:
+    - 3001:3000
+
   wed-reg-client:
     build: ./wed-reg-client
     command: sh -c 'sleep 10s ; npm start'
@@ -6,6 +14,7 @@ services:
       - wed-reg-api
     ports:
     - 3000:3000
+
   wed-reg-api:
     build: ./wed-reg-api
     command: sh -c "sleep 7s ; npm start"
