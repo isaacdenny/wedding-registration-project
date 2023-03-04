@@ -11,8 +11,7 @@ const FormSection = () => {
   const isAttendingArray = [];
   const attendantsArray = [];
 
-  const host = process.env.API_HOST;
-  const port = process.env.API_PORT;
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -21,7 +20,7 @@ const FormSection = () => {
       return;
     }
     console.log(lastName, invitationID);
-    fetch(`http://${host}:${port}/attendant/getAttendants`, {
+    fetch(`http://${API_URL}/attendant/getAttendants`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -51,7 +50,7 @@ const FormSection = () => {
         invitationID: attendant.invitationID,
       };
     });
-    fetch(`http://${host}:${port}/attendant/register`, {
+    fetch(`http://${API_URL}/attendant/register`, {
       method: "POST",
       mode: "cors",
       headers: {
