@@ -22,7 +22,7 @@ const AdminPage = () => {
   ]
 
   const handleMenu = (type) => {
-    setMenu((menus[type]));
+    setMenu((type));
   }
 
   useEffect(() => { 
@@ -59,25 +59,25 @@ const AdminPage = () => {
             <input
               type="checkbox"
               value={isAttending}
-              onChange={setIsAttending(!isAttending)}
+              onChange={(e) => setIsAttending(e.target.value)}
             />
             <label>Not Attending</label>
             <input
               type="checkbox"
               value={notAttending}
-              onChange={setNotAttending(!isAttending)}
+              onChange={(e) =>setNotAttending(e.target.value)}
             />
           </div>
         </form>
         <div className="action-group">
           <label>Attendant Actions</label>
-          <button onClick={handleMenu("addAttendant")}>Add Attendant</button>
-          <button onClick={handleMenu("editAttendant")}>Edit Attendant</button>
+          <button onClick={() => handleMenu("addAttendant")}>Add Attendant</button>
+          <button onClick={() => handleMenu("editAttendant")}>Edit Attendant</button>
         </div>
         <div className="action-group">
           <label>Attendant Actions</label>
-          <button onClick={handleMenu("addParty")}>Add Party</button>
-          <button onClick={handleMenu("editParty")}>Edit Party</button>
+          <button onClick={() => handleMenu("addParty")}>Add Party</button>
+          <button onClick={() => handleMenu("editParty")}>Edit Party</button>
         </div>
         <div className="menu-container">
           {menu === "addAttendant" ? <AddAttendant token={token} /> : <></>}
