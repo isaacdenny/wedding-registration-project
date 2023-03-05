@@ -19,7 +19,7 @@
   padding-right: 150px;
 }
 
-.nav {
+.transparent-nav {
   display: flex;
   position: absolute;
   background-color: #c9b6a471;
@@ -30,6 +30,18 @@
   width: 100%;
   z-index: 100;
   border-bottom: white solid;
+}
+
+.nav {
+  display: flex;
+  position: absolute;
+  background-color: #c9b6a4;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 60px;
+  width: 100%;
+  z-index: 100;
 }
 
 .nav-logo {
@@ -55,7 +67,7 @@
 
 .hero-text {
   color: white;
-  font-size: 100px;
+  font-size: 80px;
   max-width: min-content;
   letter-spacing: 7px;
   margin-bottom: 2.5rem;
@@ -64,17 +76,21 @@
 .button-primary {
   font-family: 'Glook';
   border-width: 0px;
-  border-radius: 10px;
-  background-color: #C9B6A4;
+  border-radius: 5px;
+  background-color: #c9b6a471;
   padding: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   color: white;
-  font-size: x-large;
+  font-size: large;
   text-align: center;
   text-justify: center;
+  transition: 0.3s ease-in-out;
 }
 
 .button-primary:hover {
   background-color: #F4F1EC;
+  color: #C9B6A4;
   transition: 0.3s ease-in-out;
 }
 
@@ -88,9 +104,11 @@
   align-items: center;
   padding-left: 150px;
   padding-right: 150px;
+  padding-bottom: 20px;
 }
 
 .info-list {
+  text-align: center;
   list-style-type: none;
   color: #C9B6A4;
   display: flex;

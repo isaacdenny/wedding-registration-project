@@ -8,11 +8,13 @@ import FormSection from "../components/FormSection";
 function LandingPage() {
   return (
     <div>
-      <Navbar />
+      <Navbar transparent={true} />
       <div className="hero-container">
         <h1 className="hero-text">We're Getting Married!</h1>
-        <Link to="/register">
-          <button className="button-primary">Let Us Know You're Coming!</button>
+        <Link to="/event-details">
+          <button className="button-primary">
+            Learn More!
+          </button>
         </Link>
       </div>
       <InfoSection />

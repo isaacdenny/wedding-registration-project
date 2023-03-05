@@ -2,9 +2,9 @@ import React from "react";
 import { HiHeart } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (params) => {
   return (
-    <nav className="nav">
+    <nav className={ params.transparent ? "transparent-nav" : "nav"}>
       <ul className="nav-links">
         <li>
           <Link className="nav-link" to="/">
