@@ -1,24 +1,29 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { loggedIn } from "../features/auth/authSlice.js";
 
 const LoginSection = () => {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
+  
+  const dispatch = useDispatch();
 
   const API_URL = process.env.REACT_APP_API_URL
 
-  const handleSubmit = (event) => {
+
+  const handleLogin = (event) => {
     event.preventDefault();
     if (!username || !password) {
       alert("Please fill out all fields");
       return;
     }
-    fetch(`${API_URL}admin/login`, {
+    fetch(`${API_URL}/auth/login`, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user: username, pass: password }),
+      body: JSON.stringify({ username: username, password: password }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -27,6 +32,7 @@ const LoginSection = () => {
           alert("Username or password is incorrect");
           return;
         }
+        dispatch(loggedIn({ user: data.user, token: data.token }));
       });
   };
   return (
@@ -34,7 +40,7 @@ const LoginSection = () => {
       <div className="form-container">
         <h1 className="form-title">If You Are Not A Denny, Turn Back Now</h1>
         Login below with username and password.
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           <input
             type="text"
             name="username"

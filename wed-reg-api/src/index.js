@@ -6,6 +6,8 @@ import mysql from "mysql";
 import helmet from "helmet";
 import adminRoutes from "./routes/admin.js";
 import attendantRoutes from "./routes/attendant.js";
+import authRoutes from "./routes/auth.js";
+import { verifyToken } from "./controllers/verifyToken.js";
 
 
 /* LOAD ENV */
@@ -49,7 +51,8 @@ app.get("/", (req, res) => {
   }
 });
 app.use("/attendant", attendantRoutes);
-app.use("/admin", adminRoutes);
+app.use("/admin", verifyToken, adminRoutes);
+app.use("/auth", authRoutes);
 
 const PORT = process.env.PORT || 8080;
 
