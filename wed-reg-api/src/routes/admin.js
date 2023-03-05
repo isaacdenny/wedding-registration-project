@@ -3,20 +3,23 @@ import {
   addAttendant,
   deleteAttendant,
   deleteParty,
-  getAttendants,
-  getAttendant,
+  getAll,
+  getByName,
   getParty,
   updateAttendant,
+  updateParty,
 } from "../controllers/admin.js";
 
 const router = express.Router();
 
-router.get("/getAttendants", getAttendants);
-router.get("/getAttendant", getAttendant);
-router.get("/getParty", getParty);
+router.get("/getByName", getByName);
 router.post("/addAttendant", addAttendant);
+router.get("/getAll", getAll);
+
+router.get("/getParty", getParty);
+router.delete("/deleteParty", deleteParty);
+router.post("/updateParty", updateParty);
 router.patch("/updateAttendant", updateAttendant);
 router.delete("/deleteAttendant", deleteAttendant);
-router.delete("/deleteParty", deleteParty);
 
 export default router;

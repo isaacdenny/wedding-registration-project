@@ -1,18 +1,30 @@
 import { db } from "../index.js";
 
-export const getAttendants = async (req, res) => {
+export const getAll = async (req, res) => {
   try {
-    let sql = "SELECT * FROM attendees";
+    const { filter } = req.body;
+    let sql = ""
+    switch (filter) { 
+      case "attending":
+        sql = "SELECT * FROM attendees WHERE isAttending = 1";
+        break;
+      case "notAttending":
+        sql = "SELECT * FROM attendees WHERE isAttending = 0"
+        break;
+      default:
+        sql = "SELECT * FROM attendees"
+        break;
+    }
     let query = db.query(sql, (err, result) => {
-      if (err) res.status(500).json({ error: err });
-      else res.status(200).json(result);
-    });
+      if (err) res.status(500).json({ error: err })
+      else res.status(200).json(result)
+    })
   } catch (error) {
     res.status(500).json({ error: error });
   }
 };
 
-export const getAttendant = async (req, res) => {
+export const getByName = async (req, res) => {
   try {
     const { FirstName, LastName } = req.body;
     let sql = `SELECT * FROM students WHERE (FirstName LIKE '%${FirstName}%' OR LastName LIKE '%${LastName}%')`;
@@ -27,11 +39,12 @@ export const getAttendant = async (req, res) => {
 
 export const addAttendant = async (req, res) => {
   try {
-    const { FirstName, LastName, PartyID } = await req.body;
+    const { FirstName, LastName, PartyID, IsAttending } = await req.body;
     let newAttendee = {
-      FirstName: FirstName,
-      LastName: LastName,
-      PartyID: PartyID,
+      firstName: FirstName,
+      lastName: LastName,
+      partyID: PartyID,
+      isAttending: IsAttending,
     };
     let sql = "INSERT INTO attendees SET ?";
     let query = db.query(sql, newAttendee, (err, result) => {
@@ -79,6 +92,14 @@ export const getParty = async (req, res) => {
   }
 };
 
+export const addParty = async (req, res) => {
+  try {
+    res.status(500).json({ error: "NOT IMPLEMENTED" });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
 export const deleteParty = async (req, res) => {
   try {
     const { PartyID } = await req.body;
@@ -87,6 +108,14 @@ export const deleteParty = async (req, res) => {
       if (err) res.status(500).json({ error: err });
       else res.status(200).json(result);
     });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+export const updateParty = async (req, res) => {
+  try {
+    res.status(500).json({ error: "NOT IMPLEMENTED" });
   } catch (error) {
     res.status(500).json({ error: error });
   }
