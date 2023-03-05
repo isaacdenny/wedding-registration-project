@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EditParty = () => {
+const EditParty = (params) => {
   return (
     <div>EditParty</div>
   )

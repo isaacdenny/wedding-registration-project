@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EditAttendant = () => {
+const EditAttendant = (params) => {
   return (
     <div>EditAttendant</div>
   )

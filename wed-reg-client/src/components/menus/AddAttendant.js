@@ -1,6 +1,6 @@
 import React from 'react'
 
-const addAttendant = () => {
+const addAttendant = (params) => {
   return (
     <div>addAttendant</div>
   )
