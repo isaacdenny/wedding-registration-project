@@ -1,10 +1,14 @@
 .container {
   display: flex;
-  flex-direction: column;
-  background-color: #7c8eb1;
+  background-color: white;
   min-height: 100vh;
   justify-content: center;
   align-items: center;
+}
+.ui-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
 }
 
 .hero-container {
@@ -145,7 +149,6 @@
   min-height: 60px;
   width: 100%;
   z-index: 100;
-  border-bottom: white solid;
 }
 
 .form-section-container {
@@ -241,4 +244,16 @@
 
 .form-title {
   margin-bottom: 10px;
+}
+
+.ui-group {
+  margin: 2rem;
+}
+
+.group {
+  padding: 30px;
+  background-color: #F4F1EC;
+  border-width: 2px;
+  border-color: #C9B6A4;
+  border-radius: 20px;
 }

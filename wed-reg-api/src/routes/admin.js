@@ -12,11 +12,11 @@ import {
 
 const router = express.Router();
 
-router.get("/getByName", getByName);
+router.post("/getByName", getByName);
 router.post("/addAttendant", addAttendant);
-router.get("/getAll", getAll);
+router.post("/getAll", getAll);
 
-router.get("/getParty", getParty);
+router.post("/getParty", getParty);
 router.delete("/deleteParty", deleteParty);
 router.post("/updateParty", updateParty);
 router.patch("/updateAttendant", updateAttendant);
