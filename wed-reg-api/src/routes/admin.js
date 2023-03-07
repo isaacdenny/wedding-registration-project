@@ -13,7 +13,7 @@ import {
 const router = express.Router();
 
 router.post("/getByName", getByName);
-router.post("/addAttendant", addAttendant);
+router.put("/addAttendant", addAttendant);
 router.post("/getAll", getAll);
 
 router.post("/getParty", getParty);

@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import heroImage from "../images/formsection.jpg";
 import { useState } from "react";
 
@@ -43,7 +42,7 @@ const FormSection = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     attendants.map((attendant, i) => {
-      attendantsArray[i] = {
+      return attendantsArray[i] = {
         firstName: attendant.firstName,
         lastName: attendant.lastName,
         isAttending: isAttending[i],
@@ -66,11 +65,6 @@ const FormSection = () => {
         setIsRegistered(!isRegistered);
       });
   };
-
-  useEffect(
-    () => console.log(isAttendingArray + " is " + isAttending),
-    [isAttending]
-  );
 
   return !isRegistered ? (
     <div className="form-section-container">
@@ -118,7 +112,7 @@ const FormSection = () => {
         <h1 className="form-title">RSVP Now!</h1>
         Please select who in your party will be attending!
         <form onSubmit={handleSubmit}>
-          {attendants.map((attendant, i) => {
+          {attendants != null ? (attendants.map((attendant, i) => {
             isAttendingArray[i] = isAttending[i] || false;
             return (
               <div key={i} className="form-container-checkbox">
@@ -136,7 +130,7 @@ const FormSection = () => {
                 />
               </div>
             );
-          })}
+          })) : <>Error loading party...</>}
           <button type="submit" className="form-button">
             RSVP
           </button>

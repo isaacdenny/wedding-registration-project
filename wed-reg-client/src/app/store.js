@@ -30,4 +30,6 @@ let store = configureStore({
 })
 let persistor = persistStore(store);
 
-export default {store, persistor};
+const storeActions = {store, persistor}
+
+export default storeActions;

@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 
 const EditAttendant = (params) => {
-  const [id, setID] = React.useState(
-    params.selectedAttendant.id
-  );
+  const [id, setID] = React.useState(params.selectedAttendant.id);
   const [firstName, setFirstName] = React.useState(
     params.selectedAttendant.firstName
   );
@@ -17,7 +15,7 @@ const EditAttendant = (params) => {
     params.selectedAttendant.isAttending
   );
 
-  const handleSubmit = (e) => { 
+  const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`${params.API_URL}/admin/updateAttendant`, {
       method: "PATCH",
@@ -39,9 +37,9 @@ const EditAttendant = (params) => {
         console.log(data);
         params.handleRefresh();
       });
-  }
+  };
 
-  const handleDelete = (e) => { 
+  const handleDelete = (e) => {
     console.log(id, firstName, lastName, invitationID, isAttending);
     e.preventDefault();
     fetch(`${params.API_URL}/admin/deleteAttendant`, {
@@ -60,7 +58,7 @@ const EditAttendant = (params) => {
         console.log(data);
         params.handleRefresh();
       });
-  }
+  };
 
   useEffect(() => {
     setID(params.selectedAttendant.id);
@@ -70,9 +68,9 @@ const EditAttendant = (params) => {
     setIsAttending(params.selectedAttendant.isAttending);
   }, [params.selectedAttendant]);
 
-
   return (
     <form onSubmit={handleSubmit}>
+      <h1>Edit Attendant</h1>
       <div className="form-group">
         <label>First Name</label>
         <input

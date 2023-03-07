@@ -3,7 +3,7 @@ import { db } from "../index.js";
 export const getAttendantsInParty = async (req, res) => {
   try {
     const { lastName, invitationID } = req.body;
-    let sql = `SELECT * FROM attendees WHERE invitationID = '${invitationID}' AND lastName = '${lastName}'`;
+    let sql = `SELECT * FROM attendants WHERE invitationID = '${invitationID}' AND lastName = '${lastName}'`;
     let query = db.query(sql, (err, result) => {
       if (err) res.status(400).json({ error: err });
       else res.status(200).json(result);
@@ -20,12 +20,12 @@ export const register = async (req, res) => {
       attendants.push(row);
     });
     attendants.map((row, i) => {
-      let sql = `UPDATE attendees SET isAttending = ${row.isAttending} WHERE firstName = '${row.firstName}' AND invitationID = '${row.invitationID}'`;
+      let sql = `UPDATE attendants SET isAttending = ${row.isAttending} WHERE firstName = '${row.firstName}' AND invitationID = '${row.invitationID}'`;
       let query = db.query(sql, (err, result) => {
         if (err) {
-          console.log(err);
+          return res.status(400).json({ error: err });
         } else {
-          console.log(result);
+          return res.status(201).json({ message: result });
         }
       });
     });

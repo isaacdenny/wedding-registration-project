@@ -302,6 +302,8 @@
 
 .form-group {
   display: flex;
+  padding-bottom: 10px;
+  padding-top: 10px;
   justify-content: space-between;
   margin-bottom: 0.5rem;
   border-bottom-style: dashed;

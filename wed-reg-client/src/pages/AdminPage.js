@@ -28,22 +28,10 @@ const AdminPage = () => {
       invitationID: "2",
       isAttending: "0",
     },
-    {
-      id: 3,
-      firstName: "Rory",
-      lastName: "Doe",
-      invitationID: "1",
-      isAttending: "1",
-    },
-    {
-      id: 4,
-      firstName: "Jack",
-      lastName: "Crank",
-      invitationID: "3",
-      isAttending: "1",
-    },
   ]);
-  const [selectedAttendant, setSelectedttendant] = React.useState(attendants[0]);
+  const [selectedAttendant, setSelectedttendant] = React.useState(
+    attendants[0]
+  );
 
   const API_URL = process.env.REACT_APP_API_URL;
 
@@ -53,11 +41,8 @@ const AdminPage = () => {
     setMenu(type);
   };
 
-  const handleRefresh = () => { 
+  const handleRefresh = () => {
     console.log("Refreshing attendants...");
-  }
-
-  useEffect(() => {
     fetch(`${API_URL}/admin/getAll`, {
       method: "POST",
       mode: "cors",
@@ -66,22 +51,25 @@ const AdminPage = () => {
       },
       body: JSON.stringify({
         token: token,
-        filter: filter
+        filter: filter,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         setAttendants(data);
       });
-  }, [setFilterAttending, setNotAttending, filter, API_URL, token, handleRefresh]);
+  };
 
-  useEffect(() => { console.log(selectedAttendant)}, [selectedAttendant])
+  useEffect(() => {
+    handleRefresh();
+  }, [])
 
   return (
     <>
       <Navbar />
       <div className="container">
         <div className="ui-container">
+          <h1>Action Menu</h1>
           <div className="ui-group">
             <label>Search Attendants</label>
             <div className="group">
@@ -133,6 +121,7 @@ const AdminPage = () => {
           </div>
         </div>
         <div className="ui-container">
+          <h1>Invited</h1>
           <div className="attendant">
             <div className="attendant-item">Name</div>
             <div className="attendant-item">Invitation ID</div>
@@ -148,15 +137,30 @@ const AdminPage = () => {
                 {attendant.firstName} {attendant.lastName}
               </div>
               <div className="attendant-item">{attendant.invitationID}</div>
-              <div className="attendant-item">{attendant.isAttending === 1 ? "Yes" : "No"}</div>
+              <div className="attendant-item">
+                {attendant.isAttending === 1 ? "Yes" : "No"}
+              </div>
             </div>
           ))}
         </div>
         <div className="ui-container">
-          <div className="group">
-            {menu === "addAttendant" ? <AddAttendant token={token} /> : <></>}
+          <div>
+            {menu === "addAttendant" ? (
+              <AddAttendant
+                token={token}
+                API_URL={API_URL}
+                handleRefresh={handleRefresh}
+              />
+            ) : (
+              <></>
+            )}
             {menu === "editAttendant" ? (
-              <EditAttendant token={token} selectedAttendant={selectedAttendant} API_URL={API_URL} handleRefresh={handleRefresh} />
+              <EditAttendant
+                token={token}
+                selectedAttendant={selectedAttendant}
+                API_URL={API_URL}
+                handleRefresh={handleRefresh}
+              />
             ) : (
               <></>
             )}

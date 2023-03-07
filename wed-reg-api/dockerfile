@@ -3,7 +3,7 @@ FROM node:latest
 
 WORKDIR /usr/app/src
 COPY ./ ./
-RUN npm install --verbose
+RUN npm install
 
 # Set up a default command
 CMD [ "npm", "run", "start" ]
