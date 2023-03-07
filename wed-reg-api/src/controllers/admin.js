@@ -12,7 +12,7 @@ export const getAll = async (req, res) => {
         sql = "SELECT * FROM attendants WHERE isAttending = false";
         break;
       default:
-        sql = `SELECT * FROM attendants`;
+        sql = `SELECT * FROM attendants WHERE (firstName LIKE '%${filter}%' OR lastName LIKE '%${filter}%')`;
         break;
     }
     let query = db.query(sql, (err, result) => {

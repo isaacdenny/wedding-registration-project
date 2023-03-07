@@ -165,7 +165,16 @@ const AdminPage = () => {
               <></>
             )}
             {menu === "addParty" ? <AddParty token={token} /> : <></>}
-            {menu === "editParty" ? <EditParty token={token} /> : <></>}
+            {menu === "editParty" ? (
+              <EditParty
+                token={token}
+                attendants={attendants}
+                API_URL={API_URL}
+                handleRefresh={handleRefresh}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

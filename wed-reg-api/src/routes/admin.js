@@ -16,7 +16,7 @@ router.post("/getByName", getByName);
 router.put("/addAttendant", addAttendant);
 router.post("/getAll", getAll);
 
-router.post("/getParty", getParty);
+router.put("/getParty", getParty);
 router.delete("/deleteParty", deleteParty);
 router.post("/updateParty", updateParty);
 router.patch("/updateAttendant", updateAttendant);
