@@ -1,14 +1,12 @@
 .container {
   display: flex;
   background-color: white;
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-.ui-container {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
+  min-height: 75vh;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 100px;
+  padding-bottom: 20px;
 }
 
 .hero-container {
@@ -246,14 +244,85 @@
   margin-bottom: 10px;
 }
 
+.ui-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 10px;
+  padding: 20px;
+  height: fit-content;
+  background-color: #F4F1EC;
+}
+
 .ui-group {
-  margin: 2rem;
+  margin-bottom: 0.5rem;
+  border-bottom-style: dashed;
+  border-width: 2px;
+  border-bottom-color: #C9B6A4;
 }
 
 .group {
   padding: 30px;
-  background-color: #F4F1EC;
+  display: flex;
+  flex-direction: column;
+}
+
+.attendant {
+  padding: 20px;
+  margin-bottom: 1rem;
   border-width: 2px;
+  border-bottom-style: dashed;
   border-color: #C9B6A4;
-  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container button {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: #C9B6A4;
+  padding: 10px;
+  border-width: 0px;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+}
+
+.container button:hover {
+  background-color: #c9b6a471;
+  transition: 0.3s ease-in-out;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  border-bottom-style: dashed;
+  border-width: 2px;
+  border-bottom-color: #C9B6A4;
+}
+.form-button-group {
+  display: flex;
+  justify-content: left;
+}
+
+.form-button-group button {
+  margin-right: 1rem;
+}
+
+.container input {
+  margin-bottom: 0.5rem;
+  max-width: fit-content;
+}
+
+.container input[type="checkbox"] { 
+  display: flex;
+  justify-content: center;
 }

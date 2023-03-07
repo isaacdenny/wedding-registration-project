@@ -3,31 +3,32 @@ import { db } from "../index.js";
 export const getAll = async (req, res) => {
   try {
     const { filter } = req.body;
-    let sql = ""
-    switch (filter) { 
+    let sql = "";
+    switch (filter) {
       case "attending":
-        sql = "SELECT * FROM attendees WHERE isAttending = 1";
+        sql = "SELECT * FROM attendants WHERE isAttending = true";
         break;
       case "notAttending":
-        sql = "SELECT * FROM attendees WHERE isAttending = 0"
+        sql = "SELECT * FROM attendants WHERE isAttending = false";
         break;
       default:
-        sql = "SELECT * FROM attendees"
+        sql = `SELECT * FROM attendants`;
         break;
     }
     let query = db.query(sql, (err, result) => {
-      if (err) res.status(500).json({ error: err })
-      else res.status(200).json(result)
-    })
+      if (err) res.status(500).json({ error: err });
+      else res.status(200).json(result);
+    });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: error });
   }
 };
 
 export const getByName = async (req, res) => {
   try {
-    const { FirstName, LastName } = req.body;
-    let sql = `SELECT * FROM students WHERE (FirstName LIKE '%${FirstName}%' OR LastName LIKE '%${LastName}%')`;
+    const { firstName, lastName } = req.body;
+    let sql = `SELECT * FROM attendants WHERE (firstName LIKE '%${firstName}%' OR lastName LIKE '%${lastName}%')`;
     let query = db.query(sql, (err, result) => {
       if (err) res.status(500).json({ error: err });
       else res.status(200).json(result);
@@ -39,14 +40,14 @@ export const getByName = async (req, res) => {
 
 export const addAttendant = async (req, res) => {
   try {
-    const { FirstName, LastName, PartyID, IsAttending } = await req.body;
+    const { firstName, lastName, invitationID, isAttending } = await req.body;
     let newAttendee = {
-      firstName: FirstName,
-      lastName: LastName,
-      partyID: PartyID,
-      isAttending: IsAttending,
+      firstName: firstName,
+      lastName: lastName,
+      invitationID: invitationID,
+      isAttending: isAttending,
     };
-    let sql = "INSERT INTO attendees SET ?";
+    let sql = "INSERT INTO attendants SET ?";
     let query = db.query(sql, newAttendee, (err, result) => {
       if (err) res.status(500).json({ error: err });
       else res.status(201).json(result);
@@ -58,8 +59,8 @@ export const addAttendant = async (req, res) => {
 
 export const deleteAttendant = async (req, res) => {
   try {
-    const { FirstName, LastName } = await req.body;
-    let sql = `DELETE FROM attendees WHERE (FirstName='${FirstName}' AND LastName='${LastName}')`;
+    const { id } = await req.body;
+    let sql = `DELETE FROM attendants WHERE (id='${id}')`;
     let query = db.query(sql, (err, result) => {
       if (err) res.status(500).json({ error: err });
       else res.status(200).json(result);
@@ -71,9 +72,13 @@ export const deleteAttendant = async (req, res) => {
 
 export const updateAttendant = async (req, res) => {
   try {
-    const { FirstName, LastName, PartyID } = await req.body;
-    let sql = `UPDATE attendees SET FirstName = '${FirstName}', LastName = '${LastName}', Party`;
-    console.log("NOT IMPLEMENTED");
+    const { id, firstName, lastName, invitationID, isAttending } =
+      await req.body;
+    let sql = `UPDATE attendants SET firstName = '${firstName}', lastName = '${lastName}', invitationID = '${invitationID}', isAttending = ${isAttending} WHERE (id='${id}')`;
+    let query = db.query(sql, (err, result) => {
+      if (err) return res.status(500).json({ error: err });
+      else return res.status(200).json(result);
+    });
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -81,8 +86,8 @@ export const updateAttendant = async (req, res) => {
 
 export const getParty = async (req, res) => {
   try {
-    const { PartyID } = await req.body;
-    let sql = `SELECT * FROM attendies WHERE PartyID = '${PartyID}'`;
+    const { invitationID } = await req.body;
+    let sql = `SELECT * FROM attendants WHERE invitationID = '${invitationID}'`;
     let query = db.query(sql, (err, result) => {
       if (err) res.status(500).json({ error: err });
       else res.status(200).json(result);
@@ -102,8 +107,8 @@ export const addParty = async (req, res) => {
 
 export const deleteParty = async (req, res) => {
   try {
-    const { PartyID } = await req.body;
-    let sql = `DELETE FROM attendies WHERE PartyID = '${PartyID}'`;
+    const { invitationID } = await req.body;
+    let sql = `DELETE FROM attendants WHERE invitationID = '${invitationID}'`;
     let query = db.query(sql, (err, result) => {
       if (err) res.status(500).json({ error: err });
       else res.status(200).json(result);

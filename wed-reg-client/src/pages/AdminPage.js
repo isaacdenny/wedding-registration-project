@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import {
   AddAttendant,
@@ -10,11 +9,41 @@ import {
 import { useSelector } from "react-redux";
 
 const AdminPage = () => {
-  const [isAttending, setIsAttending] = React.useState(false);
+  const [filterAttending, setFilterAttending] = React.useState(false);
   const [notAttending, setNotAttending] = React.useState(false);
   const [filter, setFilter] = React.useState("");
-  const [menu, setMenu] = React.useState("addAttendant");
-  const [attendants, setAttendants] = React.useState([]);
+  const [menu, setMenu] = React.useState("editAttendant");
+  const [attendants, setAttendants] = React.useState([
+    {
+      id: 1,
+      firstName: "John",
+      lastName: "Doe",
+      invitationID: "1",
+      isAttending: "0",
+    },
+    {
+      id: 2,
+      firstName: "Jane",
+      lastName: "Crabs",
+      invitationID: "2",
+      isAttending: "0",
+    },
+    {
+      id: 3,
+      firstName: "Rory",
+      lastName: "Doe",
+      invitationID: "1",
+      isAttending: "1",
+    },
+    {
+      id: 4,
+      firstName: "Jack",
+      lastName: "Crank",
+      invitationID: "3",
+      isAttending: "1",
+    },
+  ]);
+  const [selectedAttendant, setSelectedttendant] = React.useState(attendants[0]);
 
   const API_URL = process.env.REACT_APP_API_URL;
 
@@ -24,6 +53,10 @@ const AdminPage = () => {
     setMenu(type);
   };
 
+  const handleRefresh = () => { 
+    console.log("Refreshing attendants...");
+  }
+
   useEffect(() => {
     fetch(`${API_URL}/admin/getAll`, {
       method: "POST",
@@ -32,15 +65,17 @@ const AdminPage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        token: token ? token : null,
-        filter: filter ? filter : null,
+        token: token,
+        filter: filter
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         setAttendants(data);
       });
-  }, [setIsAttending, setNotAttending, filter, API_URL, token]);
+  }, [setFilterAttending, setNotAttending, filter, API_URL, token, handleRefresh]);
+
+  useEffect(() => { console.log(selectedAttendant)}, [selectedAttendant])
 
   return (
     <>
@@ -65,8 +100,8 @@ const AdminPage = () => {
               <label>Attending</label>
               <input
                 type="checkbox"
-                value={isAttending}
-                onChange={(e) => setIsAttending(e.target.value)}
+                value={filterAttending}
+                onChange={(e) => setFilterAttending(e.target.value)}
               />
               <label>Not Attending</label>
               <input
@@ -98,27 +133,38 @@ const AdminPage = () => {
           </div>
         </div>
         <div className="ui-container">
+          <div className="attendant">
+            <div className="attendant-item">Name</div>
+            <div className="attendant-item">Invitation ID</div>
+            <div className="attendant-item">Attending</div>
+          </div>
           {attendants.map((attendant, i) => (
-            <div className="attendant" key={i}>
-              <div>
+            <div
+              className="attendant"
+              key={i}
+              onClick={() => setSelectedttendant(attendants[i])}
+            >
+              <div className="attendant-item">
                 {attendant.firstName} {attendant.lastName}
               </div>
-              <div>
-                {attendant.isAttending} {attendant.invitationID}
-              </div>
+              <div className="attendant-item">{attendant.invitationID}</div>
+              <div className="attendant-item">{attendant.isAttending === 1 ? "Yes" : "No"}</div>
             </div>
           ))}
         </div>
         <div className="ui-container">
-          <div className="menu-container">
+          <div className="group">
             {menu === "addAttendant" ? <AddAttendant token={token} /> : <></>}
-            {menu === "editAttendant" ? <EditAttendant token={token} /> : <></>}
+            {menu === "editAttendant" ? (
+              <EditAttendant token={token} selectedAttendant={selectedAttendant} API_URL={API_URL} handleRefresh={handleRefresh} />
+            ) : (
+              <></>
+            )}
             {menu === "addParty" ? <AddParty token={token} /> : <></>}
             {menu === "editParty" ? <EditParty token={token} /> : <></>}
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
