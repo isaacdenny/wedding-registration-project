@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import mysql from "mysql";
 import helmet from "helmet";
 import adminRoutes from "./routes/admin.js";
-import attendantRoutes from "./routes/attendant.js";
+import registerRoutes from "./routes/register.js";
 import authRoutes from "./routes/auth.js";
 import { verifyToken } from "./controllers/verifyToken.js";
 
@@ -50,7 +50,7 @@ app.get("/", (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-app.use("/attendant", attendantRoutes);
+app.use("/register", registerRoutes);
 app.use("/admin", verifyToken, adminRoutes);
 app.use("/auth", authRoutes);
 

@@ -1,15 +1,20 @@
 import express from "express";
 import {
   addAttendant,
-  addParty,
   deleteAttendant,
-  deleteParty,
-  getAll,
-  getByName,
-  getParty,
   updateAttendant,
-  updateParty,
-} from "../controllers/admin.js";
+} from "../controllers/attendant-actions.js";
+import {
+  getParty,
+  addParty,
+  deleteParty,
+  updateParty
+} from "../controllers/party-actions.js";
+
+import {
+  getAll,
+  getByName
+} from "../controllers/search.js";
 
 const router = express.Router();
 
