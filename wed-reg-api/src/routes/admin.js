@@ -5,7 +5,6 @@ import {
   updateAttendant,
 } from "../controllers/attendant-actions.js";
 import {
-  getParty,
   addParty,
   deleteParty,
   updateParty
@@ -19,7 +18,6 @@ import {
 const router = express.Router();
 
 router.put("/addAttendant", addAttendant);
-router.put("/getParty", getParty);
 
 router.post("/getByName", getByName)
 router.post("/getAll", getAll);

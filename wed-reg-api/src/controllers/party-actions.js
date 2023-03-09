@@ -9,27 +9,14 @@ export const addParty = async (req, res) => {
       let query = db.query(sql, element, (err, result) => {
         if (err) {
           console.log(err);
-          res.status(500).json({ error: err });
+          return res.status(500).json({ error: err });
         } else console.log(result);
       });
     });
-    res.status(201).json({ message: "Party added" });
+    return res.status(201).json({ message: "Party added" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: error });
-  }
-};
-
-export const getParty = async (req, res) => {
-  try {
-    const { invitationID } = await req.body;
-    let sql = `SELECT * FROM attendants WHERE invitationID = '${invitationID}'`;
-    let query = db.query(sql, (err, result) => {
-      if (err) res.status(500).json({ error: err });
-      else res.status(200).json(result);
-    });
-  } catch (error) {
-    res.status(500).json({ error: error });
+    return res.status(500).json({ error: error });
   }
 };
 
@@ -38,11 +25,11 @@ export const deleteParty = async (req, res) => {
     const { invitationID } = await req.body;
     let sql = `DELETE FROM attendants WHERE invitationID = '${invitationID}'`;
     let query = db.query(sql, (err, result) => {
-      if (err) res.status(500).json({ error: err });
-      else res.status(200).json(result);
+      if (err) return res.status(500).json({ error: err });
+      else return res.status(200).json(result);
     });
   } catch (error) {
-    res.status(500).json({ error: error });
+    return res.status(500).json({ error: error });
   }
 };
 
@@ -58,6 +45,6 @@ export const updateParty = async (req, res) => {
     });
     res.status(200).json({ message: "Successfully updated party members" });
   } catch (error) {
-    res.status(500).json({ error: error });
+    return res.status(500).json({ error: error });
   }
 };

@@ -1,7 +1,8 @@
 FROM node:latest
 
 WORKDIR /usr/app/src
-COPY ./ ./
+COPY ./package.json ./
 RUN npm install --no-audit
+COPY ./ ./
 
 CMD ["npm", "run", "start"]
