@@ -19,13 +19,27 @@ const AdminPage = () => {
       firstName: "John",
       lastName: "Doe",
       invitationID: "1",
-      isAttending: "0",
+      isAttending: "1",
     },
     {
       id: 2,
       firstName: "Jane",
       lastName: "Crabs",
       invitationID: "2",
+      isAttending: "0",
+    },
+    {
+      id: 3,
+      firstName: "Bob",
+      lastName: "Doe",
+      invitationID: "1",
+      isAttending: "0",
+    },
+    {
+      id: 4,
+      firstName: "Chris",
+      lastName: "Doe",
+      invitationID: "1",
       isAttending: "0",
     },
   ]);

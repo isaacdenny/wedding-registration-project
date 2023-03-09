@@ -1,13 +1,13 @@
 import React from "react";
-import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useDispatch } from "react-redux";
 import { loggedIn } from "../features/auth/authSlice.js";
-import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const LoginPage = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ const LoginPage = () => {
           return;
         }
         dispatch(loggedIn({ user: data.user, token: data.token }));
-        Navigate({to: "/admin"});
+        navigate("/admin");
       });
   };
 
@@ -67,7 +67,6 @@ const LoginPage = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
