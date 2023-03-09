@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addAttendant,
+  addParty,
   deleteAttendant,
   deleteParty,
   getAll,
@@ -18,7 +19,8 @@ router.post("/getAll", getAll);
 
 router.put("/getParty", getParty);
 router.delete("/deleteParty", deleteParty);
-router.post("/updateParty", updateParty);
+router.post("/addParty", addParty);
+router.patch("/updateParty", updateParty);
 router.patch("/updateAttendant", updateAttendant);
 router.delete("/deleteAttendant", deleteAttendant);
 

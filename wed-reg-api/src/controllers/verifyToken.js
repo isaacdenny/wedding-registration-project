@@ -5,7 +5,7 @@ export const verifyToken = (req, res, next) => {
     const { token } = req.body
 
     if (!token) {
-      res.status(401).json({ message: 'No token provided' })
+      return res.status(401).json({ message: 'No token provided' })
     }
     else {
       jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {

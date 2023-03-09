@@ -48,7 +48,6 @@ const AdminPage = () => {
   );
 
   const API_URL = process.env.REACT_APP_API_URL;
-
   const token = useSelector((state) => state.token);
 
   const handleMenu = (type) => {
@@ -178,7 +177,15 @@ const AdminPage = () => {
             ) : (
               <></>
             )}
-            {menu === "addParty" ? <AddParty token={token} /> : <></>}
+            {menu === "addParty" ? (
+              <AddParty
+                token={token}
+                API_URL={API_URL}
+                handleRefresh={handleRefresh}
+              />
+            ) : (
+              <></>
+            )}
             {menu === "editParty" ? (
               <EditParty
                 token={token}

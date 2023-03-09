@@ -22,6 +22,7 @@ function App() {
         <Route path={"/event-details"} element={<EventDetailsPage />} />
         <Route
           path={"/admin"}
+          //element={<AdminPage />}
           element={isAuth ? <AdminPage /> : <Navigate to="/login" />}
         />
       </Routes>
