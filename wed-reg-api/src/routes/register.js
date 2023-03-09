@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.post("/getAttendants", getAttendantsInParty);
 
-router.post("/register", register);
+router.post("/", register);
 
 export default router;

@@ -19,7 +19,7 @@ const FormSection = () => {
       return;
     }
     console.log(lastName, invitationID);
-    fetch(`${API_URL}/attendant/getAttendants`, {
+    fetch(`${API_URL}/register/getAttendants`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -49,7 +49,7 @@ const FormSection = () => {
         invitationID: attendant.invitationID,
       };
     });
-    fetch(`${API_URL}/attendant/register`, {
+    fetch(`${API_URL}/register/`, {
       method: "POST",
       mode: "cors",
       headers: {
