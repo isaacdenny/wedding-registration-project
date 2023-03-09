@@ -1,6 +1,6 @@
 import React from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Footer from "../components/navigation/Footer";
+import Navbar from "../components/navigation/Navbar";
 
 const AboutBridalPage = () => {
   return (
