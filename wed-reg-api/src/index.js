@@ -8,6 +8,7 @@ import adminRoutes from "./routes/admin.js";
 import registerRoutes from "./routes/register.js";
 import authRoutes from "./routes/auth.js";
 import { verifyToken } from "./controllers/verifyToken.js";
+import { writeCsv } from "./controllers/csv.js"
 
 
 /* LOAD ENV */
@@ -50,6 +51,7 @@ app.get("/", (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+app.get("/downloadcsv", writeCsv);
 app.use("/register", registerRoutes);
 app.use("/admin", verifyToken, adminRoutes);
 app.use("/auth", authRoutes);

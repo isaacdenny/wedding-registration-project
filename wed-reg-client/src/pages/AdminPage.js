@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/navigation/Navbar";
+import fileDownload from "js-file-download";
+import { CSVLink } from "react-csv";
 import {
   AddAttendant,
   EditAttendant,
@@ -13,6 +15,7 @@ const AdminPage = () => {
   const [notAttending, setNotAttending] = React.useState(false);
   const [filter, setFilter] = React.useState("");
   const [menu, setMenu] = React.useState("editAttendant");
+  const [csvdata, setCsvData] = React.useState([]);
   const [attendants, setAttendants] = React.useState([
     {
       id: 1,
@@ -73,9 +76,34 @@ const AdminPage = () => {
       });
   };
 
+  const handleCSV = (e) => {
+    e.preventDefault();
+    console.log("Requesting CSV...");
+    fetch(`${API_URL}/downloadcsv`, {
+      method: "GET",
+      mode: "cors",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const blob = new Blob([data], { type: "text/csv" });
+        const href = URL.createObjectURL(blob);
+
+        const a = Object.assign(document.createElement("a"), {
+          href,
+          style: "display: none;",
+          download: "attendants.csv",
+        });
+        document.body.appendChild(a);
+
+        a.click();
+        URL.revokeObjectURL(href);
+        a.remove();
+      });
+  };
+
   useEffect(() => {
     handleRefresh();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -110,6 +138,9 @@ const AdminPage = () => {
                 value={notAttending}
                 onChange={(e) => setNotAttending(e.target.value)}
               />
+              <button type="button" onClick={(e) => handleCSV(e)}>
+                Download CSV
+              </button>
             </div>
           </div>
           <div className="ui-group">
