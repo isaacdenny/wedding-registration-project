@@ -109,7 +109,7 @@ const FormSection = () => {
         />
       </div>
       <div className="form-container">
-        <h1 className="form-title">RSVP Now!</h1>
+        <h1 className="title">RSVP Now!</h1>
         Please select who in your party will be attending!
         <form onSubmit={handleSubmit}>
           {attendants != null ? (attendants.map((attendant, i) => {

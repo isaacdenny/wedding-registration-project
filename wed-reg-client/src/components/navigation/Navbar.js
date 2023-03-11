@@ -7,8 +7,8 @@ const Navbar = (params) => {
     <nav className={ params.transparent ? "transparent-nav" : "nav"}>
       <ul className="nav-links">
         <li>
-          <Link className="nav-link" to="/">
-            Home
+          <Link className="nav-link" to="/our-story">
+            Our Story
           </Link>
         </li>
         <li>

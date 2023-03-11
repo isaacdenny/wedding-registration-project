@@ -1,12 +1,11 @@
 .container {
   display: flex;
+  flex-direction: column;
   background-color: white;
   min-height: 75vh;
-  justify-content: space-between;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 100px;
-  padding-bottom: 20px;
+  justify-content: center;
+  padding-top: 150px;
+  padding-bottom: 100px;
 }
 
 .hero-container {
@@ -19,6 +18,47 @@
   align-items: left;
   padding-left: 150px;
   padding-right: 150px;
+}
+
+.column {
+  margin: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  justify-content: center;
+}
+.collage-image {
+  max-width: 400px;
+  border-bottom-style: solid;
+  border-width: 10px;
+  border-bottom-color: #C9B6A4;
+}
+
+.divider {
+  background-color: #C9B6A4;
+  border-radius: 10px;
+  height: 10px;
+  width: 100%;
+}
+
+.text-paragraph {
+  margin-bottom: 2rem;
+  max-width: 600px;
+  font-size: large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.admin-container {
+  display: flex;
+  background-color: white;
+  min-height: 75vh;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 100px;
+  padding-bottom: 20px;
 }
 
 .transparent-nav {
@@ -240,8 +280,9 @@
   transition: 0.3s ease-in-out;
 }
 
-.form-title {
+.title {
   margin-bottom: 10px;
+  color: #C9B6A4;
 }
 
 .ui-container {

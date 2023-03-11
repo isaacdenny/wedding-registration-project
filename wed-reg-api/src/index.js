@@ -8,8 +8,7 @@ import adminRoutes from "./routes/admin.js";
 import registerRoutes from "./routes/register.js";
 import authRoutes from "./routes/auth.js";
 import { verifyToken } from "./controllers/verifyToken.js";
-import { writeCsv } from "./controllers/csv.js"
-
+import { downloadCsv } from "./controllers/csv.js";
 
 /* LOAD ENV */
 dotenv.config();
@@ -51,13 +50,13 @@ app.get("/", (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-app.get("/downloadcsv", writeCsv);
+app.get("/downloadcsv", downloadCsv);
 app.use("/register", registerRoutes);
 app.use("/admin", verifyToken, adminRoutes);
 app.use("/auth", authRoutes);
 
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => { 
+app.listen(PORT, () => {
   console.log(`Listening at http://localhost:${PORT}`);
-})
+});

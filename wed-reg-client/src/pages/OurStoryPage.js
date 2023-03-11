@@ -5,7 +5,7 @@ import image1 from "../images/3.jpg";
 import image2 from "../images/4.jpg";
 import image3 from "../images/5.jpg";
 
-const EventDetailsPage = () => {
+const OurStoryPage = () => {
   return (
     <>
       <Navbar />
@@ -100,4 +100,4 @@ const EventDetailsPage = () => {
   );
 };
 
-export default EventDetailsPage;
+export default OurStoryPage;

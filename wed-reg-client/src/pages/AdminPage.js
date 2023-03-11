@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/navigation/Navbar";
-import fileDownload from "js-file-download";
-import { CSVLink } from "react-csv";
 import {
   AddAttendant,
   EditAttendant,
@@ -15,7 +13,7 @@ const AdminPage = () => {
   const [notAttending, setNotAttending] = React.useState(false);
   const [filter, setFilter] = React.useState("");
   const [menu, setMenu] = React.useState("editAttendant");
-  const [csvdata, setCsvData] = React.useState([]);
+  const [csvFile, setCsvFile] = React.useState([]);
   const [attendants, setAttendants] = React.useState([
     {
       id: 1,
@@ -76,7 +74,7 @@ const AdminPage = () => {
       });
   };
 
-  const handleCSV = (e) => {
+  const handleDownloadCSV = (e) => {
     e.preventDefault();
     console.log("Requesting CSV...");
     fetch(`${API_URL}/downloadcsv`, {
@@ -101,6 +99,24 @@ const AdminPage = () => {
       });
   };
 
+  const handleUploadCSV = (e) => {
+    e.preventDefault();
+    console.log("Uploading CSV...");
+    console.log(JSON.parse(csvFile));
+    // fetch(`${API_URL}/uploadcsv`, {
+    //   method: "PUT",
+    //   mode: "cors",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   data: JSON.stringify({csvFile})
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //   });
+  };
+
   useEffect(() => {
     handleRefresh();
   }, []);
@@ -108,7 +124,7 @@ const AdminPage = () => {
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div className="admin-container">
         <div className="ui-container">
           <h1>Action Menu</h1>
           <div className="ui-group">
@@ -138,9 +154,19 @@ const AdminPage = () => {
                 value={notAttending}
                 onChange={(e) => setNotAttending(e.target.value)}
               />
-              <button type="button" onClick={(e) => handleCSV(e)}>
+              <button type="button" onClick={(e) => handleDownloadCSV(e)}>
                 Download CSV
               </button>
+              <form
+                action="fileupload"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <input type="file" onChange={(e) => setCsvFile(e)} />
+                <button type="button" onClick={(e) => handleUploadCSV(e)}>
+                  Upload CSV
+                </button>
+              </form>
             </div>
           </div>
           <div className="ui-group">

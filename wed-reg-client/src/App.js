@@ -8,6 +8,7 @@ import AboutBridalPage from "./pages/AboutBridalPage";
 import EventDetailsPage from "./pages/EventDetailsPage.js";
 import AdminPage from "./pages/AdminPage.js";
 import "./App.css";
+import OurStoryPage from "./pages/OurStoryPage.js"
 
 function App() {
   const isAuth = useSelector((state) => state.token != null);
@@ -20,6 +21,7 @@ function App() {
         <Route path={"/hotel-rec"} element={<HotelRecPage />} />
         <Route path={"/about-bridal"} element={<AboutBridalPage />} />
         <Route path={"/event-details"} element={<EventDetailsPage />} />
+        <Route path={"/our-story"} element={<OurStoryPage />} />
         <Route
           path={"/admin"}
           //element={<AdminPage />}
