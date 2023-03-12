@@ -1,3 +1,10 @@
 FROM mysql:latest
 
+ENV MYSQL_HOST="wed-reg-db" \
+  MYSQL_DATABASE="wedding" \
+  MYSQL_USER="webuser" \
+  MYSQL_PASSWORD="0219MrsDenny!" \
+  MYSQL_ROOT_PASSWORD="1234556789" \
+  MYSQL_PORT="3307"
+
 COPY ./database.sql /docker-entrypoint-initdb.d/

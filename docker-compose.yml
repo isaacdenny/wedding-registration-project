@@ -1,6 +1,7 @@
 services:
   wed-reg-client:
     build: ./wed-reg-client
+    restart: unless-stopped
     command: sh -c 'sleep 10s ; npm start'
     depends_on:
       - wed-reg-api
@@ -9,7 +10,8 @@ services:
 
   wed-reg-api:
     build: ./wed-reg-api
-    command: sh -c "sleep 7s ; npm start"
+    restart: unless-stopped
+    command: sh -c "sleep 10s ; npm start"
     depends_on:
       - wed-reg-db
     env_file:
@@ -19,6 +21,7 @@ services:
 
   wed-reg-db:
     build: ./wed-reg-db
+    restart: unless-stopped
     command: mysqld --authentication_policy=mysql_native_password
     env_file:
       - ./wed-reg-db/.env
