@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="footer">
-      <ul className="footer-links">
+      <ul className="nav-links">
         <li>
           <Link className="nav-link" to="/our-story">
             Our Story

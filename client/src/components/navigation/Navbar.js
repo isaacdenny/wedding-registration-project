@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = (params) => {
   return (
-    <nav className={ params.transparent ? "transparent-nav" : "nav"}>
+    <nav className="nav">
       <ul className="nav-links">
         <li>
           <Link className="nav-link" to="/our-story">

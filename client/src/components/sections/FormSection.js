@@ -42,12 +42,12 @@ const FormSection = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     attendants.map((attendant, i) => {
-      return attendantsArray[i] = {
+      return (attendantsArray[i] = {
         firstName: attendant.firstName,
         lastName: attendant.lastName,
         isAttending: isAttending[i],
         invitationID: attendant.invitationID,
-      };
+      });
     });
     fetch(`${API_URL}/register/`, {
       method: "POST",
@@ -67,74 +67,82 @@ const FormSection = () => {
   };
 
   return !isRegistered ? (
-    <div className="form-section-container">
-      <div className="form-image-container">
-        <img
-          src={heroImage}
-          alt="Allie and Isaac's Wedding"
-          className="form-image"
-        />
-      </div>
-      <div className="form-container">
-        <h1 className="form-title">Let Us Know You're Coming</h1>
-        Register below with your last name and invitation ID!
-        <form onSubmit={handleRegister}>
-          <input
-            type="text"
-            name="lastName"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            placeholder="Last Name"
+    <div className="section">
+      <div className="container">
+        <div className="container-group" style={{ alignItems: "center" }}>
+          <img
+            src={heroImage}
+            alt="Allie and Isaac's Wedding"
+            className="arch-image"
           />
-          <input
-            type="text"
-            name="invitationID"
-            value={invitationID}
-            onChange={(e) => setInvitationID(e.target.value)}
-            placeholder="Invitation ID"
-          />
-          <button type="submit" className="form-button">
-            Register
-          </button>
-        </form>
+        </div>
+        <div className="container-group">
+          <h2>Let Us Know You're Coming</h2>
+          <p>Sign in with your last name and invitation ID!</p>
+          <form onSubmit={handleRegister}>
+            <input
+              type="text"
+              name="lastName"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Last Name"
+            />
+            <input
+              type="text"
+              name="invitationID"
+              value={invitationID}
+              onChange={(e) => setInvitationID(e.target.value)}
+              placeholder="Invitation ID"
+            />
+            <button type="submit" className="button-primary">
+              Register
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   ) : (
-    <div className="form-section-container">
-      <div className="form-image-container">
-        <img
-          src={heroImage}
-          alt="Allie and Isaac's Wedding"
-          className="form-image"
-        />
-      </div>
-      <div className="form-container">
-        <h1 className="title">RSVP Now!</h1>
-        Please select who in your party will be attending!
-        <form onSubmit={handleSubmit}>
-          {attendants != null ? (attendants.map((attendant, i) => {
-            isAttendingArray[i] = isAttending[i] || false;
-            return (
-              <div key={i} className="form-container-checkbox">
-                <label className="form-label">
-                  {attendant.firstName} {attendant.lastName}
-                </label>
-                <input
-                  type="checkbox"
-                  name={attendant.firstName}
-                  checked={isAttending[i] || false}
-                  onChange={(e) => {
-                    isAttendingArray[i] = e.target.checked;
-                    setIsAttending(isAttendingArray);
-                  }}
-                />
-              </div>
-            );
-          })) : <>Error loading party...</>}
-          <button type="submit" className="form-button">
-            RSVP
-          </button>
-        </form>
+    <div className="section">
+      <div className="container">
+        <div className="container-group" style={{ alignItems: "center" }}>
+          <img
+            src={heroImage}
+            alt="Allie and Isaac's Wedding"
+            className="arch-image"
+          />
+        </div>
+        <div className="container-group">
+          <h1 className="title">RSVP Now!</h1>
+          Please select who in your party will be attending!
+          <form onSubmit={handleSubmit}>
+            {attendants != null ? (
+              attendants.map((attendant, i) => {
+                isAttendingArray[i] = isAttending[i] || false;
+                return (
+                  <div key={i} className="form-container-checkbox">
+                    <label className="form-label">
+                      {attendant.firstName} {attendant.lastName}
+                    </label>
+                    <input
+                      type="checkbox"
+                      name={attendant.firstName}
+                      checked={isAttending[i] || false}
+                      onChange={(e) => {
+                        isAttendingArray[i] = e.target.checked;
+                        setIsAttending(isAttendingArray);
+                      }}
+                    />
+                  </div>
+                );
+              })
+            ) : (
+              <>Error loading party...</>
+            )}
+            <button type="submit" className="button-primary">
+              RSVP
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
