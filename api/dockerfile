@@ -1,7 +1,7 @@
 # Specify a base image
 FROM node:latest
 
-ENV MYSQL_HOST="wed-reg-db" \
+ENV MYSQL_HOST="db" \
   MYSQL_DATABASE="wedding" \
   MYSQL_USER="webuser" \
   MYSQL_PASSWORD="0219MrsDenny!" \
@@ -10,9 +10,13 @@ ENV MYSQL_HOST="wed-reg-db" \
   HTTPS=true \
   JWT_SECRET="totallyunguessablesecrethereforjsonwt"
 
-WORKDIR /usr/app/src
-COPY ./ ./
-RUN npm install --no-audit
+WORKDIR /app
+
+COPY ./package.json /app/package.json
+COPY ./package-lock.json /app/package-lock.json
+
+RUN npm install
+COPY . .
 
 # Set up a default command
 CMD [ "npm", "run", "start" ]
