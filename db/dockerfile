@@ -1,6 +1,6 @@
 FROM mysql:latest
 
-ENV MYSQL_HOST="wed-reg-db" \
+ENV MYSQL_HOST="db" \
   MYSQL_DATABASE="wedding" \
   MYSQL_USER="webuser" \
   MYSQL_PASSWORD="0219MrsDenny!" \
