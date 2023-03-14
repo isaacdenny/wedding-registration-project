@@ -5,16 +5,18 @@
   padding-right: 20vw;
   background-color: #A4BCC9;
   color: white;
+  min-height: 50px;
 }
 
 .section h1 {
   margin-top: 200px;
   margin-bottom: 30px;
   font-size: 70px;
-    font-family: 'Herr Von Muellerhoff';
+  font-family: 'Herr Von Muellerhoff';
 }
 
 .container {
+  width: 100%;
   display: flex;
   flex-direction: row;
   background-color: #F4F1EC;
@@ -22,10 +24,7 @@
   justify-content: center;
   padding-top: 80px;
   padding-bottom: 80px;
-  padding-right: 50px;
-  padding-left: 50px;
-  width: 100%;
-  box-shadow: 0px 25px 20px rgba(0, 0, 0, 0.377);
+  box-shadow: 0px 22px 20px rgba(0, 0, 0, 0.15);
 }
 
 .container-group {
@@ -48,22 +47,34 @@
   margin-bottom: 0rem;
 }
 
+.container h3 {
+  font-size: 24px;
+  margin-bottom: 0.7rem;
+}
+
 .container p {
   color: black;
   font-size: 15px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .container form input {
   max-width: fit-content;
   background-color: #c9b6a44b;
   border-style: none;
-  border-radius: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 40px;
-  padding-right: 40px;
+  border-radius: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
   margin-bottom: 1rem;
+}
+
+.divider {
+  width: 7px;
+  height: 100%;
+  background-color: #C9B6A4;
+  margin: 20px;
 }
 
 .nav {
@@ -138,4 +149,11 @@
   width: 318px;
   border-top-left-radius: 150px;
   border-top-right-radius: 150px;
+}
+
+.info-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  margin-bottom: 40px;
 }
