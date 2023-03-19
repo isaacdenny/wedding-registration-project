@@ -10,6 +10,7 @@
 
 # production
 /build
+/allieandisaacwedding_site
 
 # misc
 .DS_Store

@@ -4,6 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mysql from "mysql";
 import helmet from "helmet";
+import https from "https";
+import fs from "fs";
 import adminRoutes from "./routes/admin.js";
 import registerRoutes from "./routes/register.js";
 import authRoutes from "./routes/auth.js";
@@ -56,7 +58,9 @@ app.use("/admin", verifyToken, adminRoutes);
 app.use("/auth", authRoutes);
 
 const PORT = process.env.PORT || 8080;
+const options = {
+  key: fs.readFileSync("./cert/allieandisaacwedding_site.key"),
+  cert: fs.readFileSync("./cert/allieandisaacwedding_site_chain.crt"),
+}
 
-app.listen(PORT, () => {
-  console.log(`Listening at http://localhost:${PORT}`);
-});
+https.createServer(options, app).listen(PORT, () => console.log(`Listening at https://localhost:${PORT}`))
