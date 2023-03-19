@@ -1,7 +1,3 @@
 FROM mysql:latest
 
-COPY ./startup.sh /app/startup/startup.sh
-RUN chmod +x /app/startup/startup.sh
-RUN ./startup/startup.sh
-
 COPY ./database.sql /docker-entrypoint-initdb.d/
