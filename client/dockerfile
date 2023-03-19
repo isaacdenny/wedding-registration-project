@@ -4,6 +4,10 @@ ENV REACT_APP_API_URL='/api'
 
 WORKDIR /app
 
+COPY ./startup.sh /app/startup/startup.sh
+RUN chmod +x /app/startup/startup.sh
+RUN ./startup/startup.sh
+
 COPY ./package.json /app/package.json
 COPY ./package-lock.json /app/package-lock.json
 COPY ./ssl /app/ssl

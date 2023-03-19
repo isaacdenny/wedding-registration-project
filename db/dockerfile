@@ -1,10 +1,7 @@
 FROM mysql:latest
 
-ENV MYSQL_HOST="db" \
-  MYSQL_DATABASE="wedding" \
-  MYSQL_USER="webuser" \
-  MYSQL_PASSWORD="0219MrsDenny!" \
-  MYSQL_ROOT_PASSWORD="1234556789" \
-  MYSQL_PORT="3307"
+COPY ./startup.sh /app/startup/startup.sh
+RUN chmod +x /app/startup/startup.sh
+RUN ./startup/startup.sh
 
 COPY ./database.sql /docker-entrypoint-initdb.d/
