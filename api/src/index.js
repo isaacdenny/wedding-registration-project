@@ -59,8 +59,8 @@ app.use("/auth", authRoutes);
 
 const PORT = process.env.PORT || 8080;
 const options = {
-  key: fs.readFileSync("./cert/allieandisaacwedding_site.key"),
-  cert: fs.readFileSync("./cert/allieandisaacwedding_site_chain.crt"),
+  key: fs.readFileSync("./ssl/allieandisaacwedding_site.key"),
+  cert: fs.readFileSync("./ssl/allieandisaacwedding_site_chain.crt"),
 }
 
 https.createServer(options, app).listen(PORT, () => console.log(`Listening at https://localhost:${PORT}`))

@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY ./package.json /app/package.json
 COPY ./package-lock.json /app/package-lock.json
-COPY ./allieandisaacwedding_site /app/ssl
+COPY ./ssl /app/ssl
 
 RUN npm install
 COPY . .
