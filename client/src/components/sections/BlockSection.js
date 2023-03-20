@@ -27,7 +27,7 @@ const BlockSection = (params) => {
               </a>
             </div>
             <div className="container-group">
-              <img
+              <img className="block-image"
                 src={params.imgSrc ? params.imgSrc : defaultImg}
                 alt={
                   params.imgAlt
@@ -51,7 +51,7 @@ const BlockSection = (params) => {
             style={{ paddingTop: "0px", paddingBottom: "0px" }}
           >
             <div className="container-group">
-              <img
+              <img className="block-image"
                 src={params.imgSrc ? params.imgSrc : defaultImg}
                 alt={
                   params.imgAlt
