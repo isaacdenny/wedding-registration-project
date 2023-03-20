@@ -9,12 +9,12 @@ import image3 from "../images/5.jpg";
 
 const OurStoryPage = () => {
   return (
-    <dv>
+    <div>
       <Navbar />
       <HeaderSection title="Our Story" />
       <BlockSection
         isAlone={true}
-        heading="Home Away From Home"
+        heading="A Fried Chicken Denial"
         desc="First met in February giving Isaac a tour of Lighthouse Prayed
               that I would see Isaac again Found out he was coming after spring
               break! All of April every day after school we were hanging out in
@@ -36,7 +36,7 @@ const OurStoryPage = () => {
       />
       <BlockSection
         isAlone={true}
-        heading="Distance Makes The Heart Grow Fonder"
+        heading="Meaningful Steps"
         desc="On the last day of school we went to Lagoon and he didn’t ride any
               roller coasters except for one, she loved being around him and he
               rubbed her back on the way back and she knew he was going to be a
@@ -50,13 +50,13 @@ const OurStoryPage = () => {
               and the long distance began (was actually a good thing for our
               relationship we got to focus on ourselves and the time that we had
               together was much more special)"
-        imgSrc={image3}
+        imgSrc={image2}
         imgAlt="engagement hotel with flowers"
         button={false}
       />
       <BlockSection
         isAlone={true}
-        heading="Distance Makes The Heart Grow Fonder"
+        heading="She Said Yes!"
         desc="Put a lot of trust in God for our relationship to work through
               long-distance and because of trusting God He was faithful to us In
               January we found out that his family was moving to North Carolina
@@ -72,7 +72,7 @@ const OurStoryPage = () => {
         button={false}
       />
       <Footer />
-    </dv>
+    </div>
   );
 };
 
