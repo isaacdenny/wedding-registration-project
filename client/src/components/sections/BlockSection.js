@@ -9,9 +9,7 @@ const BlockSection = (params) => {
       {flipped ? (
         <div
           className="section"
-          style={
-            params.isAlone ? { paddingTop: "80px" } : {}
-          }
+          style={params.isAlone ? { paddingTop: "80px" } : {}}
         >
           <div
             className="container"
@@ -22,9 +20,11 @@ const BlockSection = (params) => {
               <p style={{ maxWidth: "310px", textAlign: "center" }}>
                 {params.desc ? params.desc : "No Desc"}
               </p>
-              <button className="button-primary">
-                {params.buttonText ? params.buttonText : "No Text"}
-              </button>
+              <a href={params.buttonHref}>
+                <button className="button-primary">
+                  {params.buttonText ? params.buttonText : "No Text"}
+                </button>
+              </a>
             </div>
             <div className="container-group">
               <img
@@ -66,9 +66,11 @@ const BlockSection = (params) => {
               <p style={{ maxWidth: "310px", textAlign: "center" }}>
                 {params.desc ? params.desc : "No Desc"}
               </p>
-              <button className="button-primary">
-                {params.buttonText ? params.buttonText : "No Text"}
-              </button>
+              <a href={params.buttonHref}>
+                <button className="button-primary">
+                  {params.buttonText ? params.buttonText : "No Text"}
+                </button>
+              </a>
             </div>
           </div>
         </div>

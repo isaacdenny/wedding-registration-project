@@ -23,6 +23,7 @@ function LandingPage() {
         imgSrc={ringImg}
         imgAlt="engagement ring with pink rose"
         buttonText="Check It Out!"
+        buttonHref="/event-details"
       />
       <BlockSection
         isAlone={true}
@@ -32,6 +33,7 @@ function LandingPage() {
         imgAlt="engagement hotel with flowers"
         isFlipped={true}
         buttonText="Check It Out!"
+        buttonHref="/hotel-rec"
       />
       <Footer />
     </div>

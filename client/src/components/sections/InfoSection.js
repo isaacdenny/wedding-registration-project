@@ -20,6 +20,7 @@ const InfoSection = (params) => {
         >
           <img className="info-image" src={rings} alt="rings by flowers" />
           <div
+            className="info-container"
             style={{
               display: "flex",
               flexDirection: "row",
