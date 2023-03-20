@@ -12,7 +12,7 @@ import hotelImg from "../images/engagement-hotel.jpg"
 function LandingPage() {
   return (
     <div>
-      <Navbar transparent={true} />
+      <Navbar />
       <HeaderSection title={"Together Forever"} />
       <FormSection />
       <InfoSection isEnd={true} />

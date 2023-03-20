@@ -20,14 +20,19 @@ const BlockSection = (params) => {
               <p style={{ maxWidth: "310px", textAlign: "center" }}>
                 {params.desc ? params.desc : "No Desc"}
               </p>
-              <a href={params.buttonHref}>
-                <button className="button-primary">
-                  {params.buttonText ? params.buttonText : "No Text"}
-                </button>
-              </a>
+              {params.button ? (
+                <a href={params.buttonHref}>
+                  <button className="button-primary">
+                    {params.buttonText ? params.buttonText : "No Text"}
+                  </button>
+                </a>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="container-group">
-              <img className="block-image"
+              <img
+                className="block-image"
                 src={params.imgSrc ? params.imgSrc : defaultImg}
                 alt={
                   params.imgAlt
@@ -51,7 +56,8 @@ const BlockSection = (params) => {
             style={{ paddingTop: "0px", paddingBottom: "0px" }}
           >
             <div className="container-group">
-              <img className="block-image"
+              <img
+                className="block-image"
                 src={params.imgSrc ? params.imgSrc : defaultImg}
                 alt={
                   params.imgAlt
@@ -66,11 +72,15 @@ const BlockSection = (params) => {
               <p style={{ maxWidth: "310px", textAlign: "center" }}>
                 {params.desc ? params.desc : "No Desc"}
               </p>
-              <a href={params.buttonHref}>
-                <button className="button-primary">
-                  {params.buttonText ? params.buttonText : "No Text"}
-                </button>
-              </a>
+              {params.button ? (
+                <a href={params.buttonHref}>
+                  <button className="button-primary">
+                    {params.buttonText ? params.buttonText : "No Text"}
+                  </button>
+                </a>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </div>
