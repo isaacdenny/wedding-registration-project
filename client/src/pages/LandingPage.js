@@ -22,6 +22,7 @@ function LandingPage() {
         desc="Check out our Event Details to know the when and where!"
         imgSrc={ringImg}
         imgAlt="engagement ring with pink rose"
+        button={true}
         buttonText="Check It Out!"
         buttonHref="/event-details"
       />
@@ -32,6 +33,7 @@ function LandingPage() {
         imgSrc={hotelImg}
         imgAlt="engagement hotel with flowers"
         isFlipped={true}
+        button={true}
         buttonText="Check It Out!"
         buttonHref="/hotel-rec"
       />
