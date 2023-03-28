@@ -5,7 +5,9 @@ const EditParty = (params) => {
     params.attendants[0].invitationID
   );
 
-  const [selectedPartyName, setSelectedPartyName] = React.useState(params.attendants[0].partyName);
+  const [selectedPartyName, setSelectedPartyName] = React.useState(
+    params.attendants[0].partyName
+  );
 
   const [party, setParty] = React.useState([]);
   let partyList = [];
@@ -13,7 +15,7 @@ const EditParty = (params) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     partyList = [];
-    for (let i = 0; i < party.length; i++ ) {
+    for (let i = 0; i < party.length; i++) {
       partyList.push({
         id: party[i].id,
         name: e.target[`name${i}`].value,
@@ -21,7 +23,7 @@ const EditParty = (params) => {
         invitationID: selectedPartyID,
         isAttending: e.target[`isAttending${i}`].checked,
       });
-    }; 
+    }
     fetch(`${params.API_URL}/admin/updateParty`, {
       method: "PATCH",
       mode: "cors",
@@ -81,10 +83,17 @@ const EditParty = (params) => {
       <input
         type={"number"}
         value={selectedPartyID.toString()}
-        onChange={(e) => setSelectedPartyID(e.target.value != null ? parseInt(e.target.value) : setSelectedPartyID(0))}
+        onChange={(e) =>
+          setSelectedPartyID(
+            e.target.value != null
+              ? parseInt(e.target.value)
+              : setSelectedPartyID(0)
+          )
+        }
       />
       <div className="attendant">
-        <div className="attendant-item">Name</div>
+        <div className="attendant-item">Full Name</div>
+        <div className="attendant-item">Party Name</div>
         <div className="attendant-item">Attending</div>
       </div>
       {party.map((member, i) => (
@@ -92,13 +101,13 @@ const EditParty = (params) => {
           <div className="attendant-item">
             <input
               type="text"
-              defaultValue={member.firstName}
+              defaultValue={member.name}
               name={"name" + i}
             />
             <input
               type="text"
-              defaultValue={member.lastName}
-              name={"lastName" + i}
+              defaultValue={member.partyName}
+              name={"partyName" + i}
             />
           </div>
           <div className="attendant-item">
@@ -114,7 +123,9 @@ const EditParty = (params) => {
       ))}
       <div className="form-button-group">
         <button type="submit">Save</button>
-        <button type="button" onClick={handleDelete}>Delete</button>
+        <button type="button" onClick={handleDelete}>
+          Delete
+        </button>
       </div>
     </form>
   );

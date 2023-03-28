@@ -19,29 +19,29 @@ const AdminPage = () => {
   const [attendants, setAttendants] = React.useState([
     {
       id: 1,
-      firstName: "John",
-      lastName: "Doe",
+      name: "John Weasle",
+      partyName: "Doe",
       invitationID: "1",
       isAttending: "1",
     },
     {
       id: 2,
-      firstName: "Jane",
-      lastName: "Crabs",
+      name: "Jane Crabs",
+      partyName: "Crabs",
       invitationID: "2",
       isAttending: "0",
     },
     {
       id: 3,
-      firstName: "Bob",
-      lastName: "Doe",
+      name: "Bob Doe",
+      partyName: "Doe",
       invitationID: "1",
       isAttending: "0",
     },
     {
       id: 4,
-      firstName: "Chris",
-      lastName: "Doe",
+      name: "Chris",
+      partyName: "Doe",
       invitationID: "1",
       isAttending: "0",
     },
@@ -203,7 +203,8 @@ const AdminPage = () => {
           >
             <h2>Invited</h2>
             <div className="attendant">
-              <div className="attendant-item">Name</div>
+              <div className="attendant-item">Full Name</div>
+              <div className="attendant-item">Party Name</div>
               <div className="attendant-item">Invitation ID</div>
               <div className="attendant-item">Attending</div>
             </div>
@@ -214,7 +215,10 @@ const AdminPage = () => {
                 onClick={() => setSelectedttendant(attendants[i])}
               >
                 <div className="attendant-item">
-                  {attendant.firstName} {attendant.lastName}
+                  {attendant.name}
+                </div>
+                <div className="attendant-item">
+                {attendant.partyName}
                 </div>
                 <div className="attendant-item">{attendant.invitationID}</div>
                 <div className="attendant-item">

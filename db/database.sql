@@ -7,7 +7,7 @@ CREATE TABLE if not exists attendants (
   partyName VARCHAR(100) NOT NULL,
   invitationID int NOT NULL,
   isAttending BOOLEAN DEFAULT FALSE,
-  PRIMARY KEY (id)
+  PRIMARY KEY (uuid)
 );
 
 CREATE TABLE if not exists users (
@@ -17,4 +17,4 @@ CREATE TABLE if not exists users (
   PRIMARY KEY (uuid)
 );
 
-INSERT INTO users (username, password, isAdmin) VALUES ("themaningrey", "insicknessandinhealth0219", true), ("thewomaninwhite", "insicknessandinhealth0430", true);
+INSERT INTO users (username, password) VALUES ("themaningrey", "insicknessandinhealth0219"), ("thewomaninwhite", "insicknessandinhealth0430");

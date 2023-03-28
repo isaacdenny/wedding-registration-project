@@ -14,7 +14,7 @@ const AddParty = (params) => {
     partyList = [];
     for (let i = 0; i < party.length; i++) {
       partyList.push({
-        id: party[i].id,
+        uuid: party[i].id,
         firstName: e.target[`firstName${i}`].value,
         lastName: e.target[`lastName${i}`].value,
         invitationID: selectedPartyID,
@@ -59,23 +59,23 @@ const AddParty = (params) => {
       </div>
       {party.map((member, i) => (
         <div className="attendant" key={i}>
-            <input
-              type="text"
-              defaultValue={member.firstName}
-              name={"firstName" + i}
-            />
-            <input
-              type="text"
-              defaultValue={member.lastName}
-              name={"lastName" + i}
-            />
-            <input
-              type="checkbox"
-              defaultChecked={
-                member.isAttending === 1 || member.isAttending === true
-              }
-              name={"isAttending" + i}
-            />
+          <input
+            type="text"
+            defaultValue={member.firstName}
+            name={"firstName" + i}
+          />
+          <input
+            type="text"
+            defaultValue={member.lastName}
+            name={"lastName" + i}
+          />
+          <input
+            type="checkbox"
+            defaultChecked={
+              member.isAttending === 1 || member.isAttending === true
+            }
+            name={"isAttending" + i}
+          />
         </div>
       ))}
       <button onClick={handleSubmit}>Save</button>
