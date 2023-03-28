@@ -5,6 +5,8 @@ const EditParty = (params) => {
     params.attendants[0].invitationID
   );
 
+  const [selectedPartyName, setSelectedPartyName] = React.useState(params.attendants[0].partyName);
+
   const [party, setParty] = React.useState([]);
   let partyList = [];
 
@@ -14,8 +16,8 @@ const EditParty = (params) => {
     for (let i = 0; i < party.length; i++ ) {
       partyList.push({
         id: party[i].id,
-        firstName: e.target[`firstName${i}`].value,
-        lastName: e.target[`lastName${i}`].value,
+        name: e.target[`name${i}`].value,
+        partyName: e.target[`partyName${i}`].value,
         invitationID: selectedPartyID,
         isAttending: e.target[`isAttending${i}`].checked,
       });
@@ -69,6 +71,12 @@ const EditParty = (params) => {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Edit Party</h2>
+      <label>Party Name</label>
+      <input
+        type={"text"}
+        value={selectedPartyName}
+        onChange={(e) => setSelectedPartyName(e.target.value)}
+      />
       <label>Invitation ID</label>
       <input
         type={"number"}
@@ -85,7 +93,7 @@ const EditParty = (params) => {
             <input
               type="text"
               defaultValue={member.firstName}
-              name={"firstName" + i}
+              name={"name" + i}
             />
             <input
               type="text"
@@ -106,7 +114,7 @@ const EditParty = (params) => {
       ))}
       <div className="form-button-group">
         <button type="submit">Save</button>
-        <button onClick={handleDelete}>Delete</button>
+        <button type="button" onClick={handleDelete}>Delete</button>
       </div>
     </form>
   );

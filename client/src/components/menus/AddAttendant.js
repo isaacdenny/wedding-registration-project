@@ -1,8 +1,8 @@
 import React from 'react'
 
 const AddAttendant = (params) => {
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [partyName, setPartyName] = React.useState("");
   const [invitationID, setInvitationID] = React.useState("");
   const [isAttending, setIsAttending] = React.useState(false);
 
@@ -16,8 +16,8 @@ const AddAttendant = (params) => {
       },
       body: JSON.stringify({
         token: params.token,
-        firstName: firstName,
-        lastName: lastName,
+        name: name,
+        partyName: partyName,
         invitationID: invitationID,
         isAttending: isAttending,
       }),
@@ -33,19 +33,19 @@ const AddAttendant = (params) => {
     <div>
       <h2>Add Attendant</h2>
       <div className="form-group">
-        <label>First Name</label>
+        <label>Full Name</label>
         <input
           type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="form-group">
-        <label>Last Name</label>
+        <label>Party Name</label>
         <input
           type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          value={partyName}
+          onChange={(e) => setPartyName(e.target.value)}
         />
       </div>
       <div className="form-group">

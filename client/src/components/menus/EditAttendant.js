@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 
 const EditAttendant = (params) => {
   const [id, setID] = React.useState(params.selectedAttendant.id);
-  const [firstName, setFirstName] = React.useState(
+  const [name, setName] = React.useState(
     params.selectedAttendant.firstName
   );
-  const [lastName, setLastName] = React.useState(
+  const [partyName, setPartyName] = React.useState(
     params.selectedAttendant.lastName
   );
   const [invitationID, setInvitationID] = React.useState(
@@ -26,8 +26,8 @@ const EditAttendant = (params) => {
       body: JSON.stringify({
         token: params.token,
         id: id,
-        firstName: firstName,
-        lastName: lastName,
+        name: name,
+        partyName: partyName,
         invitationID: invitationID,
         isAttending: isAttending,
       }),
@@ -40,7 +40,7 @@ const EditAttendant = (params) => {
   };
 
   const handleDelete = (e) => {
-    console.log(id, firstName, lastName, invitationID, isAttending);
+    console.log(id, name, partyName, invitationID, isAttending);
     e.preventDefault();
     fetch(`${params.API_URL}/admin/deleteAttendant`, {
       method: "DELETE",
@@ -62,8 +62,8 @@ const EditAttendant = (params) => {
 
   useEffect(() => {
     setID(params.selectedAttendant.id);
-    setFirstName(params.selectedAttendant.firstName);
-    setLastName(params.selectedAttendant.lastName);
+    setName(params.selectedAttendant.firstName);
+    setPartyName(params.selectedAttendant.lastName);
     setInvitationID(params.selectedAttendant.invitationID);
     setIsAttending(params.selectedAttendant.isAttending);
   }, [params.selectedAttendant]);
@@ -72,19 +72,19 @@ const EditAttendant = (params) => {
     <div style={{ display: "flex", flexDirection: "column" }}>
       <h2>Edit Attendant</h2>
       <div className="form-group">
-        <label>First Name</label>
+        <label>Full Name</label>
         <input
           type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="form-group">
-        <label>Last Name</label>
+        <label>Party Name</label>
         <input
           type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          value={partyName}
+          onChange={(e) => setPartyName(e.target.value)}
         />
       </div>
       <div className="form-group">

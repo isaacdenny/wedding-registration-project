@@ -37,7 +37,7 @@ export const updateParty = async (req, res) => {
   try {
     const { party } = req.body;
     party.forEach((element) => {
-      let sql = `UPDATE attendants SET firstName = '${element.firstName}', lastName = '${element.lastName}', invitationID = '${element.invitationID}', isAttending = ${element.isAttending} WHERE (id='${element.id}')`;
+      let sql = `UPDATE attendants SET name = '${element.name}', partyName = '${element.partyName}', invitationID = '${element.invitationID}', isAttending = ${element.isAttending} WHERE (uuid='${element.id}')`;
       let query = db.query(sql, (err, result) => {
         if (err) return res.status(500).json({ error: err });
         else console.log(result);
