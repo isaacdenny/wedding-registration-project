@@ -5,9 +5,9 @@ const AddParty = (params) => {
   const [party, setParty] = React.useState([]);
   let partyList = [];
 
-  const handleAddMember = (e) => { 
+  const handleAddMember = (e) => {
     setParty([...party, { firstName: "", lastName: "", isAttending: false }]);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,15 +32,15 @@ const AddParty = (params) => {
         party: partyList,
       }),
     })
-      .then((res) => res.json())                     
+      .then((res) => res.json())
       .then((data) => {
         params.handleRefresh();
-        setParty([])
+        setParty([]);
       });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Edit Party</h1>
+    <div>
+      <h2>Add New Party</h2>
       <label>Invitation ID</label>
       <input
         type={"number"}
@@ -54,12 +54,11 @@ const AddParty = (params) => {
         }
       />
       <div className="attendant">
-        <div className="attendant-item">Name</div>
-        <div className="attendant-item">Attending</div>
+        <div>Name</div>
+        <div>Attending</div>
       </div>
       {party.map((member, i) => (
         <div className="attendant" key={i}>
-          <div className="attendant-item">
             <input
               type="text"
               defaultValue={member.firstName}
@@ -70,8 +69,6 @@ const AddParty = (params) => {
               defaultValue={member.lastName}
               name={"lastName" + i}
             />
-          </div>
-          <div className="attendant-item">
             <input
               type="checkbox"
               defaultChecked={
@@ -79,14 +76,11 @@ const AddParty = (params) => {
               }
               name={"isAttending" + i}
             />
-          </div>
         </div>
       ))}
-      <div className="form-button-group">
-        <button type="submit">Save</button>
-        <button type="button" onClick={handleAddMember}>Add Member</button>
-      </div>
-    </form>
+      <button onClick={handleSubmit}>Save</button>
+      <button onClick={handleAddMember}>Add Member</button>
+    </div>
   );
 };
 

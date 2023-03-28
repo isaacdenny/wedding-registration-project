@@ -7,6 +7,8 @@ import {
   EditParty,
 } from "../components/menus";
 import { useSelector } from "react-redux";
+import HeaderSection from "../components/sections/HeaderSection";
+import Footer from "../components/navigation/Footer"
 
 const AdminPage = () => {
   const [filterAttending, setFilterAttending] = React.useState(false);
@@ -124,24 +126,28 @@ const AdminPage = () => {
   return (
     <>
       <Navbar />
-      <div className="admin-container">
-        <div className="ui-container">
-          <h1>Action Menu</h1>
-          <div className="ui-group">
-            <label>Search Attendants</label>
-            <div className="group">
-              <input
-                type="text"
-                placeholder="Joe Shmoe"
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-              />
-              <button type="submit">Search</button>
+      <HeaderSection title={"Admin"} />
+      <div className="section">
+        <div className="container">
+          <div
+            className="container-group"
+            style={{ paddingLeft: "20px", paddingRight: "20px" }}
+          >
+            <h2>Action Menu</h2>
+            <div className="form-group">
+              <label>Search Attendants</label>
+              <div className="group">
+                <input
+                  type="text"
+                  placeholder="Joe Shmoe"
+                  value={filter}
+                  onChange={(e) => setFilter(e.target.value)}
+                />
+                <button type="submit">Search</button>
+              </div>
             </div>
-          </div>
-          <div className="ui-group">
-            <label>Filters</label>
-            <div className="group">
+            <div className="form-group">
+              <label>Filters</label>
               <label>Attending</label>
               <input
                 type="checkbox"
@@ -154,108 +160,118 @@ const AdminPage = () => {
                 value={notAttending}
                 onChange={(e) => setNotAttending(e.target.value)}
               />
+            </div>
+            <form
+              action="fileupload"
+              method="post"
+              enctype="multipart/form-data"
+            >
               <button type="button" onClick={(e) => handleDownloadCSV(e)}>
                 Download CSV
               </button>
-              <form
-                action="fileupload"
-                method="post"
-                enctype="multipart/form-data"
-              >
-                <input type="file" onChange={(e) => setCsvFile(e)} />
-                <button type="button" onClick={(e) => handleUploadCSV(e)}>
-                  Upload CSV
+              <input type="file" onChange={(e) => setCsvFile(e)} />
+              <button type="button" onClick={(e) => handleUploadCSV(e)}>
+                Upload CSV
+              </button>
+            </form>
+            <div className="form-group">
+              <label>Attendant Actions</label>
+              <div className="group">
+                <button onClick={() => handleMenu("addAttendant")}>
+                  Add Attendant
                 </button>
-              </form>
-            </div>
-          </div>
-          <div className="ui-group">
-            <label>Attendant Actions</label>
-            <div className="group">
-              <button onClick={() => handleMenu("addAttendant")}>
-                Add Attendant
-              </button>
-              <button onClick={() => handleMenu("editAttendant")}>
-                Edit Attendant
-              </button>
-            </div>
-          </div>
-          <div className="ui-group">
-            <label>Party Actions</label>
-            <div className="group">
-              <button onClick={() => handleMenu("addParty")}>Add Party</button>
-              <button onClick={() => handleMenu("editParty")}>
-                Edit Party
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="ui-container">
-          <h1>Invited</h1>
-          <div className="attendant">
-            <div className="attendant-item">Name</div>
-            <div className="attendant-item">Invitation ID</div>
-            <div className="attendant-item">Attending</div>
-          </div>
-          {attendants.map((attendant, i) => (
-            <div
-              className="attendant"
-              key={i}
-              onClick={() => setSelectedttendant(attendants[i])}
-            >
-              <div className="attendant-item">
-                {attendant.firstName} {attendant.lastName}
-              </div>
-              <div className="attendant-item">{attendant.invitationID}</div>
-              <div className="attendant-item">
-                {attendant.isAttending === 1 ? "Yes" : "No"}
+                <button onClick={() => handleMenu("editAttendant")}>
+                  Edit Attendant
+                </button>
               </div>
             </div>
-          ))}
-        </div>
-        <div className="ui-container">
-          <div>
-            {menu === "addAttendant" ? (
-              <AddAttendant
-                token={token}
-                API_URL={API_URL}
-                handleRefresh={handleRefresh}
-              />
-            ) : (
-              <></>
-            )}
-            {menu === "editAttendant" ? (
-              <EditAttendant
-                token={token}
-                selectedAttendant={selectedAttendant}
-                API_URL={API_URL}
-                handleRefresh={handleRefresh}
-              />
-            ) : (
-              <></>
-            )}
-            {menu === "addParty" ? (
-              <AddParty
-                token={token}
-                API_URL={API_URL}
-                handleRefresh={handleRefresh}
-              />
-            ) : (
-              <></>
-            )}
-            {menu === "editParty" ? (
-              <EditParty
-                token={token}
-                attendants={attendants}
-                API_URL={API_URL}
-                handleRefresh={handleRefresh}
-              />
-            ) : (
-              <></>
-            )}
+            <div className="form-group">
+              <label>Party Actions</label>
+              <div className="group">
+                <button onClick={() => handleMenu("addParty")}>
+                  Add Party
+                </button>
+                <button onClick={() => handleMenu("editParty")}>
+                  Edit Party
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            className="container-group"
+            style={{ paddingLeft: "20px", paddingRight: "20px" }}
+          >
+            <h2>Invited</h2>
+            <div className="attendant">
+              <div className="attendant-item">Name</div>
+              <div className="attendant-item">Invitation ID</div>
+              <div className="attendant-item">Attending</div>
+            </div>
+            {attendants.map((attendant, i) => (
+              <div
+                className="attendant"
+                key={i}
+                onClick={() => setSelectedttendant(attendants[i])}
+              >
+                <div className="attendant-item">
+                  {attendant.firstName} {attendant.lastName}
+                </div>
+                <div className="attendant-item">{attendant.invitationID}</div>
+                <div className="attendant-item">
+                  {attendant.isAttending === 1 ? "Yes" : "No"}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div
+            className="container-group"
+            style={{ paddingLeft: "20px", paddingRight: "20px" }}
+          >
+            <div>
+              {menu === "addAttendant" ? (
+                <AddAttendant
+                  token={token}
+                  API_URL={API_URL}
+                  handleRefresh={handleRefresh}
+                />
+              ) : (
+                <></>
+              )}
+              {menu === "editAttendant" ? (
+                <EditAttendant
+                  token={token}
+                  selectedAttendant={selectedAttendant}
+                  API_URL={API_URL}
+                  handleRefresh={handleRefresh}
+                />
+              ) : (
+                <></>
+              )}
+              {menu === "addParty" ? (
+                <AddParty
+                  token={token}
+                  API_URL={API_URL}
+                  handleRefresh={handleRefresh}
+                />
+              ) : (
+                <></>
+              )}
+              {menu === "editParty" ? (
+                <EditParty
+                  token={token}
+                  attendants={attendants}
+                  API_URL={API_URL}
+                  handleRefresh={handleRefresh}
+                />
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
         </div>
       </div>
+      <div className="section" />
+      <Footer />
     </>
   );
 };

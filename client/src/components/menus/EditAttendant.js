@@ -69,8 +69,8 @@ const EditAttendant = (params) => {
   }, [params.selectedAttendant]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Edit Attendant</h1>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <h2>Edit Attendant</h2>
       <div className="form-group">
         <label>First Name</label>
         <input
@@ -104,10 +104,10 @@ const EditAttendant = (params) => {
         />
       </div>
       <div className="form-button-group">
-        <button type="submit">Save</button>
+        <button onClick={handleSubmit}>Save</button>
         <button onClick={handleDelete}>Delete</button>
       </div>
-    </form>
+    </div>
   );
 };
 

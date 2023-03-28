@@ -30,8 +30,8 @@ const AddAttendant = (params) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Add New Attendant</h1>
+    <div>
+      <h2>Add Attendant</h2>
       <div className="form-group">
         <label>First Name</label>
         <input
@@ -64,10 +64,8 @@ const AddAttendant = (params) => {
           onChange={(e) => setIsAttending(e.target.checked)}
         />
       </div>
-      <div className="form-button-group">
-        <button type="submit">Add</button>
-      </div>
-    </form>
+      <button onClick={handleSubmit}>Add</button>
+    </div>
   );
 }
 

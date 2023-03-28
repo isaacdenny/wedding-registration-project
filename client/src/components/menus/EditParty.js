@@ -68,7 +68,7 @@ const EditParty = (params) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Edit Party</h1>
+      <h2>Edit Party</h2>
       <label>Invitation ID</label>
       <input
         type={"number"}
