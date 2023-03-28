@@ -33,7 +33,6 @@ const LoginPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.length <= 0) {
           alert("Username or password is incorrect");
           return;

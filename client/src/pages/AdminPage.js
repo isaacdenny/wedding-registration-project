@@ -18,28 +18,28 @@ const AdminPage = () => {
   const [csvFile, setCsvFile] = React.useState([]);
   const [attendants, setAttendants] = React.useState([
     {
-      id: 1,
+      uuid: 1,
       name: "John Weasle",
       partyName: "Doe",
       invitationID: "1",
       isAttending: "1",
     },
     {
-      id: 2,
+      uuid: 2,
       name: "Jane Crabs",
       partyName: "Crabs",
       invitationID: "2",
       isAttending: "0",
     },
     {
-      id: 3,
+      uuid: 3,
       name: "Bob Doe",
       partyName: "Doe",
       invitationID: "1",
       isAttending: "0",
     },
     {
-      id: 4,
+      uuid: 4,
       name: "Chris",
       partyName: "Doe",
       invitationID: "1",
@@ -58,7 +58,6 @@ const AdminPage = () => {
   };
 
   const handleRefresh = () => {
-    console.log("Refreshing attendants...");
     fetch(`${API_URL}/admin/getAll`, {
       method: "POST",
       mode: "cors",
@@ -218,7 +217,7 @@ const AdminPage = () => {
                   {attendant.name}
                 </div>
                 <div className="attendant-item">
-                {attendant.partyName}
+                  {attendant.partyName}
                 </div>
                 <div className="attendant-item">{attendant.invitationID}</div>
                 <div className="attendant-item">

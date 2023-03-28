@@ -4,7 +4,6 @@ export const getAll = async (req, res) => {
   try {
     const { filter } = req.body;
     let sql = "SELECT * FROM attendants";
-    console.log(filter);
     if (filter != null) { 
       switch (filter) {
         case "attending":
@@ -14,7 +13,7 @@ export const getAll = async (req, res) => {
           sql = "SELECT * FROM attendants WHERE isAttending = false";
           break;
         default:
-          sql = `SELECT * FROM attendants WHERE (firstName LIKE '%${filter}%' OR lastName LIKE '%${filter}%')`;
+          sql = `SELECT * FROM attendants WHERE (name LIKE '%${filter}%' OR partyName LIKE '%${filter}%')`;
           break;
       }
     }
@@ -30,8 +29,8 @@ export const getAll = async (req, res) => {
 
 export const getByName = async (req, res) => {
   try {
-    const { firstName, lastName } = req.body;
-    let sql = `SELECT * FROM attendants WHERE (firstName LIKE '%${firstName}%' OR lastName LIKE '%${lastName}%')`;
+    const { name, partyName } = req.body;
+    let sql = `SELECT * FROM attendants WHERE (name LIKE '%${name}%' OR partyName LIKE '%${partyName}%')`;
     let query = db.query(sql, (err, result) => {
       if (err) return res.status(500).json({ error: err });
       else return res.status(200).json(result);

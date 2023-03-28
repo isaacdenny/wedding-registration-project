@@ -24,7 +24,6 @@ const AddAttendant = (params) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         params.handleRefresh();
       });
   };

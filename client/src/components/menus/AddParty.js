@@ -14,7 +14,7 @@ const AddParty = (params) => {
     partyList = [];
     for (let i = 0; i < party.length; i++) {
       partyList.push({
-        uuid: party[i].id,
+        uuid: party[i].uuid,
         firstName: e.target[`firstName${i}`].value,
         lastName: e.target[`lastName${i}`].value,
         invitationID: selectedPartyID,
@@ -61,12 +61,12 @@ const AddParty = (params) => {
         <div className="attendant" key={i}>
           <input
             type="text"
-            defaultValue={member.firstName}
+            defaultValue={member.name}
             name={"firstName" + i}
           />
           <input
             type="text"
-            defaultValue={member.lastName}
+            defaultValue={member.partyName}
             name={"lastName" + i}
           />
           <input

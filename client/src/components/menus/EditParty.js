@@ -17,7 +17,7 @@ const EditParty = (params) => {
     partyList = [];
     for (let i = 0; i < party.length; i++) {
       partyList.push({
-        id: party[i].id,
+        uuid: party[i].uuid,
         name: e.target[`name${i}`].value,
         partyName: e.target[`partyName${i}`].value,
         invitationID: selectedPartyID,

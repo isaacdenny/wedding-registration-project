@@ -12,12 +12,12 @@ export const downloadCsv = (req, res) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       } else {
-        let csv = "First Name,Last Name,Invitation ID,Is Attending\n";
+        let csv = "Full Name,Party Name,Invitation ID,Is Attending\n";
         for (let i = 0; i < result.length; i++) {
           csv +=
-            result[i].firstName +
+            result[i].name +
             "," +
-            result[i].lastName +
+            result[i].partyName +
             "," +
             result[i].invitationID +
             "," +

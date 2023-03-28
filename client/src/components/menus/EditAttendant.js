@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 const EditAttendant = (params) => {
-  const [id, setID] = React.useState(params.selectedAttendant.id);
+  const [uuid, setUUID] = React.useState(params.selectedAttendant.uuid);
   const [name, setName] = React.useState(
     params.selectedAttendant.firstName
   );
@@ -25,7 +25,7 @@ const EditAttendant = (params) => {
       },
       body: JSON.stringify({
         token: params.token,
-        id: id,
+        uuid: uuid,
         name: name,
         partyName: partyName,
         invitationID: invitationID,
@@ -34,13 +34,11 @@ const EditAttendant = (params) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         params.handleRefresh();
       });
   };
 
   const handleDelete = (e) => {
-    console.log(id, name, partyName, invitationID, isAttending);
     e.preventDefault();
     fetch(`${params.API_URL}/admin/deleteAttendant`, {
       method: "DELETE",
@@ -50,20 +48,19 @@ const EditAttendant = (params) => {
       },
       body: JSON.stringify({
         token: params.token,
-        id: id,
+        uuid: uuid,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         params.handleRefresh();
       });
   };
 
   useEffect(() => {
-    setID(params.selectedAttendant.id);
-    setName(params.selectedAttendant.firstName);
-    setPartyName(params.selectedAttendant.lastName);
+    setUUID(params.selectedAttendant.uuid);
+    setName(params.selectedAttendant.name);
+    setPartyName(params.selectedAttendant.partyName);
     setInvitationID(params.selectedAttendant.invitationID);
     setIsAttending(params.selectedAttendant.isAttending);
   }, [params.selectedAttendant]);
