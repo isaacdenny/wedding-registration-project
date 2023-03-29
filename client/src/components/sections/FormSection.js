@@ -33,7 +33,7 @@ const FormSection = (params) => {
       .then((data) => {
         console.log(data);
         if (data.length <= 0) {
-          alert("Last name or invitation ID not found");
+          alert("party name or invitation ID not found");
           return;
         }
         setAttendants(data);
