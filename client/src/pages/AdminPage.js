@@ -8,14 +8,12 @@ import {
 } from "../components/menus";
 import { useSelector } from "react-redux";
 import HeaderSection from "../components/sections/HeaderSection";
-import Footer from "../components/navigation/Footer"
+import Footer from "../components/navigation/Footer";
 
 const AdminPage = () => {
-  const [filterAttending, setFilterAttending] = React.useState(false);
-  const [notAttending, setNotAttending] = React.useState(false);
-  const [filter, setFilter] = React.useState("");
   const [menu, setMenu] = React.useState("editAttendant");
-  const [csvFile, setCsvFile] = React.useState([]);
+  const [selectedFile, setSelectedFile] = React.useState([]);
+  const [fileIsSelected, setFileIsSelected] = React.useState(false);
   const [attendants, setAttendants] = React.useState([
     {
       uuid: 1,
@@ -66,7 +64,6 @@ const AdminPage = () => {
       },
       body: JSON.stringify({
         token: token,
-        filter: filter,
       }),
     })
       .then((res) => res.json())
@@ -100,22 +97,30 @@ const AdminPage = () => {
       });
   };
 
+  const fileUploadHandler = (e) => {
+    setSelectedFile(e.target.files[0]);
+    setFileIsSelected(true);
+  };
+
   const handleUploadCSV = (e) => {
     e.preventDefault();
-    console.log("Uploading CSV...");
-    console.log(JSON.parse(csvFile));
-    // fetch(`${API_URL}/uploadcsv`, {
-    //   method: "PUT",
-    //   mode: "cors",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   data: JSON.stringify({csvFile})
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
+    if (!fileIsSelected) {
+      alert("Please select a .csv file to upload");
+      return;
+    }
+    console.log(JSON.parse(selectedFile));
+    fetch(`${API_URL}/uploadcsv`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: JSON.stringify({ selectedFile }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   useEffect(() => {
@@ -133,67 +138,30 @@ const AdminPage = () => {
             style={{ paddingLeft: "20px", paddingRight: "20px" }}
           >
             <h2>Action Menu</h2>
+            <button type="button" onClick={(e) => handleDownloadCSV(e)}>
+              Download CSV
+            </button>
             <div className="form-group">
-              <label>Search Attendants</label>
-              <div className="group">
-                <input
-                  type="text"
-                  placeholder="Joe Shmoe"
-                  value={filter}
-                  onChange={(e) => setFilter(e.target.value)}
-                />
-                <button type="submit">Search</button>
-              </div>
-            </div>
-            <div className="form-group">
-              <label>Filters</label>
-              <label>Attending</label>
-              <input
-                type="checkbox"
-                value={filterAttending}
-                onChange={(e) => setFilterAttending(e.target.value)}
-              />
-              <label>Not Attending</label>
-              <input
-                type="checkbox"
-                value={notAttending}
-                onChange={(e) => setNotAttending(e.target.value)}
-              />
-            </div>
-            <form
-              action="fileupload"
-              method="post"
-              enctype="multipart/form-data"
-            >
-              <button type="button" onClick={(e) => handleDownloadCSV(e)}>
-                Download CSV
-              </button>
-              <input type="file" onChange={(e) => setCsvFile(e)} />
+              <input type="file" name="file" onChange={fileUploadHandler} />
               <button type="button" onClick={(e) => handleUploadCSV(e)}>
                 Upload CSV
               </button>
-            </form>
-            <div className="form-group">
-              <label>Attendant Actions</label>
-              <div className="group">
-                <button onClick={() => handleMenu("addAttendant")}>
-                  Add Attendant
-                </button>
-                <button onClick={() => handleMenu("editAttendant")}>
-                  Edit Attendant
-                </button>
-              </div>
             </div>
-            <div className="form-group">
-              <label>Party Actions</label>
-              <div className="group">
-                <button onClick={() => handleMenu("addParty")}>
-                  Add Party
-                </button>
-                <button onClick={() => handleMenu("editParty")}>
-                  Edit Party
-                </button>
-              </div>
+            <label>Attendant Actions</label>
+            <div>
+              <button onClick={() => handleMenu("addAttendant")}>
+                Add Attendant
+              </button>
+              <button onClick={() => handleMenu("editAttendant")}>
+                Edit Attendant
+              </button>
+            </div>
+            <label>Party Actions</label>
+            <div>
+              <button onClick={() => handleMenu("addParty")}>Add Party</button>
+              <button onClick={() => handleMenu("editParty")}>
+                Edit Party
+              </button>
             </div>
           </div>
           <div
@@ -213,12 +181,8 @@ const AdminPage = () => {
                 key={i}
                 onClick={() => setSelectedttendant(attendants[i])}
               >
-                <div className="attendant-item">
-                  {attendant.name}
-                </div>
-                <div className="attendant-item">
-                  {attendant.partyName}
-                </div>
+                <div className="attendant-item">{attendant.name}</div>
+                <div className="attendant-item">{attendant.partyName}</div>
                 <div className="attendant-item">{attendant.invitationID}</div>
                 <div className="attendant-item">
                   {attendant.isAttending === 1 ? "Yes" : "No"}

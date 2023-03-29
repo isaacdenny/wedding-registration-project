@@ -21,7 +21,7 @@ export const register = async (req, res) => {
       attendants.push(row);
     });
     attendants.map((row, i) => {
-      let sql = `UPDATE attendants SET isAttending = ${row.isAttending} WHERE firstName = '${row.firstName}' AND invitationID = '${row.invitationID}'`;
+      let sql = `UPDATE attendants SET isAttending = ${row.isAttending} WHERE name = '${row.name}' AND invitationID = '${row.invitationID}'`;
       let query = db.query(sql, (err, result) => {
         if (err) {
           return res.status(400).json({ error: err });

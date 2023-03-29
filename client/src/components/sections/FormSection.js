@@ -18,14 +18,16 @@ const FormSection = (params) => {
       alert("Please fill out all fields");
       return;
     }
-    console.log(partyName, invitationID);
     fetch(`${API_URL}/register/getAttendants`, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ partyName: partyName, invitationID: invitationID }),
+      body: JSON.stringify({
+        partyName: partyName,
+        invitationID: invitationID,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -42,7 +44,7 @@ const FormSection = (params) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     attendants.map((attendant, i) => {
-      return (attendantsArray[i] = {
+      return attendantsArray.push({
         name: attendant.name,
         partyName: attendant.partyName,
         isAttending: isAttending[i],
@@ -58,9 +60,6 @@ const FormSection = (params) => {
       body: JSON.stringify(attendantsArray),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
       .then(() => {
         setIsRegistered(!isRegistered);
       });
@@ -137,12 +136,10 @@ const FormSection = (params) => {
                   isAttendingArray[i] = isAttending[i] || false;
                   return (
                     <div key={i} className="form-container-checkbox">
-                      <label className="form-label">
-                        {attendant.firstName} {attendant.lastName}
-                      </label>
+                      <label className="form-label">{attendant.name}</label>
                       <input
                         type="checkbox"
-                        name={attendant.firstName}
+                        name={attendant.name}
                         checked={isAttending[i] || false}
                         onChange={(e) => {
                           isAttendingArray[i] = e.target.checked;

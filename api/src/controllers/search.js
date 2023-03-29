@@ -2,21 +2,7 @@ import { db } from "../index.js";
 
 export const getAll = async (req, res) => {
   try {
-    const { filter } = req.body;
     let sql = "SELECT * FROM attendants";
-    if (filter != null) { 
-      switch (filter) {
-        case "attending":
-          sql = "SELECT * FROM attendants WHERE isAttending = true";
-          break;
-        case "notAttending":
-          sql = "SELECT * FROM attendants WHERE isAttending = false";
-          break;
-        default:
-          sql = `SELECT * FROM attendants WHERE (name LIKE '%${filter}%' OR partyName LIKE '%${filter}%')`;
-          break;
-      }
-    }
     let query = db.query(sql, (err, result) => {
       if (err) return res.status(500).json({ error: err });
       else return res.status(200).json(result);
