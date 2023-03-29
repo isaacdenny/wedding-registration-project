@@ -88,7 +88,7 @@ const FormSection = (params) => {
           <div className="container-group">
             <h2>Let Us Know You're Coming</h2>
             <p>Sign in with your last name and invitation ID!</p>
-            <form onSubmit={handleRegister}>
+            <form className="pretty-form" onSubmit={handleRegister}>
               <input
                 type="text"
                 name="lastName"

@@ -1,12 +1,13 @@
 import React from "react";
 
 const AddParty = (params) => {
-  const [selectedPartyID, setSelectedPartyID] = React.useState(101);
+  const [partyID, setPartyID] = React.useState(1);
+  const [partyName, setPartyName] = React.useState("");
   const [party, setParty] = React.useState([]);
   let partyList = [];
 
   const handleAddMember = (e) => {
-    setParty([...party, { firstName: "", lastName: "", isAttending: false }]);
+    setParty([...party, { name: "", isAttending: false }]);
   };
 
   const handleSubmit = (e) => {
@@ -15,9 +16,9 @@ const AddParty = (params) => {
     for (let i = 0; i < party.length; i++) {
       partyList.push({
         uuid: party[i].uuid,
-        firstName: e.target[`firstName${i}`].value,
-        lastName: e.target[`lastName${i}`].value,
-        invitationID: selectedPartyID,
+        name: e.target[`name${i}`].value,
+        partyName: partyName,
+        invitationID: partyID,
         isAttending: e.target[`isAttending${i}`].checked,
       });
     }
@@ -39,20 +40,30 @@ const AddParty = (params) => {
       });
   };
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <h2>Add New Party</h2>
-      <label>Invitation ID</label>
-      <input
-        type={"number"}
-        value={selectedPartyID.toString()}
-        onChange={(e) =>
-          setSelectedPartyID(
-            e.target.value != null
-              ? parseInt(e.target.value)
-              : setSelectedPartyID(0)
-          )
-        }
-      />
+      <div className="form-group">
+        <label>Party Name</label>
+        <input
+          type={"text"}
+          value={partyName}
+          onChange={(e) => setPartyName(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label>Invitation ID</label>
+        <input
+          type={"number"}
+          value={partyID.toString()}
+          onChange={(e) =>
+            setPartyID(
+              e.target.value != null
+                ? parseInt(e.target.value)
+                : setPartyID(0)
+            )
+          }
+        />
+      </div>
       <div className="attendant">
         <div>Name</div>
         <div>Attending</div>
@@ -62,12 +73,7 @@ const AddParty = (params) => {
           <input
             type="text"
             defaultValue={member.name}
-            name={"firstName" + i}
-          />
-          <input
-            type="text"
-            defaultValue={member.partyName}
-            name={"lastName" + i}
+            name={"name" + i}
           />
           <input
             type="checkbox"
@@ -78,9 +84,11 @@ const AddParty = (params) => {
           />
         </div>
       ))}
-      <button onClick={handleSubmit}>Save</button>
-      <button onClick={handleAddMember}>Add Member</button>
-    </div>
+      <button type="submit">Save</button>
+      <button type="button" onClick={handleAddMember}>
+        Add Member
+      </button>
+    </form>
   );
 };
 

@@ -36,7 +36,7 @@
   align-items: left;
 }
 
-.container form {
+.pretty-form {
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -58,7 +58,7 @@
   margin-bottom: 1.5rem;
 }
 
-.container form input {
+.pretty-form input {
   max-width: fit-content;
   background-color: #c9b6a44b;
   border-style: none;
