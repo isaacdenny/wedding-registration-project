@@ -128,15 +128,15 @@ const FormSection = (params) => {
             />
           </div>
           <div className="container-group">
-            <h1 className="title">RSVP Now!</h1>
+            <h2 className="title">RSVP Now!</h2>
             Please select who in your party will be attending!
             <form onSubmit={handleSubmit}>
               {attendants != null ? (
                 attendants.map((attendant, i) => {
                   isAttendingArray[i] = isAttending[i] || false;
                   return (
-                    <div key={i} className="form-container-checkbox">
-                      <label className="form-label">{attendant.name}</label>
+                    <div key={i} className="form-group">
+                      <label>{attendant.name}</label>
                       <input
                         type="checkbox"
                         name={attendant.name}
