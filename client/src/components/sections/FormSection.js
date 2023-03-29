@@ -2,7 +2,7 @@ import heroImage from "../../images/formsection.jpg";
 import { useState } from "react";
 
 const FormSection = (params) => {
-  const [lastName, setLastName] = useState("");
+  const [partyName, setPartyName] = useState("");
   const [invitationID, setInvitationID] = useState("");
   const [attendants, setAttendants] = useState([]);
   const [isRegistered, setIsRegistered] = useState(false);
@@ -14,18 +14,18 @@ const FormSection = (params) => {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    if (!lastName || !invitationID) {
+    if (!partyName || !invitationID) {
       alert("Please fill out all fields");
       return;
     }
-    console.log(lastName, invitationID);
+    console.log(partyName, invitationID);
     fetch(`${API_URL}/register/getAttendants`, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ lastName: lastName, invitationID: invitationID }),
+      body: JSON.stringify({ partyName: partyName, invitationID: invitationID }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -43,8 +43,8 @@ const FormSection = (params) => {
     event.preventDefault();
     attendants.map((attendant, i) => {
       return (attendantsArray[i] = {
-        firstName: attendant.firstName,
-        lastName: attendant.lastName,
+        name: attendant.name,
+        partyName: attendant.partyName,
         isAttending: isAttending[i],
         invitationID: attendant.invitationID,
       });
@@ -87,14 +87,14 @@ const FormSection = (params) => {
           </div>
           <div className="container-group">
             <h2>Let Us Know You're Coming</h2>
-            <p>Sign in with your last name and invitation ID!</p>
+            <p>Sign in with your party name and invitation ID!</p>
             <form className="pretty-form" onSubmit={handleRegister}>
               <input
                 type="text"
-                name="lastName"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                placeholder="Last Name"
+                name="partyName"
+                value={partyName}
+                onChange={(e) => setPartyName(e.target.value)}
+                placeholder="Party Name"
               />
               <input
                 type="text"

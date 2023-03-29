@@ -3,10 +3,10 @@ import React, { useEffect } from "react";
 const EditAttendant = (params) => {
   const [uuid, setUUID] = React.useState(params.selectedAttendant.uuid);
   const [name, setName] = React.useState(
-    params.selectedAttendant.firstName
+    params.selectedAttendant.name
   );
   const [partyName, setPartyName] = React.useState(
-    params.selectedAttendant.lastName
+    params.selectedAttendant.PartyName
   );
   const [invitationID, setInvitationID] = React.useState(
     params.selectedAttendant.invitationID
