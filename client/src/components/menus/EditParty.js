@@ -19,7 +19,7 @@ const EditParty = (params) => {
       partyList.push({
         uuid: party[i].uuid,
         name: e.target[`name${i}`].value,
-        partyName: e.target[`partyName${i}`].value,
+        partyName: selectedPartyName,
         invitationID: selectedPartyID,
         isAttending: e.target[`isAttending${i}`].checked,
       });
@@ -93,7 +93,6 @@ const EditParty = (params) => {
       />
       <div className="attendant">
         <div className="attendant-item">Full Name</div>
-        <div className="attendant-item">Party Name</div>
         <div className="attendant-item">Attending</div>
       </div>
       {party.map((member, i) => (
@@ -103,11 +102,6 @@ const EditParty = (params) => {
               type="text"
               defaultValue={member.name}
               name={"name" + i}
-            />
-            <input
-              type="text"
-              defaultValue={member.partyName}
-              name={"partyName" + i}
             />
           </div>
           <div className="attendant-item">
