@@ -24,15 +24,14 @@ const EditParty = (params) => {
         isAttending: e.target[`isAttending${i}`].checked,
       });
     }
-    fetch(`${params.API_URL}/internal/updateParty`, {
+    fetch(`${params.API_URL}/internal/${params.token}/updateParty`, {
       method: "PATCH",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        token: params.token,
-        party: partyList,
+        party: partyList
       }),
     })
       .then((res) => res.json())
@@ -43,15 +42,14 @@ const EditParty = (params) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    fetch(`${params.API_URL}/internal/deleteParty`, {
+    fetch(`${params.API_URL}/internal/${params.token}/deleteParty`, {
       method: "DELETE",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        token: params.token,
-        invitationID: selectedPartyID,
+        invitationID: selectedPartyID
       }),
     })
       .then((res) => res.json())
@@ -61,13 +59,14 @@ const EditParty = (params) => {
   };
 
   useEffect(() => {
-    partyList = [];
+    let partyList = [];
     params.attendants.map((attendant) =>
       attendant.invitationID === selectedPartyID
         ? partyList.push(attendant)
         : null
     );
     setParty(partyList);
+    setSelectedPartyName(partyList.length > 0 ? partyList[0].partyName : "")
   }, [selectedPartyID, params.attendants]);
 
   return (

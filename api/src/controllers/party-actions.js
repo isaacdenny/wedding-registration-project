@@ -10,7 +10,7 @@ export const addParty = async (req, res) => {
         if (err) {
           console.log(err);
           return res.status(500).json({ error: err });
-        } else console.log(result);
+        }
       });
     });
     return res.status(201).json({ message: "Party added" });
@@ -40,7 +40,6 @@ export const updateParty = async (req, res) => {
       let sql = `UPDATE attendants SET name = '${element.name}', partyName = '${element.partyName}', invitationID = '${element.invitationID}', isAttending = ${element.isAttending} WHERE (uuid='${element.uuid}')`;
       let query = db.query(sql, (err, result) => {
         if (err) return res.status(500).json({ error: err });
-        else console.log(result);
       });
     });
     res.status(200).json({ message: "Successfully updated party members" });

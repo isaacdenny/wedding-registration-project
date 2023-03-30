@@ -17,14 +17,13 @@ const EditAttendant = (params) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${params.API_URL}/internal/updateAttendant`, {
+    fetch(`${params.API_URL}/internal/${params.token}/updateAttendant`, {
       method: "PATCH",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        token: params.token,
         uuid: uuid,
         name: name,
         partyName: partyName,
@@ -40,15 +39,14 @@ const EditAttendant = (params) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    fetch(`${params.API_URL}/internal/deleteAttendant`, {
+    fetch(`${params.API_URL}/internal/${params.token}/deleteAttendant`, {
       method: "DELETE",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        token: params.token,
-        uuid: uuid,
+        uuid: uuid
       }),
     })
       .then((res) => res.json())

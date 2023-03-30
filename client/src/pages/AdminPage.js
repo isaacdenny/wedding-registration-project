@@ -11,7 +11,6 @@ import HeaderSection from "../components/sections/HeaderSection";
 import Footer from "../components/navigation/Footer";
 
 const AdminPage = () => {
-  const [menu, setMenu] = React.useState("editAttendant");
   const [selectedFile, setSelectedFile] = React.useState([]);
   const [fileIsSelected, setFileIsSelected] = React.useState(false);
   const [attendants, setAttendants] = React.useState([
@@ -28,35 +27,23 @@ const AdminPage = () => {
       partyName: "Crabs",
       invitationID: "2",
       isAttending: "0",
-    },
-    {
-      uuid: 3,
-      name: "Bob Doe",
-      partyName: "Doe",
-      invitationID: "1",
-      isAttending: "0",
-    },
-    {
-      uuid: 4,
-      name: "Chris",
-      partyName: "Doe",
-      invitationID: "1",
-      isAttending: "0",
-    },
+    }
   ]);
   const [selectedAttendant, setSelectedttendant] = React.useState(
-    attendants[0]
+    {
+      uuid: -1,
+      name: "",
+      partyName: "",
+      invitationID: "",
+      isAttending: "",
+    },
   );
 
   const API_URL = process.env.REACT_APP_API_URL;
   const token = useSelector((state) => state.token);
 
-  const handleMenu = (type) => {
-    setMenu(type);
-  };
-
   const handleRefresh = () => {
-    fetch(`${API_URL}/internal/:token/`, {
+    fetch(`${API_URL}/internal/${token}`, {
       method: "GET",
       mode: "cors",
     })
@@ -141,22 +128,6 @@ const AdminPage = () => {
                 Upload CSV
               </button>
             </div>
-            <label>Attendant Actions</label>
-            <div>
-              <button onClick={() => handleMenu("addAttendant")}>
-                Add Attendant
-              </button>
-              <button onClick={() => handleMenu("editAttendant")}>
-                Edit Attendant
-              </button>
-            </div>
-            <label>Party Actions</label>
-            <div>
-              <button onClick={() => handleMenu("addParty")}>Add Party</button>
-              <button onClick={() => handleMenu("editParty")}>
-                Edit Party
-              </button>
-            </div>
           </div>
           <div
             className="container-group"
@@ -189,44 +160,28 @@ const AdminPage = () => {
             style={{ paddingLeft: "20px", paddingRight: "20px" }}
           >
             <div>
-              {menu === "addAttendant" ? (
-                <AddAttendant
+              <AddAttendant
                   token={token}
                   API_URL={API_URL}
                   handleRefresh={handleRefresh}
                 />
-              ) : (
-                <></>
-              )}
-              {menu === "editAttendant" ? (
-                <EditAttendant
+              <EditAttendant
                   token={token}
                   selectedAttendant={selectedAttendant}
                   API_URL={API_URL}
                   handleRefresh={handleRefresh}
                 />
-              ) : (
-                <></>
-              )}
-              {menu === "addParty" ? (
-                <AddParty
+              <AddParty
                   token={token}
                   API_URL={API_URL}
                   handleRefresh={handleRefresh}
                 />
-              ) : (
-                <></>
-              )}
-              {menu === "editParty" ? (
-                <EditParty
+              <EditParty
                   token={token}
                   attendants={attendants}
                   API_URL={API_URL}
                   handleRefresh={handleRefresh}
                 />
-              ) : (
-                <></>
-              )}
             </div>
           </div>
         </div>

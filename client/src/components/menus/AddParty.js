@@ -3,12 +3,18 @@ import React from "react";
 const AddParty = (params) => {
   const [partyID, setPartyID] = React.useState(1);
   const [partyName, setPartyName] = React.useState("");
-  const [party, setParty] = React.useState([]);
+  const [party, setParty] = React.useState([{ name: "", isAttending: false }]);
   let partyList = [];
 
   const handleAddMember = (e) => {
     setParty([...party, { name: "", isAttending: false }]);
   };
+
+  const handleRemoveMember = (e) => { 
+    let partyList = party;
+    partyList.pop();
+    setParty(partyList)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,14 +28,13 @@ const AddParty = (params) => {
         isAttending: e.target[`isAttending${i}`].checked,
       });
     }
-    fetch(`${params.API_URL}/internal/addParty`, {
+    fetch(`${params.API_URL}/internal/${params.token}/addParty`, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        token: params.token,
         party: partyList,
       }),
     })
@@ -85,6 +90,7 @@ const AddParty = (params) => {
         </div>
       ))}
       <button type="submit">Save</button>
+      <button type="button" onClick={handleRemoveMember}>remove</button>
       <button type="button" onClick={handleAddMember}>
         Add Member
       </button>

@@ -8,14 +8,13 @@ const AddAttendant = (params) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${params.API_URL}/internal/`, {
+    fetch(`${params.API_URL}/internal/${params.token}`, {
       method: "PUT",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        token: params.token,
         name: name,
         partyName: partyName,
         invitationID: invitationID,
