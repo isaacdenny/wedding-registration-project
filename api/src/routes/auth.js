@@ -7,27 +7,29 @@ const router = express.Router()
 router.post("/login", async (req, res) => { 
   try {
     const { username, password } = req.body
+    let toReturn = null;
     if (!username || !password) {
-      return res.status(400).json({ error: "All fields are required" })
+      toReturn = res.status(400).json({ error: "All fields are required" })
     }
     else {
-      console.log(username, password)
       let sql = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`
       let query = db.query(sql, (err, result) => { 
         if (err) {
           return res.status(err).json({ error: err })
         }
         else {
-          console.log(result)
           const user = result[0]
           if (!user) { 
-            return res.status(401).json({ error: "Invalid credentials" })
+            toReturn = res.status(401).json({ error: "Invalid credentials" })
           }
-          const token = jwt.sign({ user: user.username, password: user.password }, process.env.JWT_SECRET);
-          return res.status(200).json( { token: token, user: user} )
+          else {
+            const token = jwt.sign({ user: user.username, password: user.password }, process.env.JWT_SECRET);
+            toReturn = res.status(200).json( { token: token, user: user} )
+          }
         }
       })
     }
+    return toReturn
   } catch (error) {
     return res.status(500).json({ error: error })
   }
