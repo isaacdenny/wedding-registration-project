@@ -8,7 +8,7 @@ const AddAttendant = (params) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${params.API_URL}/admin/addAttendant`, {
+    fetch(`${params.API_URL}/internal/`, {
       method: "PUT",
       mode: "cors",
       headers: {

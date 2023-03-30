@@ -18,30 +18,33 @@ const FormSection = (params) => {
       alert("Please fill out all fields");
       return;
     }
-    fetch(`${API_URL}/register/getAttendants`, {
-      method: "POST",
+    fetch(`${API_URL}/register/${partyName}-${invitationID}`, {
+      method: "GET",
       mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        partyName: partyName,
-        invitationID: invitationID,
-      }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status !== 200) {
+          throw res.status;
+        } else {
+          return res.json();
+        }
+      })
       .then((data) => {
-        if (data.length <= 0) {
+        setAttendants(data);
+      })
+      .then(() => {
+        attendants.map((att) => {
+          setIsAttending(...isAttending, att.isAttending != 0 ? true : false);
+        });
+      })
+      .then(() => setIsRegistered(!isRegistered))
+      .catch((err) => {
+        setAttendants([]);
+        if (err === 401) {
           alert("party name or invitation ID not found");
           return;
         }
-        setAttendants(data);
-        setIsRegistered(!isRegistered);
-      }).then(() => {
-        attendants.map((att) => { 
-          setIsAttending(...isAttending, att.isAttending)
-        }
-      )})
+      });
   };
 
   const handleSubmit = (event) => {
@@ -124,7 +127,10 @@ const FormSection = (params) => {
           params.isAlone ? { paddingBottom: "80px", paddingTop: "80px" } : {}
         }
       >
-        <div className="container">
+        <div
+          className="container"
+          style={{ paddingLeft: "50px", paddingRight: "50px" }}
+        >
           <div className="container-group" style={{ alignItems: "center" }}>
             <img
               src={heroImage}
@@ -133,30 +139,36 @@ const FormSection = (params) => {
             />
           </div>
           <div className="container-group">
-            <h2 className="title">RSVP Now!</h2>
+            <h2>RSVP Now!</h2>
             Please select who in your party will be attending!
             <form onSubmit={handleSubmit}>
-              {attendants != null ? (
-                attendants.map((attendant, i) => {
-                  isAttendingArray[i] = isAttending[i] || false;
-                  return (
-                    <div key={i} className="form-group">
-                      <label>{attendant.name}</label>
-                      <input
-                        type="checkbox"
-                        name={attendant.name}
-                        checked={isAttending[i] || false}
-                        onChange={(e) => {
-                          isAttendingArray[i] = e.target.checked;
-                          setIsAttending(isAttendingArray);
-                        }}
-                      />
-                    </div>
-                  );
-                })
-              ) : (
-                <>Error loading party...</>
-              )}
+              <div style={{ paddingTop: "20px", paddingBottom: "20px" }}>
+                {attendants ? (
+                  attendants.map((attendant, i) => {
+                    isAttendingArray[i] = isAttending[i] || false;
+                    return (
+                      <div
+                        key={i}
+                        className="form-group"
+                        style={{ justifyContent: "left" }}
+                      >
+                        <label>{attendant.name}</label>
+                        <input
+                          type="checkbox"
+                          name={attendant.name}
+                          checked={isAttending[i] || false}
+                          onChange={(e) => {
+                            isAttendingArray[i] = e.target.checked;
+                            setIsAttending(isAttendingArray);
+                          }}
+                        />
+                      </div>
+                    );
+                  })
+                ) : (
+                  <>Error loading party...</>
+                )}
+              </div>
               <button type="submit" className="button-primary">
                 RSVP
               </button>

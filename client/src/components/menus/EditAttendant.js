@@ -17,7 +17,7 @@ const EditAttendant = (params) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${params.API_URL}/admin/updateAttendant`, {
+    fetch(`${params.API_URL}/internal/updateAttendant`, {
       method: "PATCH",
       mode: "cors",
       headers: {
@@ -40,7 +40,7 @@ const EditAttendant = (params) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    fetch(`${params.API_URL}/admin/deleteAttendant`, {
+    fetch(`${params.API_URL}/internal/deleteAttendant`, {
       method: "DELETE",
       mode: "cors",
       headers: {

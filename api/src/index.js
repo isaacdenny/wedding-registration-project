@@ -6,7 +6,7 @@ import mysql from "mysql";
 import helmet from "helmet";
 import https from "https";
 import fs from "fs";
-import adminRoutes from "./routes/admin.js";
+import internalRoutes from "./routes/internal.js";
 import registerRoutes from "./routes/register.js";
 import authRoutes from "./routes/auth.js";
 import { verifyToken } from "./controllers/verifyToken.js";
@@ -56,7 +56,7 @@ app.get("/", (req, res) => {
 });
 app.get("/downloadcsv", downloadCsv);
 app.use("/register", registerRoutes);
-app.use("/admin", verifyToken, adminRoutes);
+app.use("/internal/:token", verifyToken, internalRoutes);
 app.use("/auth", authRoutes);
 
 const PORT = process.env.PORT || 8080;

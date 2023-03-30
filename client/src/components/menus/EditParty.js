@@ -24,7 +24,7 @@ const EditParty = (params) => {
         isAttending: e.target[`isAttending${i}`].checked,
       });
     }
-    fetch(`${params.API_URL}/admin/updateParty`, {
+    fetch(`${params.API_URL}/internal/updateParty`, {
       method: "PATCH",
       mode: "cors",
       headers: {
@@ -43,7 +43,7 @@ const EditParty = (params) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    fetch(`${params.API_URL}/admin/deleteParty`, {
+    fetch(`${params.API_URL}/internal/deleteParty`, {
       method: "DELETE",
       mode: "cors",
       headers: {

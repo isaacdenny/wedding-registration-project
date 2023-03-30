@@ -56,15 +56,9 @@ const AdminPage = () => {
   };
 
   const handleRefresh = () => {
-    fetch(`${API_URL}/admin/getAll`, {
-      method: "POST",
+    fetch(`${API_URL}/internal/:token/`, {
+      method: "GET",
       mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: token,
-      }),
     })
       .then((res) => res.json())
       .then((data) => {

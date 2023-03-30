@@ -3,20 +3,29 @@ import { connectDB, db } from "../index.js";
 
 const router = express.Router();
 
-router.post("/getAttendants", async (req, res) => {
+router.get("/:partyName-:invitationID", async (req, res) => {
   try {
+    let toReturn = null;
     if (!db) {
       console.log("No database connected. Reconnecting...");
       connectDB();
     }
-    const { partyName, invitationID } = req.body;
+    const { partyName, invitationID } = req.params;
     let sql = `SELECT * FROM attendants WHERE invitationID = '${invitationID}' AND partyName = '${partyName}'`;
     let query = db.query(sql, (err, result) => {
-      if (err) res.status(400).json({ error: err });
-      else res.status(200).json(result);
+      if (err) {
+        toReturn = res.status(500).json({ error: err })
+      }
+      else if (result.length <= 0) {
+        toReturn = res.status(401).json({ error: "Invalid Credentials" })
+      }
+      else {
+        toReturn = res.status(200).json(result)
+      }
     });
+    return toReturn
   } catch (error) {
-    res.status(500).json({ error: error });
+    return res.status(500).json({ error: error });
   }
 });
 

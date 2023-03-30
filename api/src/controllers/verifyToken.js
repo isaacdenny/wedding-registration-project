@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 
 export const verifyToken = (req, res, next) => { 
   try {
-    const { token } = req.body
+    const { token } = req.params
 
     if (!token) {
       return res.status(401).json({ message: 'No token provided' })
