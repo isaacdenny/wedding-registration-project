@@ -6,9 +6,9 @@ const FormSection = (params) => {
   const [invitationID, setInvitationID] = useState("");
   const [attendants, setAttendants] = useState([]);
   const [isRegistered, setIsRegistered] = useState(false);
-  const [isAttending, setIsAttending] = useState(false);
-  const isAttendingArray = [];
-  const attendantsArray = [];
+  const [isAttending, setIsAttending] = useState([]);
+  let isAttendingArray = [];
+  let attendantsArray = [];
 
   const API_URL = process.env.REACT_APP_API_URL;
 
@@ -31,14 +31,17 @@ const FormSection = (params) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.length <= 0) {
           alert("party name or invitation ID not found");
           return;
         }
         setAttendants(data);
         setIsRegistered(!isRegistered);
-      });
+      }).then(() => {
+        attendants.map((att) => { 
+          setIsAttending(...isAttending, att.isAttending)
+        }
+      )})
   };
 
   const handleSubmit = (event) => {
@@ -47,7 +50,7 @@ const FormSection = (params) => {
       return attendantsArray.push({
         name: attendant.name,
         partyName: attendant.partyName,
-        isAttending: isAttending[i],
+        isAttending: isAttendingArray[i],
         invitationID: attendant.invitationID,
       });
     });
@@ -57,11 +60,13 @@ const FormSection = (params) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(attendantsArray),
+      body: JSON.stringify({ attendants: attendantsArray }),
     })
       .then((res) => res.json())
       .then(() => {
         setIsRegistered(!isRegistered);
+        setIsAttending([]);
+        isAttendingArray = [];
       });
   };
 
