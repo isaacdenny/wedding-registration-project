@@ -1,14 +1,5 @@
 import express from "express";
 import { db } from "../index.js";
-import {
-  deleteAttendant,
-  updateAttendant,
-} from "../controllers/attendant-actions.js";
-import {
-  addParty,
-  deleteParty,
-  updateParty
-} from "../controllers/party-actions.js";
 
 const router = express.Router();
 
@@ -22,10 +13,10 @@ router.put("/", async (req, res) => {
       isAttending: isAttending,
     };
     let sql = "INSERT INTO attendants SET ?";
-    let query = db.query(sql, newAttendee, (err, result) => {
-      if (err) res.status(500).json({ error: err });
-      else res.status(201).json(result);
+    let query = db.query(sql, newAttendee, (err) => {
+      if (err) throw err;
     });
+    res.status(201).json({ message: "Successfully added attendant" });
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -34,21 +25,88 @@ router.put("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     let sql = "SELECT * FROM attendants";
-    let query = db.query(sql, (err, result) => {
-      if (err) return res.status(500).json({ error: err });
-      else return res.status(200).json(result);
+    let query = db.query(sql, (err) => {
+      if (err) throw err;
     });
+    res.status(200);
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: error });
+    res.status(500).json({ error: error });
   }
 });
-router.post("/addParty", addParty);
+router.post("/", async (req, res) => {
+  try {
+    const { party } = req.body;
+    let toInsert = [];
+    let keys = "(name, partyName, invitationID, isAttending)";
 
-router.patch("/updateParty", updateParty);
-router.patch("/updateAttendant", updateAttendant);
+    party.forEach((att) => {
+      toInsert.push(
+        `( '${att.name}', '${att.partyName}', '${att.invitationID}', ${att.isAttending} )`
+      );
+    });
 
-router.delete("/deleteParty", deleteParty);
-router.delete("/deleteAttendant", deleteAttendant);
+    let sql = `INSERT INTO attendants ${keys} VALUES ${toInsert.join(", ")}`;
+    let query = db.query(sql, (err) => {
+      if (err) throw err;
+    });
+
+    res.status(201).json({ message: "Successfully added party" });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+
+router.patch("/", async (req, res) => {
+  try {
+    const { uuid, name, partyName, invitationID, isAttending } = await req.body;
+    let sql = `UPDATE attendants SET name = '${name}', partyName = '${partyName}', invitationID = '${invitationID}', isAttending = ${isAttending} WHERE (uuid='${uuid}')`;
+    let query = db.query(sql, (err) => {
+      if (err) throw err;
+    });
+    res.status(200).json({ message: "Successfully updated attendant" });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+router.patch("/party", async (req, res) => {
+  try {
+    const { party } = req.body;
+    party.forEach((att) => {
+      let sql = `UPDATE attendants SET name = '${att.name}', partyName = '${att.partyName}', invitationID = '${att.invitationID}', isAttending = ${att.isAttending} WHERE (uuid='${att.uuid}')`;
+      let query = db.query(sql, (err) => {
+        if (err) throw err;
+      });
+    });
+    res.status(200).json({ message: "Successfully updated party" });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+
+router.delete("/", async (req, res) => {
+  try {
+    const { uuid } = await req.body;
+    let sql = `DELETE FROM attendants WHERE (uuid='${uuid}')`;
+    let query = db.query(sql, (err, result) => {
+      if (err) throw err;
+    });
+    res.status(200).json({ message: "Successfully deleted attendant" });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+
+router.delete("/party", async (req, res) => {
+  try {
+    const { invitationID } = await req.body;
+    let sql = `DELETE FROM attendants WHERE invitationID = '${invitationID}'`;
+    let query = db.query(sql, (err) => {
+      if (err) throw err;
+    });
+    res.status(200).json({ message: "Successfully deleted party" });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
 
 export default router;

@@ -14,9 +14,7 @@ router.post("/login", async (req, res) => {
     else {
       let sql = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`
       let query = db.query(sql, (err, result) => { 
-        if (err) {
-          return res.status(err).json({ error: err })
-        }
+        if (err) throw err
         else {
           const user = result[0]
           if (!user) { 
@@ -31,7 +29,7 @@ router.post("/login", async (req, res) => {
     }
     return toReturn
   } catch (error) {
-    return res.status(500).json({ error: error })
+    res.status(500).json({ error: error })
   }
 })
 

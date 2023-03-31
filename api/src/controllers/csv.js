@@ -9,9 +9,8 @@ export const downloadCsv = (req, res) => {
     // const { data } = req.body;
     let sql = "SELECT * FROM attendants";
     let query = db.query(sql, (err, result) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      } else {
+      if (err) throw err
+      else {
         let csv = "Full Name,Party Name,Invitation ID,Is Attending\n";
         for (let i = 0; i < result.length; i++) {
           csv +=
@@ -43,7 +42,7 @@ export const uploadCsv = (req, res) => {
       .pipe(ws);
     let sql = `LOAD DATA INFILE '${fileName}' INTO TABLE discounts FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;`;
     let query = db.query(sql, (err, result) => {
-      if (err) res.status(500).json({ error: err });
+      if (err) throw err;
       else res.status(200).json(result);
     });
   } catch (error) {

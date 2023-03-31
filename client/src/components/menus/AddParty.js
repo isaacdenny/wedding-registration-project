@@ -28,7 +28,7 @@ const AddParty = (params) => {
         isAttending: e.target[`isAttending${i}`].checked,
       });
     }
-    fetch(`${params.API_URL}/internal/${params.token}/addParty`, {
+    fetch(`${params.API_URL}/internal/${params.token}/`, {
       method: "POST",
       mode: "cors",
       headers: {

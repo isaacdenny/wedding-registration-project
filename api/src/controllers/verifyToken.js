@@ -9,11 +9,8 @@ export const verifyToken = (req, res, next) => {
     }
     else {
       jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) {
-          console.log(err)
-          req.authenticated = false
-          req.decoded = null
-        } else {
+        if (err) throw err
+        else {
           req.decoded = decoded
           req.authenticated = true
         }
@@ -22,7 +19,8 @@ export const verifyToken = (req, res, next) => {
     next()
   }
   catch (err) { 
-    console.log(err)
-    return res.status(400).json({ error: err })
+    req.authenticated = false
+    req.decoded = null
+    res.status(400).json({ error: err })
   }
 }
