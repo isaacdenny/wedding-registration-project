@@ -6,29 +6,25 @@ import HeaderSection from "../components/sections/HeaderSection";
 import image1 from "../images/3.jpg";
 import image2 from "../images/4.jpg";
 import image3 from "../images/5.jpg";
+import image4 from "../images/formsection.jpg";
 
 const OurStoryPage = () => {
   return (
     <div>
       <Navbar />
-      <HeaderSection title="Our Story" />
+      <HeaderSection title="Our Story"/>
       <BlockSection
         isAlone={true}
-        heading="A Fried Chicken Denial"
-        desc="First met in February giving Isaac a tour of Lighthouse Prayed
-              that I would see Isaac again Found out he was coming after spring
-              break! All of April every day after school we were hanging out in
-              his truck at the Evel Knievel jump site & going to Jack in the Box
-              to get mac n cheese bites & churros Isaac asked Allie to be his
-              girlfriend on April 29 and she said no because she didn’t like the
-              way he asked her (he was eating fried chicken and wanted something
-              more romantic like he did with prom)
-              
-              Isaac asked me to prom (was our first technical date) On April 30
-              she asked him to be her boyfriend and got rolled Ice Cream
-              together Our first kiss we saw a double rainbow and our second
-              kiss literal fireworks went off (if that’s not a sign I don’t know
-              what is ;p)"
+        heading="The Spark"
+        desc="In February of 2021, Allie Runyan gave Isaac Denny a tour of 
+        Lighthouse Christian School, and sparked a love that would last forever.
+        Allie prayed that the Denny's would move to Idaho, so she could see see 
+        Isaac again, and Lord granted her request: in March of 2020, the 
+        Denny's started a new life in Idaho. 
+
+        As Prom was coming up soon, Isaac decided (with the help of Allie's best
+        friend, Tilly Monroe) to ask Allie to prom. He put together a big
+        cheerleader-megaphone-promposal and asked her out on their first date."
         imgSrc={image1}
         imgAlt="engagement ring with pink rose"
         isFlipped={true}
@@ -36,20 +32,30 @@ const OurStoryPage = () => {
       />
       <BlockSection
         isAlone={true}
+        heading="A Fried Chicken Denial"
+        desc="In April of that year, Allie and Isaac started dating more often and knew something
+        was special about the relationship they had. Most of their dates entailed
+        hanging out in Isaac's truck at the Evel Knievel jump site & going to 
+        Jack in the Box to get mac'n cheese bites & churros. On April 29 at that very spot, 
+        Isaac asked Allie to be his girlfriend. Unfortunately, because Isaac
+        set the bar so high with his promposal, Allie didn't think it was 
+        romantic enough! (probably because they were eating fried chicken at their
+        usual spot). Fortunately for both of them, Allie had second thoughts and
+        realized the error of her ways (hehe) and asked Isaac to be her boyfriend
+        the next day."
+        imgSrc={image4}
+        imgAlt="engagement hotel with flowers"
+        button={false}
+      />
+      <BlockSection
+        isAlone={true}
         heading="Meaningful Steps"
-        desc="On the last day of school we went to Lagoon and he didn’t ride any
-              roller coasters except for one, she loved being around him and he
-              rubbed her back on the way back and she knew he was going to be a
-              keeper We spent our summer together and started our Senior year
-              together We started planning our lives Isaac going to BSU and
-              Allie staying in Twin to be an esthetician (she was worried that
-              long distance wasn’t going to work)
-              
-              Celebrated our 1 year together at prom We graduated together and
-              spent as much time together before Isaac left for BSU Isaac left
-              and the long distance began (was actually a good thing for our
-              relationship we got to focus on ourselves and the time that we had
-              together was much more special)"
+        desc="Every month of dating built on the last. Each month they would write 
+        each other meaningful notes as a testimony to their friendship and
+        care for one another. In April of 2022, they Celebrated their 1 year of dating 
+        at their senior prom. They graduated in 2022 and spent as much time together as 
+        possible before Isaac left for College at Boise State. The long distance began
+        and only strengthened the relationship between them."
         imgSrc={image2}
         imgAlt="engagement hotel with flowers"
         button={false}
@@ -57,15 +63,12 @@ const OurStoryPage = () => {
       <BlockSection
         isAlone={true}
         heading="She Said Yes!"
-        desc="Put a lot of trust in God for our relationship to work through
-              long-distance and because of trusting God He was faithful to us In
-              January we found out that his family was moving to North Carolina
-              and Isaac might be moving too (another trusting God moment because
-              Allie didn’t want to lose Isaac)
-              
-              While this was going on Isaac was planning on proposing to Allie and
-              taking her with him to North Carolina Isaac proposed to Allie on
-              February 19, 2023 and the rest is history"
+        desc="Allie and Isaac put a lot of trust in God for their relationship to work
+        despite the long-distance challenges. He was faithful to even In
+        January of 2023 when they planned for his family to move to North Carolina.
+        Fortunately for the both of them, Isaac was planning on proposing to Allie and 
+        solidifying what their future would hold together. Isaac proposed to Allie on
+        February 19, 2023 at the Evel Knievel jump site, and the rest is history."
         imgSrc={image3}
         imgAlt="engagement hotel with flowers"
         isFlipped={true}
