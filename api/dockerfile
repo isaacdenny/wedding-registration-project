@@ -15,4 +15,4 @@ RUN npm install
 COPY . .
 
 # Set up a default command
-CMD [ "npm", "run", "start" ]
+CMD [ "forever", "start", "start" ]
