@@ -9,8 +9,8 @@ import fs from "fs";
 import internalRoutes from "./routes/internal.js";
 import registerRoutes from "./routes/register.js";
 import authRoutes from "./routes/auth.js";
-import { verifyToken } from "./controllers/verifyToken.js";
-import { downloadCsv } from "./controllers/csv.js";
+import { verifyToken } from "./middleware/verifyToken.js";
+import { downloadCsv } from "./middleware/csv.js";
 
 /* LOAD ENV */
 dotenv.config();
@@ -28,12 +28,10 @@ export const db = mysql.createConnection({
   database: MYSQL_DATABASE,
 });
 
-export const connectDB = () => {
-  db.connect((err) => {
-    if (err) console.log(err);
-    else console.log("Database connected");
-  });
-};
+db.connect((err) => {
+  if (err) console.log(err);
+  else console.log("Database connected");
+});
 
 /* CONFIGURATIONS */
 const app = express();
@@ -64,11 +62,7 @@ const options = {
   key: fs.readFileSync("./ssl/allieandisaacwedding_site.key"),
   cert: fs.readFileSync("./ssl/allieandisaacwedding_site_chain.crt"),
 };
-try {
-  connectDB();
-  https
-    .createServer(options, app)
-    .listen(PORT, () => console.log(`Listening at https://localhost:${PORT}`));
-} catch (e) {
-  console.log(error);
-}
+
+https
+  .createServer(options, app)
+  .listen(PORT, () => console.log(`Listening at https://localhost:${PORT}`));

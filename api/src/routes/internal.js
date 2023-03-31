@@ -25,10 +25,11 @@ router.put("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     let sql = "SELECT * FROM attendants";
-    let query = db.query(sql, (err) => {
-      if (err) throw err;
+    let query = db.query(sql, (err, result) => {
+      if (err) throw err
+      else res.status(200).json(result)
     });
-    res.status(200);
+    
   } catch (error) {
     res.status(500).json({ error: error });
   }
