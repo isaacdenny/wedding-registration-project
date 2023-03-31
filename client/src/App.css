@@ -129,6 +129,13 @@
   color: white;
 }
 
+.email {
+  text-decoration: none;
+  margin: 2rem;
+  color: white;
+  font-size: large;
+}
+
 .button-primary {
   font-family: 'Glook';
   border-width: 0px;
