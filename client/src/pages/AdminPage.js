@@ -116,7 +116,7 @@ const AdminPage = () => {
         <div className="container">
           <div
             className="container-group"
-            style={{ paddingLeft: "20px", paddingRight: "20px" }}
+            style={{ paddingLeft: "20px", paddingRight: "20px", justifyContent: "start" }}
           >
             <h2>Action Menu</h2>
             <button type="button" onClick={(e) => handleDownloadCSV(e)}>
@@ -131,7 +131,7 @@ const AdminPage = () => {
           </div>
           <div
             className="container-group"
-            style={{ paddingLeft: "20px", paddingRight: "20px" }}
+            style={{ paddingLeft: "20px", paddingRight: "20px", justifyContent: "start" }}
           >
             <h2>Invited</h2>
             <div className="attendant">
@@ -157,7 +157,7 @@ const AdminPage = () => {
           </div>
           <div
             className="container-group"
-            style={{ paddingLeft: "20px", paddingRight: "20px" }}
+            style={{ paddingLeft: "20px", paddingRight: "20px", justifyContent: "start" }}
           >
             <div>
               <AddAttendant

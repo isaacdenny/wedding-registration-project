@@ -12,7 +12,7 @@ const Footer = () => {
       </Link>
       <div className="nav-links">
         <li className="email">
-          Please Email us at: allieandisaacwedding@gmail.com
+          Please Feel Free to Email us at: AllieAndIsaacWedding@gmail.com
         </li>
       </div>
     </div>

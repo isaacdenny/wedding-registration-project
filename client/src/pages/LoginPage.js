@@ -32,12 +32,12 @@ const LoginPage = () => {
       body: JSON.stringify({ username: username, password: password }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        if (data.length <= 0) {
+      .then((signed) => {
+        if (signed.length <= 0) {
           alert("Username or password is incorrect");
           return;
         }
-        dispatch(loggedIn({ user: data.user, token: data.token }));
+        dispatch(loggedIn({ user: signed.data.user, token: signed.data.token, exp: signed.exp }));
         navigate("/admin");
       });
   };
