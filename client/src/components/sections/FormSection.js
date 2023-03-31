@@ -1,4 +1,4 @@
-import heroImage from "../../images/formsection.jpg";
+import heroImage from "../../images/prom-5.jpg";
 import { useState } from "react";
 
 const FormSection = (params) => {

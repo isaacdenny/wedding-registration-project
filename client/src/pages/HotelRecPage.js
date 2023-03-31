@@ -3,9 +3,10 @@ import Footer from "../components/navigation/Footer";
 import Navbar from "../components/navigation/Navbar";
 import BlockSection from "../components/sections/BlockSection";
 import HeaderSection from "../components/sections/HeaderSection";
-import image1 from "../images/3.jpg";
-import image2 from "../images/4.jpg";
-import image3 from "../images/5.jpg";
+import image1 from "../images/prom-1.jpg";
+import image2 from "../images/prom-2.jpg";
+import image3 from "../images/prom-3.jpg";
+import image4 from "../images/prom-5.jpg";
 
 const HotelRecPage = () => {
   return (

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/navigation/Footer";
 import HeaderSection from "../components/sections/HeaderSection"
 
-import heroImage from "../images/formsection.jpg";
+import heroImage from "../images/prom-5.jpg";
 
 const LoginPage = () => {
   const [username, setUsername] = React.useState("");

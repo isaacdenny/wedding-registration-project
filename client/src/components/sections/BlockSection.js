@@ -9,7 +9,7 @@ const BlockSection = (params) => {
       {flipped ? (
         <div
           className="section"
-          style={params.isAlone ? { paddingTop: "80px" } : {}}
+          style={params.isAlone ? { paddingBottom: "80px", paddingTop: "80px" } : {}}
         >
           <div
             className="container"
