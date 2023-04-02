@@ -19,14 +19,15 @@ router.post("/login", async (req, res) => {
           if (!user) {
             toReturn = res.status(401).json({ error: "Invalid credentials" });
           } else {
+            const exp = Math.floor(Date.now() / 1000) + 60 * 60
             const token = jwt.sign(
               {
-                exp: Math.floor(Date.now() / 1000) + 60 * 60,
+                exp: exp,
                 data: { user: user.username, password: user.password },
               },
               process.env.JWT_SECRET
             );
-            toReturn = res.status(200).json({ token: token, user: user });
+            toReturn = res.status(200).json({ token: token, user: user, exp: exp });
           }
         }
       });

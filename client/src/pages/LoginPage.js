@@ -37,7 +37,8 @@ const LoginPage = () => {
           alert("Username or password is incorrect");
           return;
         }
-        dispatch(loggedIn({ user: signed.data.user, token: signed.data.token, exp: signed.exp }));
+        console.log(signed)
+        dispatch(loggedIn({ user: signed.user, token: signed.token, exp: signed.exp }));
         navigate("/admin");
       });
   };
@@ -52,7 +53,7 @@ const LoginPage = () => {
             <img src={heroImage} className="arch-image" style={{alignSelf: "center"}}/>
           </div>
           <div className="container-group">
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} className="pretty-form">
               <h2>Login</h2>
               <p>Login below with username and password.</p>
               <input

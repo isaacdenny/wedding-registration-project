@@ -6,6 +6,7 @@ import HeaderSection from "../components/sections/HeaderSection";
 import image1 from "../images/kingdomchurch2.jpg";
 import image2 from "../images/engagement-ring.jpg";
 import image3 from "../images/gift-card.jpg";
+import image4 from "../images/email.png";
 
 const EventDetailsPage = () => {
   return (
@@ -43,7 +44,7 @@ const EventDetailsPage = () => {
         isAlone={true}
         heading="RSV-Problem!"
         desc="If you have trouble with the RSVP function on our website, please RSVP by emailing allieandisaacwedding@gmail.com with your party name and who will be attending and we can get it sorted out. Thank you!"
-        imgSrc={image3}
+        imgSrc={image4}
         imgAlt="Gift cards are preferred!"
         isFlipped={false}
         button={false}
