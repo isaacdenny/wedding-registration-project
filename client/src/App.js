@@ -1,14 +1,7 @@
-import LandingPage from "./pages/LandingPage.js";
-import LoginPage from "./pages/LoginPage.js";
-import RegisterPage from "./pages/RegisterPage.js";
 import { BrowserRouter, Routes, Navigate, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import HotelRecPage from "./pages/HotelRecPage";
-import AboutBridalPage from "./pages/AboutBridalPage";
-import EventDetailsPage from "./pages/EventDetailsPage.js";
-import AdminPage from "./pages/AdminPage.js";
+import { HotelRecPage, AboutBridalPage, EventDetailsPage, AdminPage, OurStoryPage, LoginPage, LandingPage } from "./pages";
 import "./App.css";
-import OurStoryPage from "./pages/OurStoryPage.js"
 import { loggedOut } from "./features/auth/authSlice.js"
 
 function App() {
@@ -26,7 +19,6 @@ function App() {
       <Routes>
         <Route path={"/"} element={<LandingPage />} />
         <Route path={"/login"} element={<LoginPage />} />
-        <Route path={"/register"} element={<RegisterPage />} />
         <Route path={"/hotel-rec"} element={<HotelRecPage />} />
         <Route path={"/about-bridal"} element={<AboutBridalPage />} />
         <Route path={"/event-details"} element={<EventDetailsPage />} />

@@ -3,75 +3,48 @@ import Footer from "../components/navigation/Footer";
 import Navbar from "../components/navigation/Navbar";
 import BlockSection from "../components/sections/BlockSection";
 import HeaderSection from "../components/sections/HeaderSection";
-import image1 from "../images/prom-1.jpg";
-import image2 from "../images/prom-2.jpg";
-import image3 from "../images/prom-3.jpg";
-import image4 from "../images/prom-5.jpg";
+import image1 from "../images/hihotel.jpg";
+import image2 from "../images/mphotel.jpg";
+import image3 from "../images/bwhotel.jpg";
+import { Link } from "react-router-dom"
 
 const HotelRecPage = () => {
   return (
     <div>
       <Navbar />
-      <HeaderSection title="Our Story" />
-      <BlockSection
-        isAlone={true}
-        heading="A Fried Chicken Denial"
-        desc="First met in February giving Isaac a tour of Lighthouse Prayed
-              that I would see Isaac again Found out he was coming after spring
-              break! All of April every day after school we were hanging out in
-              his truck at the Evel Knievel jump site & going to Jack in the Box
-              to get mac n cheese bites & churros Isaac asked Allie to be his
-              girlfriend on April 29 and she said no because she didn’t like the
-              way he asked her (he was eating fried chicken and wanted something
-              more romantic like he did with prom)
-              
-              Isaac asked me to prom (was our first technical date) On April 30
-              she asked him to be her boyfriend and got rolled Ice Cream
-              together Our first kiss we saw a double rainbow and our second
-              kiss literal fireworks went off (if that’s not a sign I don’t know
-              what is ;p)"
-        imgSrc={image1}
-        imgAlt="engagement ring with pink rose"
-        isFlipped={true}
-        button={false}
-      />
-      <BlockSection
-        isAlone={true}
-        heading="Meaningful Steps"
-        desc="On the last day of school we went to Lagoon and he didn’t ride any
-              roller coasters except for one, she loved being around him and he
-              rubbed her back on the way back and she knew he was going to be a
-              keeper We spent our summer together and started our Senior year
-              together We started planning our lives Isaac going to BSU and
-              Allie staying in Twin to be an esthetician (she was worried that
-              long distance wasn’t going to work)
-              
-              Celebrated our 1 year together at prom We graduated together and
-              spent as much time together before Isaac left for BSU Isaac left
-              and the long distance began (was actually a good thing for our
-              relationship we got to focus on ourselves and the time that we had
-              together was much more special)"
-        imgSrc={image2}
-        imgAlt="engagement hotel with flowers"
-        button={false}
-      />
-      <BlockSection
-        isAlone={true}
-        heading="She Said Yes!"
-        desc="Put a lot of trust in God for our relationship to work through
-              long-distance and because of trusting God He was faithful to us In
-              January we found out that his family was moving to North Carolina
-              and Isaac might be moving too (another trusting God moment because
-              Allie didn’t want to lose Isaac)
-              
-              While this was going on Isaac was planning on proposing to Allie and
-              taking her with him to North Carolina Isaac proposed to Allie on
-              February 19, 2023 and the rest is history"
-        imgSrc={image3}
-        imgAlt="engagement hotel with flowers"
-        isFlipped={true}
-        button={false}
-      />
+      <HeaderSection title="Hotel Recommendations" />
+      <Link to="https://www.guestreservations.com/hampton-inn-twin-falls-id/booking?gclid=Cj0KCQjwz6ShBhCMARIsAH9A0qXzUXr8AePaeoPtnpwKOsg3j1v3UuwuAvkcw_i3_mKWX8B3sy4Kd9AaAuHGEALw_wcB" style={{textDecoration: "none"}}>
+        <BlockSection
+          isAlone={true}
+          heading="Hampton Inn Twin Falls, ID"
+          desc="$186 per night (June 15-17)"
+          imgSrc={image1}
+          imgAlt="Hampton Inn and Suites in Twin Falls, ID"
+          isFlipped={true}
+          button={false}
+        />
+      </Link>
+      <Link to="https://www.reservations.com/hotel/my-place-hotel--twin-falls-id-twin-falls-id?rmcid=tophotels11&utm_source=googleads&gclid=Cj0KCQjwz6ShBhCMARIsAH9A0qUXHi1UtpcGCfNZVVkvSBAJt7U3BENWj5z2atdRUpsolwuLEm09irUaAvY8EALw_wcB" style={{textDecoration: "none"}}>
+        <BlockSection
+          isAlone={true}
+          heading="My Place Hotel Twin Falls ID"
+          desc="$116 per night (Jun 15-17) Breakfast is not complementary"
+          imgSrc={image2}
+          imgAlt="My Place Hotel in Twin Falls, ID"
+          button={false}
+        />
+      </Link>
+      <Link to="https://www.bestwestern.com/en_US/book/hotel-rooms.13059.html?iata=00170260&ssob=PSPBM0304G&cid=PSPBM0304G:google:Conversion_National_X_US_Google_BW_BW-Plus_BR_PO_Phrase_En_United-States_Idaho:best%20western%20plus%20twin%20falls%20hotel&gclid=Cj0KCQjwz6ShBhCMARIsAH9A0qUGC66lN5UdVNqH-_aowYiCibZCyI9IG2dgEd7gTtNWwMl8Wx5uxpcaAiuGEALw_wcB&gclsrc=aw.ds" style={{textDecoration: "none"}}>
+        <BlockSection
+          isAlone={true}
+          heading="Best Western Plus Twin Falls, ID"
+          desc="$148 per night (Jun 15-17)"
+          imgSrc={image3}
+          imgAlt="Best Western Plus Hotel in Twin Falls, ID"
+          isFlipped={true}
+          button={false}
+        />
+      </Link>
       <Footer />
     </div>
   );
