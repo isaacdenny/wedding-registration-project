@@ -129,6 +129,10 @@
   color: white;
 }
 
+.burger-menu {
+  display: none;
+}
+
 .email {
   text-decoration: none;
   margin: 2rem;
@@ -236,6 +240,44 @@
   .nav-links {
     display: none;
   }
+
+  .side-menu {
+    position: fixed;
+    height: 100%;
+    width: 50vw;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    background-color: #C9B6A4;
+    z-index: 20;
+    border-right-style: solid;
+    border-color: white;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    font-size: large;
+  }
+  .side-menu-closed {
+    position: fixed;
+    height: 100%;
+    width: 40vw;
+    top: 0;
+    left: -45vw;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    background-color: #C9B6A4;
+    z-index: 20;
+    border-right-style: solid;
+    border-color: white;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    font-size: large;
+  }
+
   .section {
     padding-left: 0vw;
     padding-right: 0vw;

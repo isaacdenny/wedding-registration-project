@@ -17,16 +17,16 @@ const EventDetailsPage = () => {
         heading="Location"
         desc="The Wedding will be held at Kingdom Church on 910 Shoshone St N, Twin Falls, ID 83301"
         imgSrc={image1}
-        imgAlt="engagement ring with pink rose"
+        imgAlt="Kingdom Church in Twin Falls, ID 83301"
         isFlipped={true}
         button={false}
       />
       <BlockSection
         isAlone={true}
         heading="Gifts!"
-        desc="If you would like to bring a gift, please consider giving GIFTCARDS rather than larger items, as we will be moving soon and not be able to bring everything with us :( Thank you so much!"
+        desc="If you would like to bring a gift, please consider giving GIFTCARDS rather than larger items, as we will be moving soon and not be able to bring everything with us. Gift cards can be for Amazon, Target, Walmart, Hobby Lobby, or any restaurants! Thank you so much!"
         imgSrc={image3}
-        imgAlt="engagement hotel with flowers"
+        imgAlt="Gift cards are preferred!"
         isFlipped={false}
         button={false}
       />
@@ -35,8 +35,17 @@ const EventDetailsPage = () => {
         heading="When Does It Start?"
         desc="Our Wedding will begin promptly at 4:00pm and go until 8:30-9:00pm! The ceremony will be short, and there will be a reception immediately after!"
         imgSrc={image2}
-        imgAlt="engagement hotel with flowers"
+        imgAlt="engagement ring with pink flowers"
         isFlipped={true}
+        button={false}
+      />
+      <BlockSection
+        isAlone={true}
+        heading="RSV-Problem!"
+        desc="If you have trouble with the RSVP function on our website, please RSVP by emailing allieandisaacwedding@gmail.com with your party name and who will be attending and we can get it sorted out. Thank you!"
+        imgSrc={image3}
+        imgAlt="Gift cards are preferred!"
+        isFlipped={false}
         button={false}
       />
       <Footer />
