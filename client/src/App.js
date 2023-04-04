@@ -6,9 +6,9 @@ import { loggedOut } from "./features/auth/authSlice.js"
 
 function App() {
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.token != null);
-  const isExpired = useSelector((state) => state.exp > Date.now());
-  
+  let isAuth = useSelector((state) => state.token != null);
+  let isExpired = useSelector((state) => state.exp != null && state.exp < Date.now() / 1000);
+
   if (isExpired) {
     dispatch(loggedOut)
     isAuth = false
@@ -26,7 +26,7 @@ function App() {
         <Route
           path={"/admin"}
           //element={<AdminPage />}
-          element={isAuth ? <AdminPage /> : <Navigate to="/login" />}
+          element={isAuth && !isExpired ? <AdminPage /> : <Navigate to="/login" />}
         />
       </Routes>
     </BrowserRouter>

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { loggedIn } from "../features/auth/authSlice.js";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/navigation/Footer";
-import HeaderSection from "../components/sections/HeaderSection"
+import HeaderSection from "../components/sections/HeaderSection";
 
 import heroImage from "../images/prom-5.jpg";
 
@@ -31,15 +31,23 @@ const LoginPage = () => {
       },
       body: JSON.stringify({ username: username, password: password }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status !== 200) {
+          throw res.status;
+        } else {
+          return res.json();
+        }
+      })
       .then((signed) => {
-        if (signed.length <= 0) {
-          alert("Username or password is incorrect");
+        dispatch(
+          loggedIn({ user: signed.user, token: signed.token, exp: signed.exp })
+        );
+        navigate("/admin");
+      }).catch((err) => {
+        if (err === 401) {
+          alert("Invalid username or password");
           return;
         }
-        console.log(signed)
-        dispatch(loggedIn({ user: signed.user, token: signed.token, exp: signed.exp }));
-        navigate("/admin");
       });
   };
 
@@ -50,7 +58,11 @@ const LoginPage = () => {
       <div className="section" style={{ minHeight: "52.2vh" }}>
         <div className="container">
           <div className="container-group">
-            <img src={heroImage} className="arch-image" style={{alignSelf: "center"}}/>
+            <img
+              src={heroImage}
+              className="arch-image"
+              style={{ alignSelf: "center" }}
+            />
           </div>
           <div className="container-group">
             <form onSubmit={handleLogin} className="pretty-form">
