@@ -24,6 +24,7 @@ We did not want to pay a bunch of money for a simple registration app, so I buil
 ### Deployment
 - [Docker](https://www.docker.com/)
 - [Docker-Compose](https://docs.docker.com/compose/)
+- [NGINX](https://www.nginx.com/)
 
 ## Try Out The Project
 See section "Contributing To The Project" for local development instructions.
