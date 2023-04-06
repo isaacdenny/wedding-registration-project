@@ -41,8 +41,7 @@ const InfoSection = (params) => {
             >
               <h3 className="info-text">Located In</h3>
               <p>
-                This is some filler text for our website! This is some filler
-                text for our website!
+                Twin Falls, ID!
               </p>
             </div>
             <div className="divider" />
@@ -59,8 +58,7 @@ const InfoSection = (params) => {
             >
               <h3 className="info-text">Contact Us</h3>
               <p>
-                This is some filler text for our website! This is some filler
-                text for our website!
+                AllieAndIsaacWedding@gmail.com
               </p>
             </div>
             <div className="divider" />
@@ -76,10 +74,16 @@ const InfoSection = (params) => {
               }}
             >
               <h3 className="info-text">Find Us On</h3>
-              <p>
-                This is some filler text for our website! This is some filler
-                text for our website!
-              </p>
+              <a href="https://www.youtube.com/channel/UCY5C07OGD1ZBjNu1jRbueKg">
+                Youtube
+              </a>
+              <a href="https://www.instagram.com/isaacquinndenny/">
+                Instagram (Isaac)
+              </a>
+              <a href="https://www.instagram.com/alllie.runyan/">
+                Instagram (Allie)
+              </a>
+              <a href="https://twitter.com/IsaacDenny_cs">Twitter</a>
             </div>
           </div>
         </div>
