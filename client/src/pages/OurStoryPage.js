@@ -3,8 +3,8 @@ import Footer from "../components/navigation/Footer";
 import Navbar from "../components/navigation/Navbar";
 import BlockSection from "../components/sections/BlockSection";
 import HeaderSection from "../components/sections/HeaderSection";
-import image1 from "../images/prom-1.jpg";
-import image2 from "../images/prom-2.jpg";
+import image1 from "../images/allie-me.jpg";
+import image2 from "../images/allie-me-walking.jpg";
 import image3 from "../images/prom-3.jpg";
 import image4 from "../images/prom-5.jpg";
 
@@ -25,7 +25,7 @@ const OurStoryPage = () => {
         As Prom was coming up soon, Isaac decided (with the help of Allie's best
         friend, Tilly Monroe) to ask Allie to prom. He put together a big
         cheerleader-megaphone-promposal and asked her out on their first date."
-        imgSrc={image1}
+        imgSrc={image3}
         imgAlt="engagement ring with pink rose"
         isFlipped={true}
         button={false}
@@ -69,7 +69,7 @@ const OurStoryPage = () => {
         Fortunately for the both of them, Isaac was planning on proposing to Allie and 
         solidifying what their future would hold together. Isaac proposed to Allie on
         February 19, 2023 at the Evel Knievel jump site, and the rest is history."
-        imgSrc={image3}
+        imgSrc={image1}
         imgAlt="engagement hotel with flowers"
         isFlipped={true}
         button={false}
