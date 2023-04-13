@@ -13,7 +13,7 @@ const BlockSection = (params) => {
         >
           <div
             className="container"
-            style={{ paddingTop: "0px", paddingBottom: "0px", maxHeight: "600px", minHeight: "450px" }}
+            style={{ paddingTop: "0px", paddingBottom: "0px", maxHeight: "600px" }}
           >
             <div className="container-group" style={{ alignItems: "center" }}>
               <h3>{params.heading ? params.heading : "No Heading"}</h3>
@@ -53,7 +53,7 @@ const BlockSection = (params) => {
         >
           <div
             className="container"
-            style={{ paddingTop: "0px", paddingBottom: "0px", maxHeight: "600px", minHeight: "450px" }}
+            style={{ paddingTop: "0px", paddingBottom: "0px", maxHeight: "600px" }}
           >
             <div className="container-group">
               <img
