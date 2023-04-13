@@ -13,17 +13,6 @@ const HotelRecPage = () => {
     <div>
       <Navbar />
       <HeaderSection title="Hotel Recommendations" />
-      <Link to="https://www.guestreservations.com/hampton-inn-twin-falls-id/booking?gclid=Cj0KCQjwz6ShBhCMARIsAH9A0qXzUXr8AePaeoPtnpwKOsg3j1v3UuwuAvkcw_i3_mKWX8B3sy4Kd9AaAuHGEALw_wcB" style={{textDecoration: "none"}}>
-        <BlockSection
-          isAlone={true}
-          heading="Hampton Inn Twin Falls, ID"
-          desc="$186 per night (June 15-17)"
-          imgSrc={image1}
-          imgAlt="Hampton Inn and Suites in Twin Falls, ID"
-          isFlipped={true}
-          button={false}
-        />
-      </Link>
       <Link to="https://www.reservations.com/hotel/my-place-hotel--twin-falls-id-twin-falls-id?rmcid=tophotels11&utm_source=googleads&gclid=Cj0KCQjwz6ShBhCMARIsAH9A0qUXHi1UtpcGCfNZVVkvSBAJt7U3BENWj5z2atdRUpsolwuLEm09irUaAvY8EALw_wcB" style={{textDecoration: "none"}}>
         <BlockSection
           isAlone={true}
@@ -42,6 +31,16 @@ const HotelRecPage = () => {
           imgSrc={image3}
           imgAlt="Best Western Plus Hotel in Twin Falls, ID"
           isFlipped={true}
+          button={false}
+        />
+      </Link>
+      <Link to="https://www.guestreservations.com/hampton-inn-twin-falls-id/booking?gclid=Cj0KCQjwz6ShBhCMARIsAH9A0qXzUXr8AePaeoPtnpwKOsg3j1v3UuwuAvkcw_i3_mKWX8B3sy4Kd9AaAuHGEALw_wcB" style={{textDecoration: "none"}}>
+        <BlockSection
+          isAlone={true}
+          heading="Hampton Inn Twin Falls, ID"
+          desc="$186 per night (June 15-17)"
+          imgSrc={image1}
+          imgAlt="Hampton Inn and Suites in Twin Falls, ID"
           button={false}
         />
       </Link>

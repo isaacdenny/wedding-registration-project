@@ -13,16 +13,16 @@ const BlockSection = (params) => {
         >
           <div
             className="container"
-            style={{ paddingTop: "0px", paddingBottom: "0px" }}
+            style={{ paddingTop: "0px", paddingBottom: "0px", maxHeight: "600px", minHeight: "450px" }}
           >
             <div className="container-group" style={{ alignItems: "center" }}>
               <h3>{params.heading ? params.heading : "No Heading"}</h3>
-              <p style={{ maxWidth: "310px", textAlign: "center" }}>
+              <div style={{ maxWidth: "310px", textAlign: "center" }}>
                 {params.desc ? params.desc : "No Desc"}
-              </p>
+              </div>
               {params.button ? (
                 <a href={params.buttonHref}>
-                  <button className="button-primary">
+                  <button className="button-primary" style={{ marginTop: "1rem"}}>
                     {params.buttonText ? params.buttonText : "No Text"}
                   </button>
                 </a>
@@ -53,7 +53,7 @@ const BlockSection = (params) => {
         >
           <div
             className="container"
-            style={{ paddingTop: "0px", paddingBottom: "0px" }}
+            style={{ paddingTop: "0px", paddingBottom: "0px", maxHeight: "600px", minHeight: "450px" }}
           >
             <div className="container-group">
               <img
@@ -69,12 +69,12 @@ const BlockSection = (params) => {
             </div>
             <div className="container-group" style={{ alignItems: "center" }}>
               <h3>{params.heading ? params.heading : "No Heading"}</h3>
-              <p style={{ maxWidth: "310px", textAlign: "center" }}>
+              <div style={{ maxWidth: "310px", textAlign: "center" }}>
                 {params.desc ? params.desc : "No Desc"}
-              </p>
+              </div>
               {params.button ? (
                 <a href={params.buttonHref}>
-                  <button className="button-primary">
+                  <button className="button-primary" style={{ marginTop: "1rem"}}>
                     {params.buttonText ? params.buttonText : "No Text"}
                   </button>
                 </a>

@@ -6,12 +6,9 @@ import HeaderSection from "../components/sections/HeaderSection";
 import stephanie from "../images/stephanie.jpg";
 import brandie from "../images/brandie.jpg";
 import hadlee from "../images/hadlee.png";
-import lisa from "../images/lisa.jpg";
-import dan from "../images/dan.jpg";
 import colston from "../images/colston.jpg";
 import micah from "../images/micah.jpg";
 import thad from "../images/thad.jpg";
-import momdad from "../images/momdad.jpg";
 import connor from "../images/connor.png";
 import sophie from "../images/sophie.png";
 
@@ -32,7 +29,7 @@ const AboutBridalPage = () => {
       <BlockSection
         isAlone={true}
         heading="Brandie Snelson"
-        desc="Allie's sister"
+        desc="Allie's sister and Bridesmaid"
         imgSrc={brandie}
         imgAlt="Brandie Snelson"
         isFlipped={true}
@@ -49,24 +46,6 @@ const AboutBridalPage = () => {
       />
       <BlockSection
         isAlone={true}
-        heading="Dan Runyan"
-        desc="Allie's Father"
-        imgSrc={dan}
-        imgAlt="Dan Runyan"
-        isFlipped={true}
-        button={false}
-      />
-      <BlockSection
-        isAlone={true}
-        heading="Lisa Runyan"
-        desc="Allie's Mother"
-        imgSrc={lisa}
-        imgAlt="Lisa Runyan"
-        isFlipped={true}
-        button={false}
-      />
-      <BlockSection
-        isAlone={true}
         heading="Colston Kapnick"
         desc="Isaac's best friend and Best Man"
         imgSrc={colston}
@@ -76,7 +55,7 @@ const AboutBridalPage = () => {
       <BlockSection
         isAlone={true}
         heading="Micah Denny"
-        desc="Isaac's younger brother"
+        desc="Isaac's younger brother and Groomsman"
         imgSrc={micah}
         imgAlt="Micah Denny"
         button={false}
@@ -84,16 +63,8 @@ const AboutBridalPage = () => {
       <BlockSection
         isAlone={true}
         heading="Thaddeus Denny"
-        desc="Isaac's youngest brother"
+        desc="Isaac's youngest brother and Groomsman"
         imgSrc={thad}
-        imgAlt="Thaddeus Denny"
-        button={false}
-      />
-      <BlockSection
-        isAlone={true}
-        heading="Steve and Rebecca Denny"
-        desc="Isaac's parents"
-        imgSrc={momdad}
         imgAlt="Thaddeus Denny"
         button={false}
       />
