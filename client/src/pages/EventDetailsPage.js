@@ -15,15 +15,6 @@ const EventDetailsPage = () => {
       <HeaderSection title="Event Details" />
       <BlockSection
         isAlone={true}
-        heading="Location"
-        desc="The Wedding will be held at Kingdom Church on 910 Shoshone St N, Twin Falls, ID 83301"
-        imgSrc={image1}
-        imgAlt="Kingdom Church in Twin Falls, ID 83301"
-        isFlipped={true}
-        button={false}
-      />
-      <BlockSection
-        isAlone={true}
         heading="Gifts!"
         desc="If you would like to bring a gift, please consider giving GIFTCARDS rather than larger items, as we will be moving soon and not be able to bring everything with us. Gift cards can be for Amazon, Target, Walmart, Hobby Lobby, or any restaurants! Thank you so much!"
         imgSrc={image3}
