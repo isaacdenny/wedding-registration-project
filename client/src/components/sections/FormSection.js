@@ -67,6 +67,7 @@ const FormSection = (params) => {
     })
       .then((res) => res.json())
       .then(() => {
+        alert("Thank you for letting us know who in your party is attending! We cannot wait to see you!")
         setIsRegistered(!isRegistered);
         setIsAttending([]);
         isAttendingArray = [];
